@@ -3,6 +3,23 @@ import logoImg from '../assets/logo.png';
 
 export default function Logo({ className = "", size = "normal" }) {
   const isSmall = size === "small";
+  const isLarge = size === "large";
+  
+  let heightClass = 'h-[26px]';
+  if (isSmall) {
+    heightClass = 'h-[19px]';
+  } else if (isLarge) {
+    heightClass = 'h-[34px]'; // Larger size for header
+  }
+
+  // Adjust padding proportionally
+  let paddingClass = 'px-4.5 py-2';
+  if (isSmall) {
+    paddingClass = 'px-3 py-1.5';
+  } else if (isLarge) {
+    paddingClass = 'px-5 py-2.5';
+  }
+
   const [processedSrc, setProcessedSrc] = useState(logoImg);
 
   useEffect(() => {
@@ -50,14 +67,14 @@ export default function Logo({ className = "", size = "normal" }) {
 
   // Use a fallback background container if no custom background class is provided to ensure full readability
   const hasBg = className.includes('bg-');
-  const defaultBgClass = hasBg ? '' : 'bg-[#111111] px-4.5 py-2 rounded-full border border-neutral-850 shadow-sm';
+  const defaultBgClass = hasBg ? '' : `bg-[#111111] ${paddingClass} rounded-full border border-neutral-850 shadow-sm`;
 
   return (
     <div className={`flex items-center justify-center select-none inline-flex ${defaultBgClass} ${className}`}>
       <img 
         src={processedSrc} 
         alt="RENZA Logo" 
-        className={`${isSmall ? 'h-[19px]' : 'h-[26px]'} w-auto object-contain`}
+        className={`${heightClass} w-auto object-contain`}
       />
     </div>
   );

@@ -124,7 +124,7 @@ export default function Navbar({ theme, toggleTheme }) {
         {/* LEFT: Logo */}
         <div className="flex-shrink-0">
           <a href="#" onClick={handleLogoClick} aria-label="RENZA Home" className="transition-transform hover:scale-[1.02]">
-            <Logo />
+            <Logo size="large" />
           </a>
         </div>
 
