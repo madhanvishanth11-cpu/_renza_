@@ -83,7 +83,7 @@ export default function Hero() {
             </div>
 
             {/* Inner Phone Screen */}
-            <div className="w-full h-full bg-[#F7F7F5] rounded-[42px] overflow-hidden flex flex-col justify-between pt-7 pb-4 px-4 select-none relative">
+            <div className="phone-screen w-full h-full bg-[#F7F7F5] rounded-[42px] overflow-hidden flex flex-col justify-between pt-7 pb-4 px-4 select-none relative">
               
               {/* Phone Content Header */}
               <div className="flex items-center justify-between mt-2 mb-3">
@@ -95,14 +95,14 @@ export default function Hero() {
               </div>
 
               {/* Location Selector */}
-              <div className="flex items-center gap-1 text-[#111111] font-semibold text-xs mb-3 px-1">
+              <div className="flex items-center gap-1 phone-text-dark text-[#111111] font-semibold text-xs mb-3 px-1">
                 <MapPin size={12} className="text-brand-yellow fill-brand-yellow/30" />
                 <span>Koramangala, Bengaluru</span>
                 <span className="text-text-secondary font-normal">• Nearby Tasks</span>
               </div>
 
               {/* Interactive Search Bar / Post Form */}
-              <div className="bg-white rounded-2xl p-3 shadow-[0_4px_16px_rgba(0,0,0,0.04)] border border-neutral-100 mb-3 flex flex-col gap-2">
+              <div className="phone-card bg-white rounded-2xl p-3 shadow-[0_4px_16px_rgba(0,0,0,0.04)] border border-neutral-100 mb-3 flex flex-col gap-2">
                 <div className="relative">
                   <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-secondary" />
                   <input
@@ -110,7 +110,7 @@ export default function Hero() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Need an electrician or errands done?"
-                    className="w-full bg-[#F7F7F5] pl-8 pr-3 py-2 rounded-xl text-xs text-[#111111] placeholder-text-secondary border-none focus:outline-none focus:ring-1 focus:ring-brand-yellow/50 font-medium"
+                    className="phone-input w-full bg-[#F7F7F5] pl-8 pr-3 py-2 rounded-xl text-xs text-[#111111] placeholder-text-secondary border-none focus:outline-none focus:ring-1 focus:ring-brand-yellow/50 font-medium"
                   />
                 </div>
                 <button className="w-full py-2 bg-brand-yellow hover:bg-[#F2D900] text-deep-black font-extrabold text-xs rounded-xl shadow-sm transition-all hover:scale-[1.01] flex items-center justify-center gap-1 cursor-pointer">
@@ -128,7 +128,7 @@ export default function Hero() {
                     className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-bold whitespace-nowrap transition-all duration-300 cursor-pointer ${
                       activeChip === cat.id
                         ? 'bg-brand-yellow text-deep-black shadow-sm'
-                        : 'bg-white text-text-secondary border border-neutral-200/60 hover:border-neutral-300 hover:text-text-dark'
+                        : 'phone-chip bg-white text-text-secondary border border-neutral-200/60 hover:border-neutral-300 hover:text-text-dark'
                     }`}
                   >
                     <span>{cat.icon}</span>
@@ -141,7 +141,7 @@ export default function Hero() {
               <div className="flex-1 flex flex-col gap-2.5 overflow-y-auto max-h-[300px] scrollbar-none pr-0.5">
                 
                 {/* Worker Card 1 */}
-                <div className="bg-white p-3 rounded-2xl border border-neutral-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-2 relative group">
+                <div className="phone-card bg-white p-3 rounded-2xl border border-neutral-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-2 relative group">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-9 h-9 rounded-full bg-brand-yellow/20 text-deep-black font-black text-xs flex items-center justify-center shadow-inner border border-brand-yellow/40">
@@ -149,7 +149,7 @@ export default function Hero() {
                       </div>
                       <div>
                         <div className="flex items-center gap-1">
-                          <span className="font-extrabold text-xs text-[#111111]">Rajesh K.</span>
+                          <span className="phone-text-dark font-extrabold text-xs text-[#111111]">Rajesh K.</span>
                           {/* Verified Badge */}
                           <div className="w-3.5 h-3.5 rounded-full bg-sky-500 text-white flex items-center justify-center" title="Verified Professional">
                             <Check size={8} strokeWidth={4} />
@@ -160,12 +160,12 @@ export default function Hero() {
                     </div>
                     {/* Status Pill */}
                     <div className="px-2 py-0.5 bg-[#4ADE80]/10 text-[#16A34A] text-[9px] font-bold rounded-full border border-[#4ADE80]/20 flex items-center gap-1">
-                      <span className="w-1 h-1 rounded-full bg-[#16A34A] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] animate-pulse" />
                       Available Now
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between pt-1 border-t border-neutral-100 text-[10px]">
+                  <div className="flex items-center justify-between pt-1 border-t border-neutral-100/30 text-[10px]">
                     <div className="flex items-center gap-3 text-text-secondary font-semibold">
                       <span>📍 1.2 km away</span>
                       <span className="flex items-center gap-0.5 text-amber-500">
@@ -175,21 +175,21 @@ export default function Hero() {
                     </div>
                     <div className="text-right">
                       <span className="text-text-secondary font-normal block text-[8px]">EST. RATE</span>
-                      <span className="font-extrabold text-[#111111] text-xs">₹350/hr</span>
+                      <span className="phone-text-dark font-extrabold text-[#111111] text-xs">₹350/hr</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Worker Card 2 */}
-                <div className="bg-white p-3 rounded-2xl border border-neutral-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-2 relative group">
+                <div className="phone-card bg-white p-3 rounded-2xl border border-neutral-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col gap-2 relative group">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-full bg-neutral-100 text-deep-black font-black text-xs flex items-center justify-center shadow-inner border border-neutral-200">
+                      <div className="phone-avatar w-9 h-9 rounded-full bg-neutral-100 text-deep-black font-black text-xs flex items-center justify-center shadow-inner border border-neutral-200">
                         MS
                       </div>
                       <div>
                         <div className="flex items-center gap-1">
-                          <span className="font-extrabold text-xs text-[#111111]">Manjunath S.</span>
+                          <span className="phone-text-dark font-extrabold text-xs text-[#111111]">Manjunath S.</span>
                           <div className="w-3.5 h-3.5 rounded-full bg-sky-500 text-white flex items-center justify-center" title="Verified Professional">
                             <Check size={8} strokeWidth={4} />
                           </div>
@@ -198,13 +198,13 @@ export default function Hero() {
                       </div>
                     </div>
                     {/* Status Pill */}
-                    <div className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-bold rounded-full border border-blue-100 flex items-center gap-1">
+                    <div className="phone-badge px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-bold rounded-full border border-blue-100 flex items-center gap-1">
                       <ShieldCheck size={10} />
                       OTP Protected
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between pt-1 border-t border-neutral-100 text-[10px]">
+                  <div className="flex items-center justify-between pt-1 border-t border-neutral-100/30 text-[10px]">
                     <div className="flex items-center gap-3 text-text-secondary font-semibold">
                       <span>📍 0.8 km away</span>
                       <span className="flex items-center gap-0.5 text-amber-500">
@@ -214,7 +214,7 @@ export default function Hero() {
                     </div>
                     <div className="text-right">
                       <span className="text-text-secondary font-normal block text-[8px]">EST. RATE</span>
-                      <span className="font-extrabold text-[#111111] text-xs">₹250/hr</span>
+                      <span className="phone-text-dark font-extrabold text-[#111111] text-xs">₹250/hr</span>
                     </div>
                   </div>
                 </div>
