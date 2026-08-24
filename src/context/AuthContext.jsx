@@ -134,6 +134,65 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // ── Email Sign Up ────────────────────────────────────────
+  async function signUpWithEmail(email, password, name) {
+    setError(null);
+    if (isMockMode) {
+      console.warn("RENZA Auth: Supabase is not configured. Falling back to Mock Sign Up.");
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const mockUser = {
+            id: 'mock-signup-id',
+            email: email,
+            user_metadata: {
+              full_name: name,
+              avatar_url: ''
+            },
+            app_metadata: {
+              provider: 'email'
+            }
+          };
+          const mapped = mapSupabaseUser(mockUser);
+          setUser(mapped);
+          setProfile({
+            id: mockUser.id,
+            name: name,
+            email: mockUser.email,
+            photoURL: '',
+            provider: 'email',
+            createdAt: new Date().toISOString(),
+            lastLoginAt: new Date().toISOString(),
+          });
+          resolve(mapped);
+        }, 800);
+      });
+    }
+
+    try {
+      const { data, error: err } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name,
+          },
+        },
+      });
+      if (err) throw err;
+      
+      if (data.user) {
+        const mapped = mapSupabaseUser(data.user);
+        setUser(mapped);
+        await handleUserProfile(data.user);
+        return mapped;
+      }
+      return data;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
+  }
+
   // ── Logout ───────────────────────────────────────────────
   async function logout() {
     setError(null);
@@ -252,6 +311,7 @@ export function AuthProvider({ children }) {
     error,
     loginWithGoogle,
     loginWithEmail,
+    signUpWithEmail,
     logout,
   };
 

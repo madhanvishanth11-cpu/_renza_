@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, Mail, Lock, Eye, EyeOff, ArrowRight, Loader2 } from 'lucide-react';
+import { X, Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import Logo from './Logo';
 
 // Google "G" SVG Icon
 function GoogleIcon() {
@@ -15,12 +16,17 @@ function GoogleIcon() {
 }
 
 export default function LoginModal({ isOpen, onClose }) {
-  const { loginWithGoogle, loginWithEmail } = useAuth();
+  const { loginWithGoogle, loginWithEmail, signUpWithEmail } = useAuth();
 
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  
   const [signingInGoogle, setSigningInGoogle] = useState(false);
   const [signingInEmail, setSigningInEmail] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -40,20 +46,47 @@ export default function LoginModal({ isOpen, onClose }) {
     }
   }
 
-  async function handleEmailLogin(e) {
+  async function handleAuthSubmit(e) {
     e.preventDefault();
-    if (!email || !password) { setErrorMsg('Please enter your email and password.'); return; }
-    setSigningInEmail(true);
     setErrorMsg('');
-    try {
-      await loginWithEmail(email, password);
-      onClose();
-    } catch (err) {
-      setErrorMsg(err.message || 'Sign-in failed. Please try again.');
-    } finally {
-      setSigningInEmail(false);
+
+    if (isSignUp) {
+      if (!name.trim()) { setErrorMsg('Please enter your full name.'); return; }
+      if (!email || !password) { setErrorMsg('Please enter your email and password.'); return; }
+      if (password !== confirmPassword) { setErrorMsg('Passwords do not match.'); return; }
+      
+      setSigningInEmail(true);
+      try {
+        await signUpWithEmail(email, password, name);
+        onClose();
+      } catch (err) {
+        setErrorMsg(err.message || 'Sign-up failed. Please try again.');
+      } finally {
+        setSigningInEmail(false);
+      }
+    } else {
+      if (!email || !password) { setErrorMsg('Please enter your email and password.'); return; }
+      
+      setSigningInEmail(true);
+      try {
+        await loginWithEmail(email, password);
+        onClose();
+      } catch (err) {
+        setErrorMsg(err.message || 'Sign-in failed. Please try again.');
+      } finally {
+        setSigningInEmail(false);
+      }
     }
   }
+
+  const toggleMode = () => {
+    setIsSignUp(prev => !prev);
+    setErrorMsg('');
+    setName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  };
 
   return (
     /* Backdrop */
@@ -65,61 +98,78 @@ export default function LoginModal({ isOpen, onClose }) {
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
       {/* Modal Card */}
-      <div className="relative z-10 w-full max-w-[420px] bg-white rounded-[28px] shadow-2xl overflow-hidden">
+      <div className="relative z-10 w-full max-w-[420px] bg-white dark:bg-[#1a1a1a] rounded-[28px] border border-gray-200 dark:border-neutral-800 shadow-2xl overflow-hidden">
         <div className="px-8 pt-10 pb-8">
 
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 w-9 h-9 rounded-full border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center transition-colors cursor-pointer shadow-sm"
+            className="absolute top-5 right-5 w-9 h-9 rounded-full border border-gray-200 dark:border-neutral-800 bg-white dark:bg-[#242424] hover:bg-gray-50 dark:hover:bg-neutral-800 flex items-center justify-center transition-colors cursor-pointer shadow-sm text-text-dark dark:text-white"
             aria-label="Close"
           >
-            <X size={16} className="text-text-dark" />
+            <X size={16} />
           </button>
 
-          {/* RENZA Logo pill */}
+          {/* Logo pill */}
           <div className="flex justify-center mb-6">
-            <div className="flex items-center gap-2.5 bg-deep-black text-white px-5 py-2.5 rounded-full shadow-md">
-              <div className="w-6 h-6 bg-brand-yellow rounded flex items-center justify-center">
-                <span className="font-black text-deep-black text-xs">R</span>
-              </div>
-              <span className="font-sans font-black text-base tracking-tight">Renza</span>
-            </div>
+            <Logo size="small" />
           </div>
 
           {/* Heading */}
-          <h2 className="font-sans font-black text-[26px] text-deep-black text-center tracking-tight mb-1">
-            Welcome Back
+          <h2 className="font-sans font-black text-[26px] text-deep-black dark:text-white text-center tracking-tight mb-1">
+            {isSignUp ? 'Create Profile' : 'Welcome Back'}
           </h2>
           <p className="text-text-secondary text-sm font-medium text-center mb-7 leading-relaxed">
-            Access your RENZA account &amp; managed tasks
+            {isSignUp ? 'Join RENZA for managed task services' : 'Access your RENZA account & managed tasks'}
           </p>
 
           {/* Google Button */}
           <button
             onClick={handleGoogleLogin}
             disabled={signingInGoogle || signingInEmail}
-            className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-gray-250 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed shadow-sm mb-5"
+            className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-gray-250 dark:border-neutral-800 bg-white dark:bg-[#242424] hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed shadow-sm mb-5"
           >
             {signingInGoogle ? <Loader2 size={20} className="animate-spin text-text-secondary" /> : <GoogleIcon />}
-            <span className="font-sans font-bold text-[15px] text-deep-black">
-              {signingInGoogle ? 'Signing in…' : 'Continue with Google'}
+            <span className="font-sans font-bold text-[15px] text-deep-black dark:text-white">
+              {signingInGoogle ? 'Processing…' : 'Continue with Google'}
             </span>
           </button>
 
           {/* Divider */}
           <div className="flex items-center gap-3 mb-5">
-            <div className="flex-1 h-px bg-gray-200" />
+            <div className="flex-1 h-px bg-gray-200 dark:bg-neutral-850" />
             <span className="text-[11px] font-black text-text-secondary tracking-widest uppercase">Or with email</span>
-            <div className="flex-1 h-px bg-gray-200" />
+            <div className="flex-1 h-px bg-gray-200 dark:bg-neutral-850" />
           </div>
 
           {/* Email / Password Form */}
-          <form onSubmit={handleEmailLogin} className="flex flex-col gap-4">
+          <form onSubmit={handleAuthSubmit} className="flex flex-col gap-4">
+
+            {/* Name (Sign up only) */}
+            {isSignUp && (
+              <div>
+                <label className="block text-sm font-bold text-deep-black dark:text-white mb-1.5">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <User size={16} className="text-text-secondary" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter full name"
+                    className="w-full pl-10 pr-4 py-3.5 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-[#242424] text-text-dark dark:text-white text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition-all"
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-bold text-deep-black mb-1.5">
+              <label className="block text-sm font-bold text-deep-black dark:text-white mb-1.5">
                 Email Address <span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -128,17 +178,18 @@ export default function LoginModal({ isOpen, onClose }) {
                 </div>
                 <input
                   type="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-3.5 rounded-2xl border border-gray-200 bg-white text-text-dark text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition-all"
+                  className="w-full pl-10 pr-4 py-3.5 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-[#242424] text-text-dark dark:text-white text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition-all"
                 />
               </div>
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-bold text-deep-black mb-1.5">
+              <label className="block text-sm font-bold text-deep-black dark:text-white mb-1.5">
                 Password <span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -147,10 +198,11 @@ export default function LoginModal({ isOpen, onClose }) {
                 </div>
                 <input
                   type={showPassword ? 'text' : 'password'}
+                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter password"
-                  className="w-full pl-10 pr-12 py-3.5 rounded-2xl border border-gray-200 bg-white text-text-dark text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition-all"
+                  placeholder={isSignUp ? 'Choose password (min 6 chars)' : 'Enter password'}
+                  className="w-full pl-10 pr-12 py-3.5 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-[#242424] text-text-dark dark:text-white text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition-all"
                 />
                 <button
                   type="button"
@@ -162,30 +214,61 @@ export default function LoginModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* Remember me + Forgot password */}
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded accent-brand-yellow cursor-pointer"
-                />
-                <span className="text-sm text-text-secondary font-medium">Remember me</span>
-              </label>
-              <button type="button" className="text-sm font-bold text-deep-black hover:text-brand-yellow transition-colors cursor-pointer">
-                Forgot password?
-              </button>
-            </div>
+            {/* Confirm Password (Sign up only) */}
+            {isSignUp && (
+              <div>
+                <label className="block text-sm font-bold text-deep-black dark:text-white mb-1.5">
+                  Confirm Password <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <Lock size={16} className="text-text-secondary" />
+                  </div>
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Verify password"
+                    className="w-full pl-10 pr-12 py-3.5 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-[#242424] text-text-dark dark:text-white text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-dark transition-colors cursor-pointer"
+                  >
+                    {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Remember me + Forgot password (Sign in only) */}
+            {!isSignUp && (
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="w-4 h-4 rounded accent-brand-yellow cursor-pointer"
+                  />
+                  <span className="text-sm text-text-secondary font-medium">Remember me</span>
+                </label>
+                <button type="button" className="text-sm font-bold text-deep-black dark:text-white hover:text-brand-yellow transition-colors cursor-pointer">
+                  Forgot password?
+                </button>
+              </div>
+            )}
 
             {/* Error */}
             {errorMsg && (
-              <p className="text-sm text-red-500 font-semibold bg-red-50 border border-red-100 rounded-xl px-4 py-2.5 text-center">
+              <p className="text-sm text-red-500 font-semibold bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/35 rounded-xl px-4 py-2.5 text-center">
                 {errorMsg}
               </p>
             )}
 
-            {/* Sign In Button */}
+            {/* Action Button */}
             <button
               type="submit"
               disabled={signingInEmail || signingInGoogle}
@@ -195,18 +278,21 @@ export default function LoginModal({ isOpen, onClose }) {
                 <Loader2 size={18} className="animate-spin" />
               ) : (
                 <>
-                  Sign In to RENZA
+                  {isSignUp ? 'Create Profile & Sign Up' : 'Sign In to RENZA'}
                   <ArrowRight size={18} strokeWidth={2.5} />
                 </>
               )}
             </button>
           </form>
 
-          {/* Sign up link */}
+          {/* Toggle View Link */}
           <p className="text-center text-sm text-text-secondary font-medium mt-6">
-            Don't have an account?{' '}
-            <button className="font-black text-deep-black hover:text-brand-yellow transition-colors cursor-pointer">
-              Sign up
+            {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+            <button 
+              onClick={toggleMode}
+              className="font-black text-deep-black dark:text-white hover:text-brand-yellow transition-colors cursor-pointer"
+            >
+              {isSignUp ? 'Sign in' : 'Sign up'}
             </button>
           </p>
 
