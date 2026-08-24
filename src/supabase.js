@@ -3,18 +3,16 @@ import { createClient } from '@supabase/supabase-js';
 // ============================================================
 // RENZA – Supabase Configuration
 // ============================================================
-// Replace the placeholders below with your actual Supabase URL
-// and Anonymous Key from:
-// Supabase Console → Project Settings → API
+// Initialized from environment variables with safe fallback
+// to the official RENZA project keys.
 // ============================================================
 
-export const supabaseUrl = 'YOUR_SUPABASE_URL';
-export const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+export const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || 'https://wjpkuzqtbsncrxarnvby.supabase.co').trim();
+export const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_YJfLsTOfdFjt7GaCH0wbJg_EEW1byzx').trim();
 
-// Safe initialization to prevent app crash with placeholder URLs
 let client = null;
 try {
-  if (supabaseUrl && supabaseUrl !== 'YOUR_SUPABASE_URL' && supabaseUrl.startsWith('http')) {
+  if (supabaseUrl && supabaseUrl.startsWith('http')) {
     client = createClient(supabaseUrl, supabaseAnonKey);
   }
 } catch (e) {
@@ -22,3 +20,4 @@ try {
 }
 
 export const supabase = client;
+export default supabase;

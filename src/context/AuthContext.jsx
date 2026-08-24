@@ -193,6 +193,40 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // ── Send Password Reset Email ────────────────────────────
+  async function sendPasswordResetEmail(email) {
+    setError(null);
+    if (isMockMode) {
+      console.warn("RENZA Auth: Mock mode active. Simulated sending password reset to:", email);
+      return;
+    }
+    try {
+      const { error: err } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+      if (err) throw err;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
+  }
+
+  // ── Update Password (Reset flow) ─────────────────────────
+  async function updatePassword(newPassword) {
+    setError(null);
+    if (isMockMode) {
+      console.warn("RENZA Auth: Mock mode active. Simulated updating password to:", newPassword);
+      return;
+    }
+    try {
+      const { error: err } = await supabase.auth.updateUser({ password: newPassword });
+      if (err) throw err;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
+  }
+
   // ── Logout ───────────────────────────────────────────────
   async function logout() {
     setError(null);
@@ -312,6 +346,8 @@ export function AuthProvider({ children }) {
     loginWithGoogle,
     loginWithEmail,
     signUpWithEmail,
+    sendPasswordResetEmail,
+    updatePassword,
     logout,
   };
 

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Logo from './Logo';
 import { Moon, Sun, Download, Menu, X, LogOut, User, ChevronDown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import LoginModal from './LoginModal';
+import { useNavigate } from 'react-router-dom';
 
 // ─── User Avatar Dropdown ───────────────────────────────────
 function UserMenu({ user, profile, logout }) {
@@ -97,14 +97,14 @@ function UserMenu({ user, profile, logout }) {
 // ─── Navbar ─────────────────────────────────────────────────
 export default function Navbar({ theme, toggleTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const navigate = useNavigate();
   const { user, profile, loading, logout } = useAuth();
 
   React.useEffect(() => {
-    const handleOpenLogin = () => setLoginModalOpen(true);
+    const handleOpenLogin = () => navigate('/signin');
     window.addEventListener('open-login-modal', handleOpenLogin);
     return () => window.removeEventListener('open-login-modal', handleOpenLogin);
-  }, []);
+  }, [navigate]);
 
   const handleLogoClick = (e) => {
     e.preventDefault();
@@ -158,7 +158,7 @@ export default function Navbar({ theme, toggleTheme }) {
               <UserMenu user={user} profile={profile} logout={logout} />
             ) : (
               <button
-                onClick={() => setLoginModalOpen(true)}
+                onClick={() => navigate('/signin')}
                 className="px-6 py-2.5 rounded-full border border-gray-200 hover:border-gray-400 bg-white text-[#111111] hover:text-[#000000] font-semibold text-sm transition-all duration-300 hover:shadow-sm hover:scale-[1.02] active:scale-95 cursor-pointer"
               >
                 Login
@@ -231,7 +231,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 </button>
               ) : (
                 <button
-                  onClick={() => { setLoginModalOpen(true); setMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/signin'); setMobileMenuOpen(false); }}
                   className="w-full text-center px-6 py-3 rounded-full border border-gray-200 bg-white text-[#111111] font-semibold text-sm hover:bg-gray-50 cursor-pointer"
                 >
                   Login
@@ -246,8 +246,6 @@ export default function Navbar({ theme, toggleTheme }) {
         )}
       </header>
 
-      {/* Login Modal (rendered outside header for correct stacking) */}
-      <LoginModal isOpen={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
     </>
   );
 }
