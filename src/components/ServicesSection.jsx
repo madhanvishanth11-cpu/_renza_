@@ -77,7 +77,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-24 border-t border-gray-200" id="services-section">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-24 border-t border-gray-200" id="services">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================

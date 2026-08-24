@@ -37,7 +37,7 @@ export default function HowItWorks() {
   const [journeyRef, journeyRevealed] = useScrollReveal();
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#F7F7F5] transition-colors duration-300 py-24 border-t border-gray-250/60" id="how-it-works-section">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#F7F7F5] transition-colors duration-300 py-24 border-t border-gray-250/60" id="how-it-works">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================

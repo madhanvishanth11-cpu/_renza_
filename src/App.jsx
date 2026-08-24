@@ -26,10 +26,10 @@ function App() {
         {/* Main Content */}
         <main className="flex-1 flex flex-col justify-between">
           <Hero />
+          <HowItWorks />
           <FeaturesRow />
           <ComparisonSection />
           <ServicesSection />
-          <HowItWorks />
           <TrustSection />
           <FAQSection />
           <Footer />

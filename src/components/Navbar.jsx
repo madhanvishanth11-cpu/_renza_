@@ -101,10 +101,10 @@ export default function Navbar({ theme, toggleTheme }) {
   const { user, profile, loading, logout } = useAuth();
 
   const navLinks = [
-    { label: 'How It Works', href: '#how-it-works-section' },
-    { label: 'Services', href: '#services-section' },
-    { label: 'Safety & Trust', href: '#trust-section' },
-    { label: 'FAQ', href: '#faq-section' },
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Services', href: '#services' },
+    { label: 'Safety & Trust', href: '#safety' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
   return (
