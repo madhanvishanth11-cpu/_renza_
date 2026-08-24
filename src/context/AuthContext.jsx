@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '../supabase';
+import { supabase, supabaseUrl, supabaseAnonKey } from '../supabase';
 
 // ─── Context ────────────────────────────────────────────────
 const AuthContext = createContext(null);
@@ -11,10 +11,13 @@ export function useAuth() {
 
 // ─── Provider ───────────────────────────────────────────────
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);       // Mapped Supabase user object
+  const [user, setUser] = useState(null);       // Mapped user object
   const [profile, setProfile] = useState(null); // Database profile document
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Check if we are running in Mock/Demo mode (keys not set or placeholders)
+  const isMockMode = !supabase || supabaseUrl === 'YOUR_SUPABASE_URL' || supabaseAnonKey === 'YOUR_SUPABASE_ANON_KEY';
 
   // Helper to map Supabase user to match Firebase property naming for compatibility
   function mapSupabaseUser(supabaseUser) {
@@ -31,6 +34,39 @@ export function AuthProvider({ children }) {
   // ── Google Sign In ────────────────────────────────────────
   async function loginWithGoogle() {
     setError(null);
+    if (isMockMode) {
+      console.warn("RENZA Auth: Supabase is not configured. Falling back to Mock Login.");
+      
+      // Simulate quick loading and set mock Google user
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const mockUser = {
+            id: 'mock-google-id',
+            email: 'madhan.vishanth@example.com',
+            user_metadata: {
+              full_name: 'Madhan Vishanth',
+              avatar_url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150'
+            },
+            app_metadata: {
+              provider: 'google'
+            }
+          };
+          const mapped = mapSupabaseUser(mockUser);
+          setUser(mapped);
+          setProfile({
+            id: mockUser.id,
+            name: mockUser.user_metadata.full_name,
+            email: mockUser.email,
+            photoURL: mockUser.user_metadata.avatar_url,
+            provider: 'google',
+            createdAt: new Date().toISOString(),
+            lastLoginAt: new Date().toISOString(),
+          });
+          resolve(mapped);
+        }, 800);
+      });
+    }
+
     try {
       const { data, error: err } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -49,6 +85,38 @@ export function AuthProvider({ children }) {
   // ── Email Login (Password) ───────────────────────────────
   async function loginWithEmail(email, password) {
     setError(null);
+    if (isMockMode) {
+      console.warn("RENZA Auth: Supabase is not configured. Falling back to Mock Login.");
+      
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const mockUser = {
+            id: 'mock-email-id',
+            email: email,
+            user_metadata: {
+              full_name: email.split('@')[0],
+              avatar_url: ''
+            },
+            app_metadata: {
+              provider: 'email'
+            }
+          };
+          const mapped = mapSupabaseUser(mockUser);
+          setUser(mapped);
+          setProfile({
+            id: mockUser.id,
+            name: mockUser.user_metadata.full_name,
+            email: mockUser.email,
+            photoURL: '',
+            provider: 'email',
+            createdAt: new Date().toISOString(),
+            lastLoginAt: new Date().toISOString(),
+          });
+          resolve(mapped);
+        }, 800);
+      });
+    }
+
     try {
       const { data, error: err } = await supabase.auth.signInWithPassword({
         email,
@@ -69,6 +137,12 @@ export function AuthProvider({ children }) {
   // ── Logout ───────────────────────────────────────────────
   async function logout() {
     setError(null);
+    if (isMockMode) {
+      setUser(null);
+      setProfile(null);
+      return;
+    }
+
     try {
       const { error: err } = await supabase.auth.signOut();
       if (err) throw err;
@@ -81,7 +155,7 @@ export function AuthProvider({ children }) {
 
   // ── Create or Update Profiles table in database ──────────
   async function handleUserProfile(supabaseUser) {
-    if (!supabaseUser) return;
+    if (!supabaseUser || isMockMode) return;
     try {
       // Query profile
       const { data, error: fetchErr } = await supabase
@@ -135,6 +209,12 @@ export function AuthProvider({ children }) {
 
   // ── Listen to auth state changes ─────────────────────────
   useEffect(() => {
+    if (isMockMode) {
+      // No session check needed in mock mode
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
