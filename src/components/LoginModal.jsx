@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { X, Mail, Lock, Eye, EyeOff, ArrowRight, Loader2 } from 'lucide-react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
 import { useAuth } from '../context/AuthContext';
 
 // Google "G" SVG Icon
@@ -17,7 +15,7 @@ function GoogleIcon() {
 }
 
 export default function LoginModal({ isOpen, onClose }) {
-  const { loginWithGoogle } = useAuth();
+  const { loginWithGoogle, loginWithEmail } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,9 +34,7 @@ export default function LoginModal({ isOpen, onClose }) {
       await loginWithGoogle();
       onClose();
     } catch (err) {
-      if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
-        setErrorMsg('Google sign-in failed. Please try again.');
-      }
+      setErrorMsg(err.message || 'Google sign-in failed. Please try again.');
     } finally {
       setSigningInGoogle(false);
     }
@@ -50,16 +46,10 @@ export default function LoginModal({ isOpen, onClose }) {
     setSigningInEmail(true);
     setErrorMsg('');
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await loginWithEmail(email, password);
       onClose();
     } catch (err) {
-      const messages = {
-        'auth/user-not-found': 'No account found with this email.',
-        'auth/wrong-password': 'Incorrect password.',
-        'auth/invalid-email': 'Please enter a valid email address.',
-        'auth/too-many-requests': 'Too many attempts. Please try again later.',
-      };
-      setErrorMsg(messages[err.code] || 'Sign-in failed. Please try again.');
+      setErrorMsg(err.message || 'Sign-in failed. Please try again.');
     } finally {
       setSigningInEmail(false);
     }
