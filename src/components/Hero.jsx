@@ -64,11 +64,11 @@ export default function Hero() {
         <div className="lg:col-span-5 flex justify-center items-center relative py-10 lg:py-0">
           
           {/* Yellow Pulsing Ambient Glow */}
-          <div className="absolute w-[300px] md:w-[450px] h-[300px] md:h-[450px] bg-brand-yellow/20 rounded-full blur-[100px] pointer-events-none animate-pulse-glow z-0" />
+          <div className="absolute w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-brand-yellow/20 rounded-full blur-[100px] pointer-events-none animate-pulse-glow z-0" />
 
           {/* Workforce Image wrapper with entrance and idle float animations */}
           <div 
-            className={`relative z-10 w-full max-w-[420px] transition-all duration-[1500ms] ease-out transform ${
+            className={`relative z-10 w-full max-w-[490px] transition-all duration-[1500ms] ease-out transform ${
               imageLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
             }`}
           >
