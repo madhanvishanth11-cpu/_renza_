@@ -249,54 +249,52 @@ export function AuthProvider({ children }) {
   // ── Create or Update Profiles table in database ──────────
   async function handleUserProfile(supabaseUser) {
     if (!supabaseUser || isMockMode) return;
+
+    const fallbackProfile = {
+      id: supabaseUser.id,
+      name: supabaseUser.user_metadata?.full_name || supabaseUser.email?.split('@')[0] || 'User',
+      email: supabaseUser.email || '',
+      photoURL: supabaseUser.user_metadata?.avatar_url || '',
+      provider: supabaseUser.app_metadata?.provider || 'google',
+      createdAt: new Date().toISOString(),
+      lastLoginAt: new Date().toISOString(),
+    };
+
     try {
-      // Query profile
+      // Query profile from database table
       const { data, error: fetchErr } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', supabaseUser.id)
-        .single();
+        .maybeSingle(); // Use maybeSingle to prevent throw if not found
 
       if (data) {
-        // Update last login
-        await supabase
+        // Update last login timestamp in background
+        supabase
           .from('profiles')
           .update({ lastLoginAt: new Date().toISOString() })
-          .eq('id', supabaseUser.id);
+          .eq('id', supabaseUser.id)
+          .then();
 
         setProfile({
           id: data.id,
-          name: data.name,
-          email: data.email,
-          photoURL: data.photoURL,
-          provider: data.provider,
-          createdAt: data.createdAt,
+          name: data.name || fallbackProfile.name,
+          email: data.email || fallbackProfile.email,
+          photoURL: data.photoURL || fallbackProfile.photoURL,
+          provider: data.provider || fallbackProfile.provider,
+          createdAt: data.createdAt || fallbackProfile.createdAt,
           lastLoginAt: new Date().toISOString(),
         });
       } else {
-        // Create profile
-        const profileData = {
-          id: supabaseUser.id,
-          name: supabaseUser.user_metadata?.full_name || supabaseUser.email.split('@')[0],
-          email: supabaseUser.email,
-          photoURL: supabaseUser.user_metadata?.avatar_url || '',
-          provider: supabaseUser.app_metadata?.provider || 'google',
-          createdAt: new Date().toISOString(),
-          lastLoginAt: new Date().toISOString(),
-        };
-
-        const { error: insertErr } = await supabase
+        // Create new record
+        setProfile(fallbackProfile);
+        await supabase
           .from('profiles')
-          .insert([profileData]);
-
-        if (!insertErr) {
-          setProfile(profileData);
-        } else {
-          console.error("Error inserting profile:", insertErr);
-        }
+          .insert([fallbackProfile]);
       }
     } catch (err) {
-      console.error("Error handling user profile:", err);
+      console.warn("Supabase profiles table query/insert failed. Using Auth metadata instead:", err.message);
+      setProfile(fallbackProfile);
     }
   }
 
