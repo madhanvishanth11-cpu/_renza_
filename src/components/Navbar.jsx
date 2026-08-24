@@ -100,6 +100,12 @@ export default function Navbar({ theme, toggleTheme }) {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const { user, profile, loading, logout } = useAuth();
 
+  React.useEffect(() => {
+    const handleOpenLogin = () => setLoginModalOpen(true);
+    window.addEventListener('open-login-modal', handleOpenLogin);
+    return () => window.removeEventListener('open-login-modal', handleOpenLogin);
+  }, []);
+
   const navLinks = [
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Services', href: '#services' },
