@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Sparkles, X, Check } from 'lucide-react';
+import { ArrowRight, Sparkles, Check } from 'lucide-react';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -33,16 +33,7 @@ function useScrollReveal() {
 
 export default function ComparisonSection() {
   const [headerRef, headerRevealed] = useScrollReveal();
-  const [oldRef, oldRevealed] = useScrollReveal();
   const [newRef, newRevealed] = useScrollReveal();
-
-  const oldWayItems = [
-    { icon: "📞", text: "Call different workers" },
-    { icon: "💬", text: "Check availability" },
-    { icon: "💰", text: "Negotiate prices" },
-    { icon: "🤔", text: "Manage the worker" },
-    { icon: "❓", text: "Hope it gets done" },
-  ];
 
   const renzaWayItems = [
     { icon: "📱", text: "Open RENZA" },
@@ -79,54 +70,6 @@ export default function ComparisonSection() {
           </p>
         </div>
 
-        {/* ── THE OLD WAY — Horizontal Strip ──────────────────── */}
-        <div
-          ref={oldRef}
-          className={`mb-6 transition-all duration-1000 transform ${
-            oldRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
-        >
-          <div className="bg-white border border-gray-200 rounded-[28px] p-6 md:p-8">
-            {/* Header row */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl">😓</span>
-              <h3 className="font-sans font-black text-lg md:text-xl text-text-dark">The Old Way</h3>
-              <span className="text-text-secondary text-xs font-semibold hidden sm:inline">— Finding and managing workers yourself</span>
-            </div>
-
-            {/* Horizontal step flow */}
-            <div className="flex flex-wrap lg:flex-nowrap items-center gap-3">
-              {oldWayItems.map((item, idx) => (
-                <React.Fragment key={idx}>
-                  <div className="flex items-center gap-2.5 bg-red-500/5 border border-red-500/10 px-4 py-3 rounded-2xl min-w-fit flex-shrink-0 group hover:bg-red-500/10 transition-colors">
-                    <span className="text-lg">{item.icon}</span>
-                    <span className="text-sm font-bold text-text-dark whitespace-nowrap">{item.text}</span>
-                    <X size={13} className="text-red-400 flex-shrink-0" strokeWidth={2.5} />
-                  </div>
-                  {idx < oldWayItems.length - 1 && (
-                    <ArrowRight size={14} className="text-gray-300 flex-shrink-0 hidden lg:block" />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-
-            {/* Bottom summary */}
-            <div className="mt-5 pt-4 border-t border-gray-100 flex items-center gap-2">
-              <span className="text-xs font-black text-red-400 tracking-wider uppercase">⚠️ Too many steps. Too much effort.</span>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Arrow transition ────────────────────────────────── */}
-        <div className="flex items-center justify-center my-4 select-none">
-          <div className="flex items-center gap-3 px-5 py-2 rounded-full bg-brand-yellow/10 border border-brand-yellow/20">
-            <span className="text-[10px] font-black text-text-secondary tracking-widest uppercase">Stop Managing</span>
-            <div className="w-7 h-7 rounded-full bg-brand-yellow flex items-center justify-center shadow-sm">
-              <ArrowRight size={14} className="text-deep-black" strokeWidth={3} />
-            </div>
-            <span className="text-[10px] font-black text-text-dark tracking-widest uppercase">Start Solving</span>
-          </div>
-        </div>
 
         {/* ── THE RENZA WAY — Horizontal Strip ────────────────── */}
         <div
