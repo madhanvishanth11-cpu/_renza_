@@ -50,14 +50,14 @@ export default function Logo({ className = "", size = "normal" }) {
 
   // Use a fallback background container if no custom background class is provided to ensure full readability
   const hasBg = className.includes('bg-');
-  const defaultBgClass = hasBg ? '' : 'bg-[#111111] px-4 py-2 rounded-full border border-neutral-850 shadow-sm';
+  const defaultBgClass = hasBg ? '' : 'bg-[#111111] px-4.5 py-2 rounded-full border border-neutral-850 shadow-sm';
 
   return (
     <div className={`flex items-center justify-center select-none inline-flex ${defaultBgClass} ${className}`}>
       <img 
         src={processedSrc} 
         alt="RENZA Logo" 
-        className={`${isSmall ? 'h-[16px]' : 'h-[22px]'} w-auto object-contain`}
+        className={`${isSmall ? 'h-[19px]' : 'h-[26px]'} w-auto object-contain`}
       />
     </div>
   );
