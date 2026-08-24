@@ -69,7 +69,7 @@ export default function Footer() {
           {/* Logo Section */}
           <div className="lg:col-span-2 flex flex-col items-start gap-4">
             <a href="#" onClick={handleLogoClick} aria-label="RENZA Home" className="transition-transform hover:scale-[1.02]">
-              <Logo className="px-4 py-2 bg-neutral-900 border border-neutral-800" />
+              <Logo className="px-4 py-2 text-white bg-neutral-900 border border-neutral-800" />
             </a>
             <span className="text-brand-yellow font-extrabold text-xs tracking-wider uppercase block mt-1">
               Household help, made simpler.

@@ -106,6 +106,11 @@ export default function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener('open-login-modal', handleOpenLogin);
   }, []);
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navLinks = [
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Services', href: '#services' },
@@ -118,7 +123,7 @@ export default function Navbar({ theme, toggleTheme }) {
       <header className="sticky top-0 z-50 w-full h-[84px] bg-white/95 backdrop-blur-md border-b border-gray-200/80 transition-colors duration-300 flex items-center justify-between px-6 md:px-12 lg:px-20">
         {/* LEFT: Logo */}
         <div className="flex-shrink-0">
-          <a href="#" aria-label="RENZA Home">
+          <a href="#" onClick={handleLogoClick} aria-label="RENZA Home" className="transition-transform hover:scale-[1.02]">
             <Logo />
           </a>
         </div>

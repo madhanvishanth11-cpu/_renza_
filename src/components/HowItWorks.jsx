@@ -179,7 +179,7 @@ export default function HowItWorks() {
                 
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <Logo className="px-2.5 py-1 text-[9px] bg-neutral-900 border border-neutral-800" size="small" />
+                    <Logo className="px-2.5 py-1 text-[9px] text-white bg-neutral-900 border border-neutral-800" size="small" />
                   </div>
                   
                   <h3 className="font-sans font-black text-lg text-white mb-1.5">RENZA Handles It</h3>

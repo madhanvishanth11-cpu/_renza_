@@ -1,21 +1,24 @@
 import React from 'react';
 
-export default function Logo({ className = "px-4 py-2", size = "normal" }) {
+export default function Logo({ className = "", size = "normal" }) {
   const isSmall = size === "small";
   
+  // Check if a custom text color class was passed in className
+  const hasTextColor = className.split(' ').some(c => c.startsWith('text-'));
+  const textColorClass = hasTextColor ? '' : 'text-text-dark dark:text-white';
+
   return (
-    <div className={`flex items-center gap-2 bg-[#111111] rounded-full inline-flex select-none transition-all duration-300 hover:scale-[1.03] ${className}`}>
-      {/* Yellow geometric icon */}
+    <div className={`flex items-center gap-2 select-none ${className}`}>
+      {/* Yellow geometric icon: Stylized modern R */}
       <svg 
-        viewBox="0 0 100 100" 
-        className={`${isSmall ? 'h-4 w-4' : 'h-5.5 w-5.5'} fill-[#FFE500]`}
+        viewBox="0 0 24 24" 
+        className={`${isSmall ? 'h-[18px] w-[18px]' : 'h-[24px] w-[24px]'} fill-[#FFE500] flex-shrink-0`}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Modern angular geometric R mark */}
-        <path d="M25 15H60C76.57 15 90 28.43 90 45C90 55.45 84.65 64.65 76.5 70L90 85H68L56 70H45V85H25V15ZM45 33V52H60C64.69 52 68.5 48.19 68.5 43.5C68.5 38.81 64.69 33 60 33H45Z" />
+        <path d="M6 3.5A1.5 1.5 0 0 1 7.5 2h5.5a5 5 0 0 1 5 5c0 2.5-1.8 4.2-4 4.8l3.8 7.4a1 1 0 0 1-.9 1.8h-3.5a1 1 0 0 1-.9-.5L10 13h-1v6.5A1.5 1.5 0 0 1 7.5 21H7a1 1 0 0 1-1-1V3.5z" />
       </svg>
       {/* Logo Text */}
-      <span className={`font-sans font-bold text-white tracking-tight leading-none ${isSmall ? 'text-sm' : 'text-[17px]'}`}>
+      <span className={`font-sans font-black tracking-tight leading-none ${isSmall ? 'text-base' : 'text-xl'} ${textColorClass}`}>
         Renza
       </span>
     </div>
