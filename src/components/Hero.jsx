@@ -69,7 +69,7 @@ export default function Hero() {
 
       {/* Workforce Image positioned at the bottom of the section */}
       <div 
-        className={`w-full lg:absolute lg:right-[4%] lg:bottom-0 flex items-end justify-center lg:justify-end z-10 transition-all duration-[1200ms] ease-out transform ${
+        className={`w-full lg:absolute lg:right-0 lg:bottom-0 flex items-end justify-center lg:justify-end z-10 transition-all duration-[1200ms] ease-out transform ${
           imageLoaded 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-16 scale-95'
