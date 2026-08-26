@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Smartphone, Check, ArrowRight, Shield } from 'lucide-react';
+import { Smartphone, Check, ArrowRight, Shield, Settings, Users, ShieldCheck, IndianRupee } from 'lucide-react';
 import Logo from './Logo';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
@@ -151,7 +151,7 @@ export default function HowItWorks() {
                   <div className="bg-[#F7F7F5] border border-gray-250/60 p-3 rounded-2xl text-[9px] font-black text-text-dark text-left w-full select-none">
                     <span className="block text-[7px] text-[#8E9093] font-bold uppercase tracking-wider mb-1">What do you need?</span>
                     <div className="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-1.5 mb-1.5 font-bold">
-                      <span className="flex items-center gap-1">🧹 Floor Cleaning</span>
+                      <span className="flex items-center gap-1">Floor Cleaning</span>
                       <span className="text-text-secondary text-[8px]">&gt;</span>
                     </div>
                     <div className="w-full py-1 bg-brand-yellow text-deep-black font-extrabold text-[7.5px] text-center rounded-lg uppercase tracking-wider">
@@ -188,13 +188,13 @@ export default function HowItWorks() {
                   {/* Compact 2x2 Grid */}
                   <div className="grid grid-cols-2 gap-2">
                     {[
-                      { icon: "⚙", label: "Coordination" },
-                      { icon: "👤", label: "Workforce" },
-                      { icon: "🛡", label: "Standards" },
-                      { icon: "₹", label: "Clear Pricing" }
+                      { icon: <Settings size={14} className="text-[#00B3A6]" />, label: "Coordination" },
+                      { icon: <Users size={14} className="text-[#00B3A6]" />, label: "Workforce" },
+                      { icon: <ShieldCheck size={14} className="text-[#00B3A6]" />, label: "Standards" },
+                      { icon: <IndianRupee size={14} className="text-[#00B3A6]" />, label: "Clear Pricing" }
                     ].map((chip, idx) => (
                       <div key={idx} className="bg-[#F7F7F5] border border-gray-250/60 p-2 rounded-xl flex flex-col items-start gap-1 justify-between min-h-[48px]">
-                        <span className="text-amber-500 text-[10px]">{chip.icon}</span>
+                        <span className="flex-shrink-0">{chip.icon}</span>
                         <span className="text-[7.5px] font-black text-text-dark uppercase tracking-tight leading-none">
                           {chip.label}
                         </span>
@@ -225,7 +225,7 @@ export default function HowItWorks() {
                   
                   <h3 className="font-sans font-black text-lg text-text-dark mb-1">Problem Handled</h3>
                   <span className="font-sans font-black text-xl text-text-dark block mb-2">
-                    ✓ Floor Cleaned
+                    Floor Cleaned
                   </span>
                   <p className="text-text-secondary text-xs font-semibold leading-relaxed">
                     "You focus on your day."

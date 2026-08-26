@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowDown, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowDown, Check, Sparkles, Utensils, Bath, ChefHat, Home, HelpCircle } from 'lucide-react';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -38,37 +38,37 @@ export default function ServicesSection() {
 
   const services = [
     {
-      icon: "🍽️",
+      icon: <Utensils size={32} className="text-[#00D2C4]" />,
       title: "Washing Vessels",
       desc: "Get help with everyday dish and vessel washing.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🧹",
+      icon: <Sparkles size={32} className="text-[#00D2C4]" />,
       title: "Floor Cleaning",
       desc: "Keep your floors clean without managing the work yourself.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🛁",
+      icon: <Bath size={32} className="text-[#00D2C4]" />,
       title: "Bathroom Cleaning",
       desc: "Get help maintaining a clean and hygienic bathroom.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🍳",
+      icon: <ChefHat size={32} className="text-[#00D2C4]" />,
       title: "Kitchen Cleaning",
       desc: "Get support with everyday kitchen cleaning.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🏠",
+      icon: <Home size={32} className="text-[#00D2C4]" />,
       title: "General Household Help",
       desc: "Everyday support for common household tasks.",
       badge: "RENZA Managed"
     },
     {
-      icon: "✨",
+      icon: <HelpCircle size={32} className="text-[#00D2C4]" />,
       title: "More Household Help",
       desc: "Tell us what you need help with.",
       isSpecial: true
@@ -122,7 +122,7 @@ export default function ServicesSection() {
               }`}
             >
               <div>
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 w-fit">
+                <div className="mb-6 group-hover:scale-110 transition-transform duration-300 w-fit">
                   {service.icon}
                 </div>
                 
