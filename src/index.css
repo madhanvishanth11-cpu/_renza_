@@ -51,6 +51,16 @@ html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background-color: #00D2C4;
+  color: #111111;
+}
+
+::-moz-selection {
+  background-color: #00D2C4;
+  color: #111111;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
