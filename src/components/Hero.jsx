@@ -11,13 +11,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-84px)] flex flex-col justify-between px-6 md:px-12 lg:px-20 py-12 lg:py-16 overflow-hidden">
+    <section className="relative w-full min-h-[calc(100vh-84px)] lg:h-[calc(100vh-84px)] flex flex-col justify-between px-6 md:px-12 lg:px-20 py-12 lg:py-0 overflow-hidden">
       {/* Background Subtle Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
       
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center flex-1">
         {/* LEFT COLUMN: HERO CONTENT (55%) */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
+        <div className="lg:col-span-7 flex flex-col items-start text-left z-10 py-8 lg:py-16">
           
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
@@ -26,7 +26,7 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-sans font-black tracking-tight text-[#111111] text-5xl md:text-7xl lg:text-[80px] leading-[1.05] mb-6">
+          <h1 className="font-sans font-black tracking-tight text-[#111111] text-5xl md:text-7xl lg:text-[76px] xl:text-[80px] leading-[1.05] mb-6">
             Get Any <br />
             <span className="relative inline-block my-2">
               <span className="relative z-10 text-deep-black px-4 bg-brand-yellow rounded-[4px] inline-block py-1 shadow-sm">
@@ -60,26 +60,26 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: WORKFORCE IMAGE (45%) */}
-        <div className="lg:col-span-5 flex justify-center items-center relative py-10 lg:py-0">
-          
-          {/* Yellow Pulsing Ambient Glow */}
-          <div className="absolute w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-brand-yellow/20 rounded-full blur-[100px] pointer-events-none animate-pulse-glow z-0" />
+        {/* RIGHT COLUMN FOR SPACING (lg only) */}
+        <div className="hidden lg:block lg:col-span-5 h-full pointer-events-none" />
+      </div>
 
-          {/* Workforce Image wrapper with entrance and idle float animations */}
-          <div 
-            className={`relative z-10 w-full max-w-[490px] transition-all duration-[1500ms] ease-out transform ${
-              imageLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
-            }`}
-          >
-            <img 
-              src={workforceImg} 
-              alt="RENZA Workforce showing Male and Female workers in black and yellow uniforms offering a traditional Vanakkam greeting" 
-              className="w-full h-auto rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.45)] border border-white/15 select-none pointer-events-none animate-float"
-            />
-          </div>
+      {/* Teal/Yellow Pulsing Ambient Glow */}
+      <div className="absolute right-[-10%] bottom-[-10%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-[#00D2C4]/15 rounded-full blur-[120px] pointer-events-none animate-pulse-glow z-0" />
 
-        </div>
+      {/* Workforce Image positioned at the bottom of the section */}
+      <div 
+        className={`w-full lg:absolute lg:right-[4%] lg:bottom-0 flex items-end justify-center lg:justify-end z-10 transition-all duration-[1200ms] ease-out transform ${
+          imageLoaded 
+            ? 'opacity-100 translate-y-0 scale-100' 
+            : 'opacity-0 translate-y-16 scale-95'
+        }`}
+      >
+        <img 
+          src={workforceImg} 
+          alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
+          className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[550px] xl:max-w-[620px] h-auto object-contain select-none pointer-events-none block align-bottom"
+        />
       </div>
     </section>
   );
