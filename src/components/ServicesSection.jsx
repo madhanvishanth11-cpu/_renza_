@@ -137,7 +137,7 @@ export default function ServicesSection() {
 
               <div>
                 {service.isSpecial ? (
-                  <button className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-brand-yellow text-deep-black font-extrabold text-xs shadow-sm hover:bg-[#F2D900] active:scale-95 transition-all">
+                  <button className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-brand-yellow text-deep-black font-extrabold text-xs shadow-sm hover:bg-[#00B3A6] active:scale-95 transition-all">
                     <span>Tell RENZA</span>
                     <ArrowRight size={12} strokeWidth={2.5} />
                   </button>

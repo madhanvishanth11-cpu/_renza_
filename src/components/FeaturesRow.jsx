@@ -4,17 +4,17 @@ import { ShieldCheck, Smartphone, KeyRound } from 'lucide-react';
 export default function FeaturesRow() {
   const features = [
     {
-      icon: <ShieldCheck size={24} className="text-[#FFE500]" />,
+      icon: <ShieldCheck size={24} className="text-[#00D2C4]" />,
       title: "100% Verified Profiles",
       description: "Every service professional undergoes biometric and document verification for absolute peace of mind."
     },
     {
-      icon: <Smartphone size={24} className="text-[#FFE500]" />,
+      icon: <Smartphone size={24} className="text-[#00D2C4]" />,
       title: "Direct App Booking",
       description: "Chat, agree on terms, negotiate, and hire verified local workers seamlessly inside the RENZA app."
     },
     {
-      icon: <KeyRound size={24} className="text-[#FFE500]" />,
+      icon: <KeyRound size={24} className="text-[#00D2C4]" />,
       title: "Secure OTP Verification",
       description: "A secure start-of-work OTP ensures work is only completed and paid when you authorize it."
     }

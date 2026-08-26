@@ -149,7 +149,7 @@ export default function Navbar({ theme, toggleTheme }) {
             className="p-2.5 rounded-full border border-gray-200 hover:border-gray-400 bg-white text-text-dark transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {theme === 'dark' ? <Sun size={18} className="text-[#FFE500]" /> : <Moon size={18} className="text-[#111111]" />}
+            {theme === 'dark' ? <Sun size={18} className="text-[#00D2C4]" /> : <Moon size={18} className="text-[#111111]" />}
           </button>
 
           {/* Auth: Login button OR User Avatar */}
@@ -167,7 +167,7 @@ export default function Navbar({ theme, toggleTheme }) {
           )}
 
           {/* Download App Button */}
-          <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-yellow hover:bg-[#F2D900] text-deep-black font-bold text-sm tracking-wide transition-all duration-300 shadow-yellow-glow hover:shadow-yellow-glow-lg hover:scale-[1.03] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+          <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-yellow hover:bg-[#00B3A6] text-deep-black font-bold text-sm tracking-wide transition-all duration-300 shadow-yellow-glow hover:shadow-yellow-glow-lg hover:scale-[1.03] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
             <Download size={16} strokeWidth={2.5} />
             Download App
           </button>
@@ -180,7 +180,7 @@ export default function Navbar({ theme, toggleTheme }) {
             className="p-2.5 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <Sun size={18} className="text-[#FFE500]" /> : <Moon size={18} className="text-[#111111]" />}
+            {theme === 'dark' ? <Sun size={18} className="text-[#00D2C4]" /> : <Moon size={18} className="text-[#111111]" />}
           </button>
 
           {/* Mobile: show avatar or login icon */}

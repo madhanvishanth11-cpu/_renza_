@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-yellow: #FFE500;
+  --color-brand-yellow: #00D2C4;
   --color-deep-black: #111111;
   --color-white: #FFFFFF;
   --color-bg-light: #F7F7F5;
@@ -11,11 +11,11 @@
 }
 
 @utility shadow-yellow-glow {
-  box-shadow: 0 10px 30px -10px rgba(255, 229, 0, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(0, 210, 196, 0.5);
 }
 
 @utility shadow-yellow-glow-lg {
-  box-shadow: 0 15px 40px -5px rgba(255, 229, 0, 0.6);
+  box-shadow: 0 15px 40px -5px rgba(0, 210, 196, 0.6);
 }
 
 @keyframes float {
@@ -175,7 +175,7 @@ body {
 /* Keep text-deep-black on yellow backgrounds readable */
 .dark-theme .bg-brand-yellow .text-deep-black,
 .dark-theme .bg-brand-yellow .text-\[\#111111\],
-.dark-theme .bg-\[\#FFE500\] .text-deep-black {
+.dark-theme .bg-\[\#00D2C4\] .text-deep-black {
   color: #111111 !important;
 }
 
@@ -264,7 +264,7 @@ body {
 }
 
 .dark-theme input:focus {
-  border-color: #FFE500 !important;
+  border-color: #00D2C4 !important;
 }
 
 /* ── FAQ Accordion ───────────────────────────────────────── */
@@ -303,13 +303,13 @@ body {
 }
 
 .animate-line-progress {
-  background: linear-gradient(90deg, #FFE500 0%, #e5e7eb 50%, #FFE500 100%);
+  background: linear-gradient(90deg, #00D2C4 0%, #e5e7eb 50%, #00D2C4 100%);
   background-size: 200% 100%;
   animation: line-progress 5s linear infinite;
 }
 
 .dark-theme .animate-line-progress {
-  background: linear-gradient(90deg, #FFE500 0%, #262626 50%, #FFE500 100%);
+  background: linear-gradient(90deg, #00D2C4 0%, #262626 50%, #00D2C4 100%);
   background-size: 200% 100%;
 }
 
@@ -337,15 +337,15 @@ body {
 
 /* ── Pill Badges (Light Badges in Dark Mode) ─────────────── */
 .dark-theme .bg-brand-yellow\/10 {
-  background-color: rgba(255, 229, 0, 0.08) !important;
+  background-color: rgba(0, 210, 196, 0.08) !important;
 }
 
 .dark-theme .bg-brand-yellow\/15 {
-  background-color: rgba(255, 229, 0, 0.1) !important;
+  background-color: rgba(0, 210, 196, 0.1) !important;
 }
 
 .dark-theme .border-brand-yellow\/30 {
-  border-color: rgba(255, 229, 0, 0.25) !important;
+  border-color: rgba(0, 210, 196, 0.25) !important;
 }
 
 /* ── User Menu Dropdown ──────────────────────────────────── */
@@ -377,7 +377,7 @@ body {
 }
 
 .dark-theme .bg-\[\#FFFDF0\] {
-  background-color: rgba(255, 229, 0, 0.03) !important;
+  background-color: rgba(0, 210, 196, 0.03) !important;
 }
 
 /* ── Placeholder/demo images & neutral fills ─────────────── */

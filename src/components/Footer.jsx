@@ -295,7 +295,7 @@ export default function Footer() {
             <div className="p-4 border-t border-gray-200 dark:border-neutral-800 bg-gray-50 dark:bg-neutral-900/50 flex justify-end">
               <button 
                 onClick={() => setActiveModal(null)}
-                className="px-5 py-2 rounded-xl bg-brand-yellow hover:bg-[#F2D900] text-deep-black font-extrabold text-xs tracking-wider uppercase transition-colors shadow-sm cursor-pointer"
+                className="px-5 py-2 rounded-xl bg-brand-yellow hover:bg-[#00B3A6] text-deep-black font-extrabold text-xs tracking-wider uppercase transition-colors shadow-sm cursor-pointer"
               >
                 Close Window
               </button>

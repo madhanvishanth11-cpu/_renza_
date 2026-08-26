@@ -20,8 +20,8 @@ export default function Hero() {
         <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
           
           {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFE500]/10 border border-[#FFE500]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
-            <Sparkles size={13} className="text-[#E2C700] fill-[#E2C700]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
+            <Sparkles size={13} className="text-[#00B3A6] fill-[#00B3A6]" />
             <span>⚡ On-Demand Local Task Marketplace</span>
           </div>
 
@@ -33,7 +33,7 @@ export default function Hero() {
                 Local Task
               </span>
             </span> <br />
-            Done. <span className="text-[#FFE500] drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">Easily.</span>
+            Done. <span className="text-[#00D2C4] drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">Easily.</span>
           </h1>
 
           {/* Subtitle */}
@@ -43,7 +43,7 @@ export default function Hero() {
 
           {/* CTA Buttons & Social Proof */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-6">
-            <button className="flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-yellow hover:bg-[#F2D900] text-deep-black font-extrabold text-base tracking-wide transition-all duration-300 shadow-yellow-glow hover:shadow-yellow-glow-lg hover:-translate-y-1 active:translate-y-0 active:scale-98 cursor-pointer group">
+            <button className="flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-yellow hover:bg-[#00B3A6] text-deep-black font-extrabold text-base tracking-wide transition-all duration-300 shadow-yellow-glow hover:shadow-yellow-glow-lg hover:-translate-y-1 active:translate-y-0 active:scale-98 cursor-pointer group">
               <Download size={18} strokeWidth={2.5} className="group-hover:translate-y-0.5 transition-transform" />
               Download RENZA App
             </button>
