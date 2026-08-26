@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowDown, Check, Sparkles, ChefHat, Home, Utensils, Brush, Bath } from 'lucide-react';
+import { ArrowRight, ArrowDown, Check, Sparkles } from 'lucide-react';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -35,41 +35,40 @@ export default function ServicesSection() {
   const [headerRef, headerRevealed] = useScrollReveal();
   const [gridRef, gridRevealed] = useScrollReveal();
   const [bannerRef, bannerRevealed] = useScrollReveal();
-  const [feelsRef, feelsRevealed] = useScrollReveal();
 
   const services = [
     {
-      icon: <Utensils className="text-[#FFE500]" size={20} />,
+      icon: "🍽️",
       title: "Washing Vessels",
       desc: "Get help with everyday dish and vessel washing.",
       badge: "RENZA Managed"
     },
     {
-      icon: <Brush className="text-[#FFE500]" size={20} />,
+      icon: "🧹",
       title: "Floor Cleaning",
       desc: "Keep your floors clean without managing the work yourself.",
       badge: "RENZA Managed"
     },
     {
-      icon: <Bath className="text-[#FFE500]" size={20} />,
+      icon: "🛁",
       title: "Bathroom Cleaning",
       desc: "Get help maintaining a clean and hygienic bathroom.",
       badge: "RENZA Managed"
     },
     {
-      icon: <ChefHat className="text-[#FFE500]" size={20} />,
+      icon: "🍳",
       title: "Kitchen Cleaning",
       desc: "Get support with everyday kitchen cleaning.",
       badge: "RENZA Managed"
     },
     {
-      icon: <Home className="text-[#FFE500]" size={20} />,
+      icon: "🏠",
       title: "General Household Help",
       desc: "Everyday support for common household tasks.",
       badge: "RENZA Managed"
     },
     {
-      icon: <Sparkles className="text-[#FFE500]" size={20} />,
+      icon: "✨",
       title: "More Household Help",
       desc: "Tell us what you need help with.",
       isSpecial: true
@@ -123,7 +122,7 @@ export default function ServicesSection() {
               }`}
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 w-fit">
                   {service.icon}
                 </div>
                 
@@ -206,47 +205,6 @@ export default function ServicesSection() {
               Get It Done
             </div>
 
-          </div>
-        </div>
-
-        {/* =========================================================================
-            "HOW IT FEELS" MICRO SECTION
-           ========================================================================= */}
-        <div 
-          ref={feelsRef}
-          className={`max-w-4xl mx-auto transition-all duration-1000 transform ${
-            feelsRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mb-8">
-            
-            {/* Old Experience */}
-            <div className="bg-white/40 border border-gray-200 rounded-[24px] p-6 text-center flex flex-col justify-center min-h-[100px]">
-              <span className="text-[9px] text-[#5F6368] font-black uppercase tracking-widest block mb-2">Old Experience</span>
-              <span className="text-sm font-semibold text-[#5F6368] italic">
-                "I need to find someone to clean my floor."
-              </span>
-            </div>
-
-            {/* New Renza Experience */}
-            <div className="bg-white border border-brand-yellow/60 shadow-yellow-glow rounded-[24px] p-6 text-center flex flex-col justify-center min-h-[100px] relative overflow-hidden">
-              <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-yellow/5 rounded-full blur-xl" />
-              <span className="text-[9px] text-text-secondary font-black uppercase tracking-widest block mb-2">New RENZA Experience</span>
-              <span className="text-base font-black text-text-dark">
-                "I need my floor cleaned."
-              </span>
-            </div>
-
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1.5">
-            <div className="w-[1px] h-10 bg-brand-yellow/40 mb-1" />
-            <span className="text-sm font-black text-text-secondary uppercase tracking-widest block">
-              That's the difference.
-            </span>
-            <p className="text-text-secondary text-xs max-w-md text-center leading-relaxed">
-              The customer tells RENZA the outcome they need — not which worker they need to find.
-            </p>
           </div>
         </div>
 

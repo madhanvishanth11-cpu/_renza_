@@ -22,7 +22,7 @@ export default function Hero() {
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFE500]/10 border border-[#FFE500]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
             <Sparkles size={13} className="text-[#E2C700] fill-[#E2C700]" />
-            <span>On-Demand Local Task Marketplace</span>
+            <span>⚡ On-Demand Local Task Marketplace</span>
           </div>
 
           {/* Heading */}
