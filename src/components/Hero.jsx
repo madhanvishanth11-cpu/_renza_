@@ -64,8 +64,15 @@ export default function Hero() {
         <div className="hidden lg:block lg:col-span-5 h-full pointer-events-none" />
       </div>
 
-      {/* Teal/Yellow Pulsing Ambient Glow */}
-      <div className="absolute right-[-10%] bottom-[-10%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-[#00D2C4]/15 rounded-full blur-[120px] pointer-events-none animate-pulse-glow z-0" />
+      {/* Animated Teal Background Glows (behind workforce greeting image) */}
+      <div className="absolute right-[-10%] bottom-[-10%] w-[450px] md:w-[700px] h-[450px] md:h-[700px] pointer-events-none z-0">
+        {/* Blob One */}
+        <div className="absolute top-[20%] left-[20%] w-[350px] md:w-[450px] h-[350px] md:h-[450px] bg-[#00D2C4]/20 rounded-full blur-[100px] animate-blob-one" />
+        {/* Blob Two */}
+        <div className="absolute bottom-[20%] right-[10%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-[#00D2C4]/15 rounded-full blur-[90px] animate-blob-two" />
+        {/* Soft Ambient Base Glow */}
+        <div className="absolute inset-0 bg-[#00D2C4]/5 rounded-full blur-[130px] animate-pulse-glow" />
+      </div>
 
       {/* Workforce Image positioned at the bottom of the section */}
       <div 

@@ -38,12 +38,46 @@
   }
 }
 
+@keyframes blob-one {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.25;
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.15);
+    opacity: 0.35;
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+@keyframes blob-two {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1.1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50px, 40px) scale(0.85);
+    opacity: 0.2;
+  }
+}
+
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 7s ease-in-out infinite;
+}
+
+.animate-blob-one {
+  animation: blob-one 16s ease-in-out infinite;
+}
+
+.animate-blob-two {
+  animation: blob-two 22s ease-in-out infinite;
 }
 
 /* Base custom resets */
