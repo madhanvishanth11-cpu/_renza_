@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FeaturesRow from './components/FeaturesRow';
-import ComparisonSection from './components/ComparisonSection';
 import ServicesSection from './components/ServicesSection';
 import HowItWorks from './components/HowItWorks';
 import TrustSection from './components/TrustSection';
@@ -23,7 +22,6 @@ function Home() {
       <Hero />
       <HowItWorks />
       <FeaturesRow />
-      <ComparisonSection />
       <ServicesSection />
       <TrustSection />
       <FAQSection />
