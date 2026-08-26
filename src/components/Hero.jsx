@@ -78,7 +78,7 @@ export default function Hero() {
         <img 
           src={workforceImg} 
           alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
-          className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[550px] xl:max-w-[620px] h-auto object-contain select-none pointer-events-none block align-bottom"
+          className="w-full max-w-[380px] sm:max-w-[450px] md:max-w-[520px] lg:max-w-[650px] xl:max-w-[760px] h-auto object-contain select-none pointer-events-none block align-bottom"
         />
       </div>
     </section>
