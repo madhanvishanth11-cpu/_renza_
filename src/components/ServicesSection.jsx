@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowDown, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowDown, Check, Sparkles, ChefHat, Home, Utensils, Brush, Bath } from 'lucide-react';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -39,37 +39,37 @@ export default function ServicesSection() {
 
   const services = [
     {
-      icon: "🍽️",
+      icon: <Utensils className="text-[#FFE500]" size={20} />,
       title: "Washing Vessels",
       desc: "Get help with everyday dish and vessel washing.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🧹",
+      icon: <Brush className="text-[#FFE500]" size={20} />,
       title: "Floor Cleaning",
       desc: "Keep your floors clean without managing the work yourself.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🛁",
+      icon: <Bath className="text-[#FFE500]" size={20} />,
       title: "Bathroom Cleaning",
       desc: "Get help maintaining a clean and hygienic bathroom.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🍳",
+      icon: <ChefHat className="text-[#FFE500]" size={20} />,
       title: "Kitchen Cleaning",
       desc: "Get support with everyday kitchen cleaning.",
       badge: "RENZA Managed"
     },
     {
-      icon: "🏠",
+      icon: <Home className="text-[#FFE500]" size={20} />,
       title: "General Household Help",
       desc: "Everyday support for common household tasks.",
       badge: "RENZA Managed"
     },
     {
-      icon: "✨",
+      icon: <Sparkles className="text-[#FFE500]" size={20} />,
       title: "More Household Help",
       desc: "Tell us what you need help with.",
       isSpecial: true
@@ -123,7 +123,7 @@ export default function ServicesSection() {
               }`}
             >
               <div>
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 w-fit">
+                <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
                 
@@ -233,7 +233,7 @@ export default function ServicesSection() {
               <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-yellow/5 rounded-full blur-xl" />
               <span className="text-[9px] text-text-secondary font-black uppercase tracking-widest block mb-2">New RENZA Experience</span>
               <span className="text-base font-black text-text-dark">
-                ✨ "I need my floor cleaned."
+                "I need my floor cleaned."
               </span>
             </div>
 
