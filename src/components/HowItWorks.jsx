@@ -174,16 +174,14 @@ export default function HowItWorks() {
                 03
               </div>
 
-              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-deep-black text-white border border-brand-yellow/30 shadow-yellow-glow rounded-[24px] p-5 hover:border-brand-yellow hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group relative overflow-hidden">
-                <div className="absolute -top-12 -right-12 w-20 h-20 bg-brand-yellow/5 rounded-full blur-xl pointer-events-none" />
-                
+              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <Logo className="px-2.5 py-1 text-[9px] text-white bg-neutral-900 border border-neutral-800" size="small" />
                   </div>
                   
-                  <h3 className="font-sans font-black text-lg text-white mb-1.5">RENZA Handles It</h3>
-                  <p className="text-neutral-400 text-xs font-semibold leading-relaxed mb-4">
+                  <h3 className="font-sans font-black text-lg text-text-dark mb-1.5">RENZA Handles It</h3>
+                  <p className="text-text-secondary text-xs font-semibold leading-relaxed mb-4">
                     RENZA manages the service experience.
                   </p>
 
@@ -195,9 +193,9 @@ export default function HowItWorks() {
                       { icon: "🛡", label: "Standards" },
                       { icon: "₹", label: "Clear Pricing" }
                     ].map((chip, idx) => (
-                      <div key={idx} className="bg-neutral-900 border border-neutral-800/80 p-2 rounded-xl flex flex-col items-start gap-1 justify-between min-h-[48px]">
-                        <span className="text-brand-yellow text-[10px]">{chip.icon}</span>
-                        <span className="text-[7.5px] font-black text-white uppercase tracking-tight leading-none">
+                      <div key={idx} className="bg-[#F7F7F5] border border-gray-250/60 p-2 rounded-xl flex flex-col items-start gap-1 justify-between min-h-[48px]">
+                        <span className="text-amber-500 text-[10px]">{chip.icon}</span>
+                        <span className="text-[7.5px] font-black text-text-dark uppercase tracking-tight leading-none">
                           {chip.label}
                         </span>
                       </div>
@@ -206,7 +204,7 @@ export default function HowItWorks() {
                 </div>
 
                 <div>
-                  <span className="inline-flex px-3 py-1 rounded-full border border-neutral-800 text-brand-yellow text-[9px] font-black uppercase tracking-wider bg-neutral-900">
+                  <span className="inline-flex px-3 py-1 rounded-full border border-gray-200 text-text-secondary text-[9px] font-black uppercase tracking-wider">
                     RENZA MANAGED
                   </span>
                 </div>
@@ -219,25 +217,23 @@ export default function HowItWorks() {
                 04
               </div>
 
-              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-brand-yellow text-deep-black shadow-yellow-glow rounded-[24px] p-5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group relative overflow-hidden">
-                <div className="absolute -top-12 -right-12 w-20 h-20 bg-white/20 rounded-full blur-xl pointer-events-none" />
-                
+              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
-                  <div className="w-10 h-10 rounded-full bg-deep-black flex items-center justify-center mb-5 shadow-md">
-                    <Check size={18} className="text-brand-yellow" strokeWidth={3.5} />
+                  <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
+                    <Check size={18} className="text-amber-500" strokeWidth={3.5} />
                   </div>
                   
-                  <h3 className="font-sans font-black text-lg text-deep-black mb-1">Problem Handled</h3>
-                  <span className="font-sans font-black text-xl text-deep-black block mb-2">
+                  <h3 className="font-sans font-black text-lg text-text-dark mb-1">Problem Handled</h3>
+                  <span className="font-sans font-black text-xl text-text-dark block mb-2">
                     ✓ Floor Cleaned
                   </span>
-                  <p className="text-deep-black/70 text-xs font-semibold leading-relaxed">
+                  <p className="text-text-secondary text-xs font-semibold leading-relaxed">
                     "You focus on your day."
                   </p>
                 </div>
 
                 <div>
-                  <span className="inline-flex px-3 py-1 rounded-full border border-deep-black/10 text-deep-black text-[9px] font-black uppercase tracking-wider">
+                  <span className="inline-flex px-3 py-1 rounded-full border border-gray-200 text-text-secondary text-[9px] font-black uppercase tracking-wider">
                     OUTCOME
                   </span>
                 </div>
