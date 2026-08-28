@@ -524,3 +524,45 @@ body {
   }
 }
 
+/* Mobile-only worker card and image animations */
+@keyframes float-mobile-worker {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fade-in-up-mobile {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes teal-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 210, 196, 0.15), 0 10px 25px rgba(0, 210, 196, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 210, 196, 0.25), 0 15px 35px rgba(0, 210, 196, 0.18);
+  }
+}
+
+.animate-float-mobile-worker {
+  animation: float-mobile-worker 5s ease-in-out infinite;
+}
+
+.animate-fade-in-up-mobile {
+  animation: fade-in-up-mobile 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-teal-glow-pulse {
+  animation: teal-glow-pulse 4.5s ease-in-out infinite;
+}
+

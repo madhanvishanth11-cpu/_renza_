@@ -19,13 +19,15 @@ export default function Hero() {
         {/* LEFT COLUMN: HERO CONTENT (55%) */}
         <div className="lg:col-span-7 flex flex-col items-start text-left z-10 py-8 lg:py-16">
           
-          {/* Mobile View: Centered Worker Image at the very top */}
+          {/* Mobile View: Premium Centered Worker Image Card at the very top */}
           <div className="w-full flex justify-center mb-6 md:hidden">
-            <img 
-              src={workforceImg} 
-              alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
-              className="w-full max-w-[350px] sm:max-w-[420px] h-auto object-contain select-none pointer-events-none block align-bottom animate-float"
-            />
+            <div className="w-[92%] max-w-[340px] sm:max-w-[380px] bg-[#00D2C4]/5 dark:bg-[#00D2C4]/10 backdrop-blur-md border border-[#00D2C4]/20 rounded-[24px] p-4 flex items-center justify-center shadow-md animate-fade-in-up-mobile animate-teal-glow-pulse">
+              <img 
+                src={workforceImg} 
+                alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
+                className="w-full h-auto object-contain select-none pointer-events-none block align-bottom animate-float-mobile-worker"
+              />
+            </div>
           </div>
 
           {/* Mobile View: Pill Badge below image */}
