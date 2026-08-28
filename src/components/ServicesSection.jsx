@@ -35,6 +35,7 @@ export default function ServicesSection() {
   const [headerRef, headerRevealed] = useScrollReveal();
   const [gridRef, gridRevealed] = useScrollReveal();
   const [bannerRef, bannerRevealed] = useScrollReveal();
+  const [activeDot, setActiveDot] = useState(0);
 
   const services = [
     {
@@ -75,6 +76,14 @@ export default function ServicesSection() {
     }
   ];
 
+  const mobileServices = [
+    { title: "Floor Cleaning", icon: <Sparkles size={16} />, badge: "Floor mopping" },
+    { title: "Bathroom Cleaning", icon: <Bath size={16} />, badge: "Deep sanitize" },
+    { title: "Washing Vessels", icon: <Utensils size={16} />, badge: "Daily cleaning" },
+    { title: "General Help", icon: <Home size={16} />, badge: "Everyday chores" },
+    { title: "More Help", icon: <HelpCircle size={16} />, badge: "Custom requests" }
+  ];
+
   return (
     <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-24 border-t border-gray-200" id="services">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
@@ -103,12 +112,101 @@ export default function ServicesSection() {
           </div>
         </div>
 
+        {/* MOBILE VIEW ONLY (below 768px) */}
+        <div className="block md:hidden mb-16">
+          {/* 1. Large Featured Service Card */}
+          <div className="relative w-full aspect-[4/3] rounded-[28px] overflow-hidden bg-gradient-to-br from-[#021b1b] via-[#052e2c] to-[#083a37] border border-[#00D2C4]/20 shadow-lg p-6 flex flex-col justify-between mb-6 group select-none">
+            {/* Dark mesh background ambient lights */}
+            <div className="absolute top-[-20%] right-[-20%] w-[180px] h-[180px] bg-[#00D2C4]/20 rounded-full blur-[40px] pointer-events-none" />
+            <div className="absolute bottom-[-10%] left-[-10%] w-[150px] h-[150px] bg-[#00D2C4]/10 rounded-full blur-[35px] pointer-events-none" />
+            
+            {/* Top Row: Category tag and View All */}
+            <div className="flex items-center justify-between z-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[#00D2C4] text-[10px] font-black tracking-widest uppercase">
+                FEATURED OUTCOME
+              </span>
+              <button className="w-8 h-8 rounded-full bg-[#00D2C4] hover:bg-[#00B3A6] text-deep-black flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer shadow-sm shadow-[#00D2C4]/35">
+                <ArrowRight size={14} strokeWidth={2.5} />
+              </button>
+            </div>
+
+            {/* Bottom Row: Text content */}
+            <div className="z-10 text-left">
+              <h3 className="font-sans font-black text-2xl text-white mb-2 leading-tight">
+                Kitchen Deep Cleaning
+              </h3>
+              <p className="text-white/70 text-xs font-semibold leading-relaxed mb-1">
+                Every counter, sink, and surface polished to perfection.
+              </p>
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00D2C4]/20 text-[#00D2C4] text-[8px] font-black uppercase tracking-wider mt-2">
+                <Check size={8} strokeWidth={4} />
+                RENZA Managed
+              </span>
+            </div>
+          </div>
+
+          {/* 2. Swipeable Small Service Cards Carousel */}
+          <div 
+            className="flex overflow-x-auto gap-4 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-none -mx-6 px-6 relative z-10"
+            onScroll={(e) => {
+              const scrollLeft = e.target.scrollLeft;
+              const cardWidth = e.target.scrollWidth / mobileServices.length;
+              const activeIndex = Math.round(scrollLeft / cardWidth);
+              setActiveDot(Math.min(activeIndex, mobileServices.length - 1));
+            }}
+          >
+            {mobileServices.map((srv, idx) => (
+              <div 
+                key={idx}
+                className="flex-shrink-0 w-[55%] snap-center relative aspect-[1/1] rounded-[22px] overflow-hidden bg-gradient-to-br from-[#121c1b] to-[#0d1313] border border-[#00D2C4]/15 shadow-sm p-4 flex flex-col justify-between text-left select-none"
+              >
+                {/* Glow badge overlay */}
+                <div className="absolute top-[-30%] right-[-30%] w-[100px] h-[100px] bg-[#00D2C4]/10 rounded-full blur-[25px] pointer-events-none" />
+                
+                {/* Top: Icon */}
+                <div className="z-10 w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#00D2C4]">
+                  {srv.icon}
+                </div>
+
+                {/* Bottom: Text and Button */}
+                <div className="z-10 flex items-end justify-between gap-2">
+                  <div className="overflow-hidden">
+                    <h4 className="font-sans font-black text-sm text-white leading-tight truncate">
+                      {srv.title}
+                    </h4>
+                    <span className="text-white/50 text-[9px] font-semibold leading-none block mt-1">
+                      {srv.badge}
+                    </span>
+                  </div>
+                  <button className="w-6 h-6 rounded-full bg-[#00D2C4] text-deep-black flex items-center justify-center flex-shrink-0 shadow-sm shadow-[#00D2C4]/20">
+                    <ArrowRight size={10} strokeWidth={3} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 3. Carousel Progress Dots */}
+          <div className="flex justify-center gap-1.5 mt-2">
+            {mobileServices.map((_, dotIdx) => (
+              <div 
+                key={dotIdx}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeDot === dotIdx 
+                    ? 'w-4 bg-[#00D2C4]' 
+                    : 'w-1.5 bg-neutral-300 dark:bg-neutral-800'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* =========================================================================
-            SERVICES GRID
+            SERVICES GRID (Tablet/Desktop View)
            ========================================================================= */}
         <div 
           ref={gridRef}
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 transition-all duration-1000 transform ${
+          className={`hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 transition-all duration-1000 transform ${
             gridRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
