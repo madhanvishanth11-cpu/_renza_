@@ -19,25 +19,8 @@ export default function Hero() {
         {/* LEFT COLUMN: HERO CONTENT (55%) */}
         <div className="lg:col-span-7 flex flex-col items-start text-left z-10 py-8 lg:py-16">
           
-          {/* Mobile View: Premium Centered Worker Image Card at the very top */}
-          <div className="w-full flex justify-center mb-6 md:hidden">
-            <div className="w-[92%] max-w-[340px] sm:max-w-[380px] bg-[#00D2C4]/5 dark:bg-[#00D2C4]/10 backdrop-blur-md border border-[#00D2C4]/20 rounded-[24px] p-4 flex items-center justify-center shadow-md animate-fade-in-up-mobile animate-teal-glow-pulse">
-              <img 
-                src={workforceImg} 
-                alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
-                className="w-full h-auto object-contain select-none pointer-events-none block align-bottom animate-float-mobile-worker"
-              />
-            </div>
-          </div>
-
-          {/* Mobile View: Pill Badge below image */}
-          <div className="inline-flex md:hidden items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in self-center">
-            <Sparkles size={13} className="text-[#00B3A6] fill-[#00B3A6]" />
-            <span>On-Demand Local Task Marketplace</span>
-          </div>
-
-          {/* Desktop View: Pill Badge at the top */}
-          <div className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
+          {/* Pill Badge (Unified) */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in self-center md:self-start">
             <Sparkles size={13} className="text-[#00B3A6] fill-[#00B3A6]" />
             <span>On-Demand Local Task Marketplace</span>
           </div>
@@ -57,6 +40,17 @@ export default function Hero() {
           <p className="text-text-secondary text-lg md:text-xl font-normal leading-relaxed max-w-[620px] mb-8">
             Find trusted and verified people nearby to complete everyday tasks — from home services to errands and technical help.
           </p>
+
+          {/* Mobile View: Premium Centered Worker Image Card (Placed above download button) */}
+          <div className="w-full flex justify-center mb-6 md:hidden">
+            <div className="w-[92%] max-w-[340px] sm:max-w-[380px] bg-[#00D2C4]/5 dark:bg-[#00D2C4]/10 backdrop-blur-md border border-[#00D2C4]/20 rounded-[24px] p-4 flex items-center justify-center shadow-md animate-fade-in-up-mobile animate-teal-glow-pulse">
+              <img 
+                src={workforceImg} 
+                alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
+                className="w-full h-auto object-contain select-none pointer-events-none block align-bottom animate-float-mobile-worker"
+              />
+            </div>
+          </div>
 
           {/* CTA Buttons & Social Proof */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-6">
