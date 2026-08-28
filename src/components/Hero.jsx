@@ -25,6 +25,15 @@ export default function Hero() {
             <span>On-Demand Local Task Marketplace</span>
           </div>
 
+          {/* Mobile View: Centered Worker Image between Badge and Heading */}
+          <div className="w-full flex justify-center mb-6 md:hidden">
+            <img 
+              src={workforceImg} 
+              alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
+              className="w-full max-w-[280px] sm:max-w-[340px] h-auto object-contain select-none pointer-events-none block align-bottom"
+            />
+          </div>
+
           {/* Heading */}
           <h1 className="font-sans font-black tracking-tight text-[#111111] text-5xl md:text-7xl lg:text-[76px] xl:text-[80px] leading-[1.05] mb-6">
             Get Any <br />
@@ -74,25 +83,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[#00D2C4]/5 rounded-full blur-[130px] animate-pulse-glow" />
       </div>
 
-      {/* Workforce Image positioned at the bottom of the section */}
       <div 
-        className={`w-full lg:absolute lg:right-0 lg:bottom-0 flex items-end justify-center lg:justify-end z-10 transition-all duration-[1200ms] ease-out transform ${
+        className={`hidden md:flex w-full lg:absolute lg:right-0 lg:bottom-0 items-end justify-center lg:justify-end z-10 transition-all duration-[1200ms] ease-out transform ${
           imageLoaded 
             ? 'opacity-100 translate-y-0 scale-100' 
             : 'opacity-0 translate-y-16 scale-95'
         }`}
       >
-        {/* Mobile View: 9:16 Video Player */}
-        <video 
-          src="/src/assets/workforce.mp4" 
-          poster={workforceImg}
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="w-full max-w-[380px] sm:max-w-[450px] h-auto object-contain select-none pointer-events-none block align-bottom md:hidden aspect-[9/16]"
-        />
-
         {/* Tablet/Desktop View: Static Image */}
         <img 
           src={workforceImg} 
