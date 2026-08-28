@@ -9,7 +9,7 @@ export default function Logo({ className = "", size = "normal" }) {
   if (isSmall) {
     heightClass = 'h-[19px]';
   } else if (isLarge) {
-    heightClass = 'h-[34px]'; // Larger size for header
+    heightClass = 'h-[25px] md:h-[34px]'; // Responsive height for header
   }
 
   // Adjust padding proportionally
@@ -17,7 +17,7 @@ export default function Logo({ className = "", size = "normal" }) {
   if (isSmall) {
     paddingClass = 'px-3 py-1.5';
   } else if (isLarge) {
-    paddingClass = 'px-5 py-2.5';
+    paddingClass = 'px-4 py-1.5 md:px-5 md:py-2.5';
   }
 
   const [processedSrc, setProcessedSrc] = useState(logoImg);

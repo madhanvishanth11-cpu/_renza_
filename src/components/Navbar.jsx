@@ -120,7 +120,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full h-[84px] bg-white/95 backdrop-blur-md border-b border-gray-200/80 transition-colors duration-300 flex items-center justify-between px-6 md:px-12 lg:px-20">
+      <header className="sticky top-0 z-50 w-full h-[64px] lg:h-[84px] bg-white/95 backdrop-blur-md border-b border-gray-200/80 transition-colors duration-300 flex items-center justify-between px-4 sm:px-6 lg:px-20">
         {/* LEFT: Logo */}
         <div className="flex-shrink-0">
           <a href="#" onClick={handleLogoClick} aria-label="RENZA Home" className="transition-transform hover:scale-[1.02]">
@@ -174,22 +174,22 @@ export default function Navbar({ theme, toggleTheme }) {
         </div>
 
         {/* Mobile Right Controls */}
-        <div className="flex lg:hidden items-center gap-3">
+        <div className="flex lg:hidden items-center gap-2 sm:gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer"
+            className="w-9 h-9 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer active:scale-95 transition-all duration-200"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <Sun size={18} className="text-[#00D2C4]" /> : <Moon size={18} className="text-[#111111]" />}
+            {theme === 'dark' ? <Sun size={16} className="text-[#00D2C4]" /> : <Moon size={16} className="text-[#111111]" />}
           </button>
 
           {/* Mobile: show avatar or login icon */}
           {!loading && user && (
-            <div className="flex items-center">
+            <div className="flex items-center flex-shrink-0">
               {user.photoURL ? (
-                <img src={user.photoURL} alt="profile" className="w-8 h-8 rounded-full border border-gray-200 object-cover" />
+                <img src={user.photoURL} alt="profile" className="w-9 h-9 rounded-full border border-gray-200 object-cover" />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-brand-yellow flex items-center justify-center text-deep-black font-black text-[10px]">
+                <div className="w-9 h-9 rounded-full bg-brand-yellow flex items-center justify-center text-deep-black font-black text-xs border border-gray-200">
                   {(profile?.name || user.displayName || 'U')[0].toUpperCase()}
                 </div>
               )}
@@ -198,16 +198,16 @@ export default function Navbar({ theme, toggleTheme }) {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer transition-colors hover:bg-gray-50"
+            className="w-9 h-9 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer transition-colors active:scale-95 transition-all duration-200 hover:bg-gray-50"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
         </div>
 
         {/* Mobile Drawer Navigation */}
         {mobileMenuOpen && (
-          <div className="absolute top-[84px] left-0 w-full bg-white border-b border-gray-200 shadow-lg lg:hidden flex flex-col px-6 py-8 gap-6 z-40 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-5">
+          <div className="absolute top-[64px] lg:top-[84px] left-0 w-full bg-white border-b border-gray-200 shadow-lg lg:hidden flex flex-col px-6 py-8 gap-6 z-40 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-5">
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
