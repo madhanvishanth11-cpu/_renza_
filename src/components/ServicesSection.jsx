@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowDown, Check, Sparkles, Utensils, Bath, ChefHat, Home, HelpCircle } from 'lucide-react';
 import workforceImg from '../assets/workforce_thumbsup.png';
+import dishImg from '../assets/dishwashing.jpg';
+import kitchenImg from '../assets/kitchen_cleaning.jpg';
+import fanImg from '../assets/fan_cleaning.jpg';
+import windowImg from '../assets/window_cleaning.jpg';
+import laundryImg from '../assets/laundry_help.png';
+import bathImg from '../assets/bathroom_cleaning.jpg';
+import servicesBg from '../assets/services_bg.png';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -39,12 +46,12 @@ export default function ServicesSection() {
   const [activeDot, setActiveDot] = useState(0);
 
   const serviceCards = [
-    { title: "Dishwashing", icon: <Utensils size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#082022] to-[#040e0f]" },
-    { title: "Kitchen Cleaning", icon: <ChefHat size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#1a2d2a] to-[#081211]" },
-    { title: "Fan Cleaning", icon: <Sparkles size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#0f2425] to-[#061011]" },
-    { title: "Window Cleaning", icon: <Home size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#09282b] to-[#031011]" },
-    { title: "Laundry Help", icon: <Sparkles size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#111e30] to-[#070e18]" },
-    { title: "Bathroom Cleaning", icon: <Bath size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#152e2a] to-[#081312]" }
+    { title: "Dishwashing", img: dishImg, icon: <Utensils size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#082022] to-[#040e0f]" },
+    { title: "Kitchen Cleaning", img: kitchenImg, icon: <ChefHat size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#1a2d2a] to-[#081211]" },
+    { title: "Fan Cleaning", img: fanImg, icon: <Sparkles size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#0f2425] to-[#061011]" },
+    { title: "Window Cleaning", img: windowImg, icon: <Home size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#09282b] to-[#031011]" },
+    { title: "Laundry Help", img: laundryImg, icon: <Sparkles size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#111e30] to-[#070e18]" },
+    { title: "Bathroom Cleaning", img: bathImg, icon: <Bath size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#152e2a] to-[#081312]" }
   ];
 
   return (
@@ -60,9 +67,19 @@ export default function ServicesSection() {
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
+          {/* Main background image with overlay */}
+          <div className="absolute inset-0 z-0 select-none pointer-events-none">
+            <img 
+              src={servicesBg} 
+              alt="" 
+              className="w-full h-full object-cover object-center opacity-40"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/60 to-black/30" />
+          </div>
+
           {/* Background Ambient Mesh Lights */}
-          <div className="absolute top-[-10%] right-[-10%] w-[350px] h-[350px] bg-[#00D2C4]/15 rounded-full blur-[90px] pointer-events-none" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-[#00D2C4]/5 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-[-10%] right-[-10%] w-[350px] h-[350px] bg-[#00D2C4]/15 rounded-full blur-[90px] pointer-events-none z-0" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-[#00D2C4]/5 rounded-full blur-[80px] pointer-events-none z-0" />
 
           {/* Right blended workforce background image (Desktop/Tablet) */}
           <div className="absolute right-[8%] bottom-[22%] w-[44%] h-[78%] opacity-100 pointer-events-none z-0 hidden md:block">
@@ -105,19 +122,26 @@ export default function ServicesSection() {
                   key={idx} 
                   className={`relative aspect-[4/5] rounded-[22px] overflow-hidden bg-gradient-to-br ${card.bgGradient} border border-white/10 hover:border-[#00D2C4]/40 p-4 flex flex-col justify-between text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-[#00D2C4]/10 group cursor-pointer`}
                 >
+                  {/* Card background image */}
+                  <img 
+                    src={card.img} 
+                    alt={card.title} 
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 z-0 select-none pointer-events-none"
+                  />
+
                   {/* Background gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/10 z-10 pointer-events-none" />
                   
                   {/* Background mesh glow inside each card */}
-                  <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none" />
+                  <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none z-10" />
 
                   {/* Icon */}
-                  <div className="z-10 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <div className="z-20 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                     {card.icon}
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="z-10 flex items-end justify-between gap-1 w-full">
+                  <div className="z-20 flex items-end justify-between gap-1 w-full">
                     <div className="overflow-hidden">
                       <h4 className="font-sans font-black text-xs md:text-sm text-white leading-tight">
                         {card.title}
@@ -146,19 +170,26 @@ export default function ServicesSection() {
                   key={idx} 
                   className={`flex-shrink-0 w-[68%] snap-center relative aspect-[4/5] rounded-[22px] overflow-hidden bg-gradient-to-br ${card.bgGradient} border border-white/10 p-4 flex flex-col justify-between text-left select-none`}
                 >
+                  {/* Card background image */}
+                  <img 
+                    src={card.img} 
+                    alt={card.title} 
+                    className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
+                  />
+
                   {/* Background gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/10 z-10 pointer-events-none" />
                   
                   {/* Background mesh glow inside each card */}
-                  <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none" />
+                  <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none z-10" />
 
                   {/* Icon */}
-                  <div className="z-10 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <div className="z-20 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                     {card.icon}
                   </div>
 
                   {/* Bottom Content */}
-                  <div className="z-10 flex items-end justify-between gap-1 w-full">
+                  <div className="z-20 flex items-end justify-between gap-1 w-full">
                     <div className="overflow-hidden">
                       <h4 className="font-sans font-black text-xs text-white leading-tight">
                         {card.title}
