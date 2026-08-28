@@ -6,7 +6,7 @@ import fanImg from '../assets/fan_cleaning.jpg';
 import windowImg from '../assets/window_cleaning.jpg';
 import laundryImg from '../assets/laundry_help.png';
 import bathImg from '../assets/bathroom_cleaning.jpg';
-import servicesBg from '../assets/services_bg.png';
+import servicesBg from '../assets/services_bg_new.png';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -71,9 +71,9 @@ export default function ServicesSection() {
             <img 
               src={servicesBg} 
               alt="" 
-              className="w-full h-full object-cover object-center opacity-40"
+              className="w-full h-full object-cover object-[80%_center] opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/60 to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/55 to-transparent" />
           </div>
 
           {/* Background Ambient Mesh Lights */}
