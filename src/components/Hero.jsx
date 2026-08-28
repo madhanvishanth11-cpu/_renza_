@@ -82,10 +82,22 @@ export default function Hero() {
             : 'opacity-0 translate-y-16 scale-95'
         }`}
       >
+        {/* Mobile View: 9:16 Video Player */}
+        <video 
+          src="/src/assets/workforce.mp4" 
+          poster={workforceImg}
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="w-full max-w-[380px] sm:max-w-[450px] h-auto object-contain select-none pointer-events-none block align-bottom md:hidden aspect-[9/16]"
+        />
+
+        {/* Tablet/Desktop View: Static Image */}
         <img 
           src={workforceImg} 
           alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
-          className="w-full max-w-[380px] sm:max-w-[450px] md:max-w-[520px] lg:max-w-[650px] xl:max-w-[760px] h-auto object-contain select-none pointer-events-none block align-bottom"
+          className="w-full md:max-w-[520px] lg:max-w-[650px] xl:max-w-[760px] h-auto object-contain select-none pointer-events-none hidden md:block align-bottom"
         />
       </div>
     </section>
