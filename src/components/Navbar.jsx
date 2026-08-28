@@ -120,7 +120,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full h-[64px] lg:h-[84px] bg-white/95 backdrop-blur-md border-b border-gray-200/80 transition-colors duration-300 flex items-center justify-between px-4 sm:px-6 lg:px-20">
+      <header className="sticky top-0 z-50 w-full h-[64px] md:h-[84px] bg-white/95 backdrop-blur-md border-b border-gray-200/80 transition-colors duration-300 flex items-center justify-between px-4 md:px-12 lg:px-20">
         {/* LEFT: Logo */}
         <div className="flex-shrink-0">
           <a href="#" onClick={handleLogoClick} aria-label="RENZA Home" className="transition-transform hover:scale-[1.02]">
@@ -207,7 +207,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
         {/* Mobile Drawer Navigation */}
         {mobileMenuOpen && (
-          <div className="absolute top-[64px] lg:top-[84px] left-0 w-full bg-white border-b border-gray-200 shadow-lg lg:hidden flex flex-col px-6 py-8 gap-6 z-40 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-5">
+          <div className="absolute top-[64px] md:top-[84px] left-0 w-full bg-white border-b border-gray-200 shadow-lg lg:hidden flex flex-col px-6 py-8 gap-6 z-40 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-5">
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a

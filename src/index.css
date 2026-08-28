@@ -502,3 +502,25 @@ body {
   border-color: #2a2a2a !important;
 }
 
+/* Mobile-only header overrides (max-width: 768px) */
+@media (max-width: 768px) {
+  header {
+    height: 64px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  header .logo-container {
+    padding: 6px 16px !important;
+  }
+
+  header img[alt="RENZA Logo"] {
+    height: 25px !important;
+  }
+
+  /* Ensure correct offset for mobile menu drawer */
+  header > div[class*="absolute"] {
+    top: 64px !important;
+  }
+}
+

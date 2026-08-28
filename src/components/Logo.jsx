@@ -70,7 +70,7 @@ export default function Logo({ className = "", size = "normal" }) {
   const defaultBgClass = hasBg ? '' : `bg-[#111111] ${paddingClass} rounded-full border border-neutral-850 shadow-sm`;
 
   return (
-    <div className={`flex items-center justify-center select-none inline-flex ${defaultBgClass} ${className}`}>
+    <div className={`logo-container flex items-center justify-center select-none inline-flex ${defaultBgClass} ${className}`}>
       <img 
         src={processedSrc} 
         alt="RENZA Logo" 
