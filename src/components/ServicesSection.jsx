@@ -65,7 +65,7 @@ export default function ServicesSection() {
           <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-[#00D2C4]/5 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Right blended workforce background image (Desktop/Tablet) */}
-          <div className="absolute right-[-5%] bottom-[-5%] w-[45%] h-[95%] opacity-[0.22] pointer-events-none z-0 hidden md:block">
+          <div className="absolute right-[-2%] bottom-[-5%] w-[42%] h-[95%] opacity-85 pointer-events-none z-0 hidden md:block">
             <img 
               src={workforceImg} 
               alt="" 
