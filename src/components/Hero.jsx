@@ -19,19 +19,25 @@ export default function Hero() {
         {/* LEFT COLUMN: HERO CONTENT (55%) */}
         <div className="lg:col-span-7 flex flex-col items-start text-left z-10 py-8 lg:py-16">
           
-          {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
-            <Sparkles size={13} className="text-[#00B3A6] fill-[#00B3A6]" />
-            <span>On-Demand Local Task Marketplace</span>
-          </div>
-
-          {/* Mobile View: Centered Worker Image between Badge and Heading */}
+          {/* Mobile View: Centered Worker Image at the very top */}
           <div className="w-full flex justify-center mb-6 md:hidden">
             <img 
               src={workforceImg} 
               alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
-              className="w-full max-w-[280px] sm:max-w-[340px] h-auto object-contain select-none pointer-events-none block align-bottom"
+              className="w-full max-w-[350px] sm:max-w-[420px] h-auto object-contain select-none pointer-events-none block align-bottom animate-float"
             />
+          </div>
+
+          {/* Mobile View: Pill Badge below image */}
+          <div className="inline-flex md:hidden items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in self-center">
+            <Sparkles size={13} className="text-[#00B3A6] fill-[#00B3A6]" />
+            <span>On-Demand Local Task Marketplace</span>
+          </div>
+
+          {/* Desktop View: Pill Badge at the top */}
+          <div className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D2C4]/10 border border-[#00D2C4]/50 text-deep-black text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
+            <Sparkles size={13} className="text-[#00B3A6] fill-[#00B3A6]" />
+            <span>On-Demand Local Task Marketplace</span>
           </div>
 
           {/* Heading */}
