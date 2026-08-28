@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowDown, Check, Sparkles, Utensils, Bath, ChefHat, Home, HelpCircle } from 'lucide-react';
-import workforceImg from '../assets/workforce_thumbsup.png';
 import dishImg from '../assets/dishwashing.jpg';
 import kitchenImg from '../assets/kitchen_cleaning.jpg';
 import fanImg from '../assets/fan_cleaning.jpg';
@@ -81,14 +80,7 @@ export default function ServicesSection() {
           <div className="absolute top-[-10%] right-[-10%] w-[350px] h-[350px] bg-[#00D2C4]/15 rounded-full blur-[90px] pointer-events-none z-0" />
           <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-[#00D2C4]/5 rounded-full blur-[80px] pointer-events-none z-0" />
 
-          {/* Right blended workforce background image (Desktop/Tablet) */}
-          <div className="absolute right-[8%] bottom-[22%] w-[44%] h-[78%] opacity-100 pointer-events-none z-0 hidden md:block">
-            <img 
-              src={workforceImg} 
-              alt="" 
-              className="w-full h-full object-contain object-bottom select-none"
-            />
-          </div>
+
 
           {/* Top Row: Heading and View All */}
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 w-full z-10">
@@ -135,10 +127,7 @@ export default function ServicesSection() {
                   {/* Background mesh glow inside each card */}
                   <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none z-10" />
 
-                  {/* Icon */}
-                  <div className="z-20 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    {card.icon}
-                  </div>
+
 
                   {/* Bottom Content */}
                   <div className="z-20 flex items-end justify-between gap-1 w-full">
@@ -183,10 +172,7 @@ export default function ServicesSection() {
                   {/* Background mesh glow inside each card */}
                   <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none z-10" />
 
-                  {/* Icon */}
-                  <div className="z-20 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    {card.icon}
-                  </div>
+
 
                   {/* Bottom Content */}
                   <div className="z-20 flex items-end justify-between gap-1 w-full">
