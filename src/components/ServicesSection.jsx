@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowDown, Check, Sparkles, Utensils, Bath, ChefHat, Home, HelpCircle } from 'lucide-react';
-import workforceImg from '../assets/workforce.png';
+import workforceImg from '../assets/workforce_thumbsup.png';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
