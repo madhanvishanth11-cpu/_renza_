@@ -4,7 +4,7 @@ import dishImg from '../assets/dishwashing.jpg';
 import kitchenImg from '../assets/kitchen_cleaning.jpg';
 import fanImg from '../assets/fan_cleaning.jpg';
 import windowImg from '../assets/window_cleaning.jpg';
-import laundryImg from '../assets/laundry_help.png';
+import laundryImg from '../assets/laundry_help_new.jpg';
 import bathImg from '../assets/bathroom_cleaning.jpg';
 import servicesBg from '../assets/services_bg_new.png';
 
@@ -118,7 +118,7 @@ export default function ServicesSection() {
                   <img 
                     src={card.img} 
                     alt={card.title} 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 z-0 select-none pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110 z-0 select-none pointer-events-none"
                   />
 
                   {/* Background gradient overlay */}
@@ -163,7 +163,7 @@ export default function ServicesSection() {
                   <img 
                     src={card.img} 
                     alt={card.title} 
-                    className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-cover object-center z-0 select-none pointer-events-none"
                   />
 
                   {/* Background gradient overlay */}
