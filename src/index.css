@@ -566,3 +566,26 @@ body {
   animation: teal-glow-pulse 4.5s ease-in-out infinite;
 }
 
+@keyframes bounce-horizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-bounce-horizontal {
+  animation: bounce-horizontal 1.2s ease-in-out infinite;
+}
+
+/* Hide scrollbars */
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+

@@ -91,18 +91,18 @@ export default function HowItWorks() {
           </div>
 
           {/* Vertical connecting line for Mobile/Tablet layout */}
-          <div className="absolute left-[30px] md:left-1/2 top-4 bottom-4 w-[2px] bg-neutral-300 dark:bg-neutral-800 z-0 lg:hidden md:-translate-x-1/2" />
+          <div className="absolute left-[30px] md:left-1/2 top-4 bottom-4 w-[2px] bg-neutral-300 dark:bg-neutral-800 z-0 hidden md:block lg:hidden md:-translate-x-1/2" />
 
-          {/* Grid Layout of Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-6 relative z-10">
+          {/* Grid/Flex Layout of Cards */}
+          <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12 lg:gap-6 pb-6 md:pb-0 scroll-smooth snap-x snap-mandatory scrollbar-none -mx-6 px-6 md:mx-0 md:px-0 relative z-10">
             
             {/* CARD 1 — THE NEED */}
-            <div className="flex flex-col items-center relative">
+            <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
               <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 01
               </div>
               
-              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
                     {/* Broom / Cleaning SVG icon */}
@@ -131,12 +131,12 @@ export default function HowItWorks() {
             </div>
 
             {/* CARD 2 — TELL RENZA */}
-            <div className="flex flex-col items-center relative">
+            <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
               <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 02
               </div>
 
-              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
                     <Smartphone size={20} className="text-deep-black" />
@@ -169,12 +169,12 @@ export default function HowItWorks() {
             </div>
 
             {/* CARD 3 — RENZA MANAGES */}
-            <div className="flex flex-col items-center relative">
+            <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
               <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 03
               </div>
 
-              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <Logo className="px-2.5 py-1 text-[9px] text-white bg-neutral-900 border border-neutral-800" size="small" />
@@ -212,12 +212,12 @@ export default function HowItWorks() {
             </div>
 
             {/* CARD 4 — OUTCOME */}
-            <div className="flex flex-col items-center relative">
+            <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
               <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 04
               </div>
 
-              <div className="w-full max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
                     <Check size={18} className="text-amber-500" strokeWidth={3.5} />
@@ -240,6 +240,13 @@ export default function HowItWorks() {
               </div>
             </div>
 
+          </div>
+
+          {/* Mobile Swipe Hint */}
+          <div className="flex md:hidden flex-col items-center gap-1 mt-4 text-[#00B3A6] animate-pulse">
+            <span className="text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+              Swipe to explore <ArrowRight size={10} className="animate-bounce-horizontal" />
+            </span>
           </div>
         </div>
 
