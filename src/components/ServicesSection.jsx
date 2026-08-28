@@ -71,7 +71,7 @@ export default function ServicesSection() {
             <img 
               src={servicesBg} 
               alt="" 
-              className="w-full h-full object-cover object-[80%_center] opacity-90"
+              className="w-full h-full object-cover object-[80%_15%] opacity-90"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/55 to-transparent" />
           </div>
