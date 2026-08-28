@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowDown, Check, Sparkles, Utensils, Bath, ChefHat, Home, HelpCircle } from 'lucide-react';
+import workforceImg from '../assets/workforce.png';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -37,51 +38,13 @@ export default function ServicesSection() {
   const [bannerRef, bannerRevealed] = useScrollReveal();
   const [activeDot, setActiveDot] = useState(0);
 
-  const services = [
-    {
-      icon: <Utensils size={32} className="text-[#00D2C4]" />,
-      title: "Washing Vessels",
-      desc: "Get help with everyday dish and vessel washing.",
-      badge: "RENZA Managed"
-    },
-    {
-      icon: <Sparkles size={32} className="text-[#00D2C4]" />,
-      title: "Floor Cleaning",
-      desc: "Keep your floors clean without managing the work yourself.",
-      badge: "RENZA Managed"
-    },
-    {
-      icon: <Bath size={32} className="text-[#00D2C4]" />,
-      title: "Bathroom Cleaning",
-      desc: "Get help maintaining a clean and hygienic bathroom.",
-      badge: "RENZA Managed"
-    },
-    {
-      icon: <ChefHat size={32} className="text-[#00D2C4]" />,
-      title: "Kitchen Cleaning",
-      desc: "Get support with everyday kitchen cleaning.",
-      badge: "RENZA Managed"
-    },
-    {
-      icon: <Home size={32} className="text-[#00D2C4]" />,
-      title: "General Household Help",
-      desc: "Everyday support for common household tasks.",
-      badge: "RENZA Managed"
-    },
-    {
-      icon: <HelpCircle size={32} className="text-[#00D2C4]" />,
-      title: "More Household Help",
-      desc: "Tell us what you need help with.",
-      isSpecial: true
-    }
-  ];
-
-  const mobileServices = [
-    { title: "Floor Cleaning", icon: <Sparkles size={16} />, badge: "Floor mopping" },
-    { title: "Bathroom Cleaning", icon: <Bath size={16} />, badge: "Deep sanitize" },
-    { title: "Washing Vessels", icon: <Utensils size={16} />, badge: "Daily cleaning" },
-    { title: "General Help", icon: <Home size={16} />, badge: "Everyday chores" },
-    { title: "More Help", icon: <HelpCircle size={16} />, badge: "Custom requests" }
+  const serviceCards = [
+    { title: "Dishwashing", icon: <Utensils size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#082022] to-[#040e0f]" },
+    { title: "Kitchen Cleaning", icon: <ChefHat size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#1a2d2a] to-[#081211]" },
+    { title: "Fan Cleaning", icon: <Sparkles size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#0f2425] to-[#061011]" },
+    { title: "Window Cleaning", icon: <Home size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#09282b] to-[#031011]" },
+    { title: "Laundry Help", icon: <Sparkles size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#111e30] to-[#070e18]" },
+    { title: "Bathroom Cleaning", icon: <Bath size={28} className="text-[#00D2C4]" />, bgGradient: "from-[#152e2a] to-[#081312]" }
   ];
 
   return (
@@ -89,165 +52,140 @@ export default function ServicesSection() {
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================
-            SECTION INTRODUCTION
+            SERVICES SHOWCASE CONTAINER (MATCHING REFERENCE DESIGN)
            ========================================================================= */}
         <div 
           ref={headerRef}
-          className={`text-left mb-16 max-w-3xl transition-all duration-700 transform ${
-            headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#0c1f1e] via-[#051313] to-[#040c0c] border border-[#00D2C4]/20 shadow-xl p-6 md:p-10 lg:p-12 mb-24 transition-all duration-1000 transform flex flex-col justify-between ${
+            headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-text-dark text-[11px] font-bold tracking-wider uppercase mb-4">
-            <Sparkles size={11} className="text-amber-500 fill-amber-500" />
-            EVERYDAY HOUSEHOLD HELP
-          </span>
-          <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[54px] text-text-dark tracking-tight leading-[1.1] mb-4">
-            What Do You Need Help With?
-          </h2>
-          <p className="text-text-secondary text-lg font-normal leading-relaxed mb-6">
-            From everyday cleaning to household support, simply choose what you need. RENZA takes responsibility for managing the service experience.
-          </p>
-          <div className="bg-brand-yellow/10 border border-brand-yellow/30 text-text-dark font-extrabold px-4 py-2.5 rounded-xl text-sm max-w-fit shadow-yellow-glow/5">
-            Choose the task. Focus on your day. RENZA handles the service.
-          </div>
-        </div>
+          {/* Background Ambient Mesh Lights */}
+          <div className="absolute top-[-10%] right-[-10%] w-[350px] h-[350px] bg-[#00D2C4]/15 rounded-full blur-[90px] pointer-events-none" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-[#00D2C4]/5 rounded-full blur-[80px] pointer-events-none" />
 
-        {/* MOBILE VIEW ONLY (below 768px) */}
-        <div className="block md:hidden mb-16">
-          {/* 1. Large Featured Service Card */}
-          <div className="relative w-full aspect-[4/3] rounded-[28px] overflow-hidden bg-gradient-to-br from-[#021b1b] via-[#052e2c] to-[#083a37] border border-[#00D2C4]/20 shadow-lg p-6 flex flex-col justify-between mb-6 group select-none">
-            {/* Dark mesh background ambient lights */}
-            <div className="absolute top-[-20%] right-[-20%] w-[180px] h-[180px] bg-[#00D2C4]/20 rounded-full blur-[40px] pointer-events-none" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[150px] h-[150px] bg-[#00D2C4]/10 rounded-full blur-[35px] pointer-events-none" />
-            
-            {/* Top Row: Category tag and View All */}
-            <div className="flex items-center justify-between z-10">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[#00D2C4] text-[10px] font-black tracking-widest uppercase">
-                FEATURED OUTCOME
+          {/* Right blended workforce background image (Desktop/Tablet) */}
+          <div className="absolute right-[-5%] bottom-[-5%] w-[45%] h-[95%] opacity-[0.22] pointer-events-none z-0 hidden md:block">
+            <img 
+              src={workforceImg} 
+              alt="" 
+              className="w-full h-full object-contain object-right-bottom select-none"
+            />
+          </div>
+
+          {/* Top Row: Heading and View All */}
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 w-full z-10">
+            {/* Top Left: Heading */}
+            <div className="text-left max-w-xl">
+              <span className="text-[#00D2C4] text-[10px] md:text-xs font-black tracking-widest block uppercase mb-2">
+                SERVICES
               </span>
-              <button className="w-8 h-8 rounded-full bg-[#00D2C4] hover:bg-[#00B3A6] text-deep-black flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer shadow-sm shadow-[#00D2C4]/35">
+              <h2 className="font-sans font-black text-2xl sm:text-3xl md:text-[38px] text-white leading-tight">
+                What Can Your House Help Do?
+              </h2>
+            </div>
+
+            {/* Top Right: View All */}
+            <div className="flex items-center gap-2.5 self-start sm:self-auto flex-shrink-0">
+              <span className="text-white text-xs font-black tracking-wider uppercase">
+                View All
+              </span>
+              <button className="w-8 h-8 rounded-full bg-white hover:bg-[#00D2C4] text-[#00D2C4] hover:text-deep-black flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer shadow-md">
                 <ArrowRight size={14} strokeWidth={2.5} />
               </button>
             </div>
-
-            {/* Bottom Row: Text content */}
-            <div className="z-10 text-left">
-              <h3 className="font-sans font-black text-2xl text-white mb-2 leading-tight">
-                Kitchen Deep Cleaning
-              </h3>
-              <p className="text-white/70 text-xs font-semibold leading-relaxed mb-1">
-                Every counter, sink, and surface polished to perfection.
-              </p>
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#00D2C4]/20 text-[#00D2C4] text-[8px] font-black uppercase tracking-wider mt-2">
-                <Check size={8} strokeWidth={4} />
-                RENZA Managed
-              </span>
-            </div>
           </div>
 
-          {/* 2. Swipeable Small Service Cards Carousel */}
-          <div 
-            className="flex overflow-x-auto gap-4 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-none -mx-6 px-6 relative z-10"
-            onScroll={(e) => {
-              const scrollLeft = e.target.scrollLeft;
-              const cardWidth = e.target.scrollWidth / mobileServices.length;
-              const activeIndex = Math.round(scrollLeft / cardWidth);
-              setActiveDot(Math.min(activeIndex, mobileServices.length - 1));
-            }}
-          >
-            {mobileServices.map((srv, idx) => (
-              <div 
-                key={idx}
-                className="flex-shrink-0 w-[55%] snap-center relative aspect-[1/1] rounded-[22px] overflow-hidden bg-gradient-to-br from-[#121c1b] to-[#0d1313] border border-[#00D2C4]/15 shadow-sm p-4 flex flex-col justify-between text-left select-none"
-              >
-                {/* Glow badge overlay */}
-                <div className="absolute top-[-30%] right-[-30%] w-[100px] h-[100px] bg-[#00D2C4]/10 rounded-full blur-[25px] pointer-events-none" />
-                
-                {/* Top: Icon */}
-                <div className="z-10 w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#00D2C4]">
-                  {srv.icon}
-                </div>
+          {/* Bottom Area: Desktop/Tablet Grid OR Mobile Carousel */}
+          <div className="w-full z-10">
+            {/* DESKTOP / TABLET GRID VIEW (hidden on mobile < 768px) */}
+            <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 mt-12 w-full">
+              {serviceCards.map((card, idx) => (
+                <div 
+                  key={idx} 
+                  className={`relative aspect-[4/5] rounded-[22px] overflow-hidden bg-gradient-to-br ${card.bgGradient} border border-white/10 hover:border-[#00D2C4]/40 p-4 flex flex-col justify-between text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-[#00D2C4]/10 group cursor-pointer`}
+                >
+                  {/* Background gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-0" />
+                  
+                  {/* Background mesh glow inside each card */}
+                  <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none" />
 
-                {/* Bottom: Text and Button */}
-                <div className="z-10 flex items-end justify-between gap-2">
-                  <div className="overflow-hidden">
-                    <h4 className="font-sans font-black text-sm text-white leading-tight truncate">
-                      {srv.title}
-                    </h4>
-                    <span className="text-white/50 text-[9px] font-semibold leading-none block mt-1">
-                      {srv.badge}
-                    </span>
+                  {/* Icon */}
+                  <div className="z-10 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                    {card.icon}
                   </div>
-                  <button className="w-6 h-6 rounded-full bg-[#00D2C4] text-deep-black flex items-center justify-center flex-shrink-0 shadow-sm shadow-[#00D2C4]/20">
-                    <ArrowRight size={10} strokeWidth={3} />
-                  </button>
+
+                  {/* Bottom Content */}
+                  <div className="z-10 flex items-end justify-between gap-1 w-full">
+                    <div className="overflow-hidden">
+                      <h4 className="font-sans font-black text-xs md:text-sm text-white leading-tight">
+                        {card.title}
+                      </h4>
+                    </div>
+                    <button className="w-5 h-5 rounded-full bg-white text-deep-black flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-[#00D2C4] group-hover:scale-105">
+                      <ArrowRight size={10} strokeWidth={3.5} className="text-[#00D2C4] group-hover:text-deep-black" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          {/* 3. Carousel Progress Dots */}
-          <div className="flex justify-center gap-1.5 mt-2">
-            {mobileServices.map((_, dotIdx) => (
-              <div 
-                key={dotIdx}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeDot === dotIdx 
-                    ? 'w-4 bg-[#00D2C4]' 
-                    : 'w-1.5 bg-neutral-300 dark:bg-neutral-800'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            SERVICES GRID (Tablet/Desktop View)
-           ========================================================================= */}
-        <div 
-          ref={gridRef}
-          className={`hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 transition-all duration-1000 transform ${
-            gridRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
-        >
-          {services.map((service, idx) => (
-            <div 
-              key={idx} 
-              className={`rounded-[20px] p-8 border text-left flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-yellow-glow/10 cursor-pointer group ${
-                service.isSpecial 
-                  ? 'bg-white border-brand-yellow/60 shadow-yellow-glow/5' 
-                  : 'bg-white border-gray-200 shadow-sm hover:border-brand-yellow hover:shadow-md'
-              }`}
-            >
-              <div>
-                <div className="mb-6 group-hover:scale-110 transition-transform duration-300 w-fit">
-                  {service.icon}
-                </div>
-                
-                <h3 className="font-sans font-black text-xl text-text-dark mb-2 leading-tight">
-                  {service.title}
-                </h3>
-                
-                <p className="text-text-secondary text-sm leading-relaxed mb-6">
-                  {service.desc}
-                </p>
-              </div>
-
-              <div>
-                {service.isSpecial ? (
-                  <button className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-brand-yellow text-deep-black font-extrabold text-xs shadow-sm hover:bg-[#00B3A6] active:scale-95 transition-all">
-                    <span>Tell RENZA</span>
-                    <ArrowRight size={12} strokeWidth={2.5} />
-                  </button>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-yellow text-deep-black text-[9px] font-black uppercase tracking-wider shadow-sm">
-                    <Check size={8} strokeWidth={4} />
-                    {service.badge}
-                  </span>
-                )}
-              </div>
+              ))}
             </div>
-          ))}
+
+            {/* MOBILE CAROUSEL VIEW (visible below 768px) */}
+            <div 
+              className="flex md:hidden overflow-x-auto gap-3.5 pb-2 mt-8 scroll-smooth snap-x snap-mandatory scrollbar-none -mx-4 px-4 relative w-full"
+              onScroll={(e) => {
+                const scrollLeft = e.target.scrollLeft;
+                const cardWidth = e.target.scrollWidth / serviceCards.length;
+                const activeIndex = Math.round(scrollLeft / cardWidth);
+                setActiveDot(Math.min(activeIndex, serviceCards.length - 1));
+              }}
+            >
+              {serviceCards.map((card, idx) => (
+                <div 
+                  key={idx} 
+                  className={`flex-shrink-0 w-[68%] snap-center relative aspect-[4/5] rounded-[22px] overflow-hidden bg-gradient-to-br ${card.bgGradient} border border-white/10 p-4 flex flex-col justify-between text-left select-none`}
+                >
+                  {/* Background gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-0" />
+                  
+                  {/* Background mesh glow inside each card */}
+                  <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/15 rounded-full blur-md pointer-events-none" />
+
+                  {/* Icon */}
+                  <div className="z-10 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                    {card.icon}
+                  </div>
+
+                  {/* Bottom Content */}
+                  <div className="z-10 flex items-end justify-between gap-1 w-full">
+                    <div className="overflow-hidden">
+                      <h4 className="font-sans font-black text-xs text-white leading-tight">
+                        {card.title}
+                      </h4>
+                    </div>
+                    <button className="w-5 h-5 rounded-full bg-white text-deep-black flex items-center justify-center flex-shrink-0">
+                      <ArrowRight size={10} strokeWidth={3.5} className="text-[#00D2C4]" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Progress Dots */}
+            <div className="flex md:hidden justify-center gap-1.5 mt-4">
+              {serviceCards.map((_, dotIdx) => (
+                <div 
+                  key={dotIdx}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeDot === dotIdx 
+                      ? 'w-4 bg-[#00D2C4]' 
+                      : 'w-1.5 bg-white/20'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* =========================================================================
