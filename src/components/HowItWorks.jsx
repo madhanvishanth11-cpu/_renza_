@@ -49,13 +49,13 @@ export default function HowItWorks() {
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-brand-yellow/15 border border-brand-yellow/30 text-text-dark text-[10px] font-black tracking-wider uppercase mb-4 shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#00D2C4]/15 border border-[#00D2C4]/30 text-text-dark text-[10px] font-black tracking-wider uppercase mb-4 shadow-sm">
             HOW RENZA WORKS
           </span>
           <h2 className="font-sans font-black text-4xl md:text-5xl text-text-dark tracking-tight leading-[1.1] mb-6">
             From a Problem to a <br />
             <span className="relative inline-block my-1">
-              <span className="relative z-10 text-deep-black px-4 bg-brand-yellow rounded-[4px] py-0.5 inline-block shadow-sm">
+              <span className="relative z-10 text-deep-black px-4 bg-[#00D2C4] rounded-[4px] py-0.5 inline-block shadow-sm">
                 Solved Outcome.
               </span>
             </span>
@@ -81,13 +81,13 @@ export default function HowItWorks() {
 
           {/* Yellow chevrons in between steps on timeline (Desktop Only) */}
           <div className="absolute top-[18px] left-[25%] -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:flex bg-[#F7F7F5] dark:bg-bg-light px-2">
-            <span className="text-[10px] font-black text-brand-yellow font-sans">&gt;</span>
+            <span className="text-[10px] font-black text-[#00D2C4] font-sans">&gt;</span>
           </div>
           <div className="absolute top-[18px] left-[50%] -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:flex bg-[#F7F7F5] dark:bg-bg-light px-2">
-            <span className="text-[10px] font-black text-brand-yellow font-sans">&gt;</span>
+            <span className="text-[10px] font-black text-[#00D2C4] font-sans">&gt;</span>
           </div>
           <div className="absolute top-[18px] left-[75%] -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:flex bg-[#F7F7F5] dark:bg-bg-light px-2">
-            <span className="text-[10px] font-black text-brand-yellow font-sans">&gt;</span>
+            <span className="text-[10px] font-black text-[#00D2C4] font-sans">&gt;</span>
           </div>
 
           {/* Vertical connecting line for Mobile/Tablet layout */}
@@ -98,11 +98,11 @@ export default function HowItWorks() {
             
             {/* CARD 1 — THE NEED */}
             <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
-              <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
+              <div className="w-9 h-9 rounded-full bg-[#00D2C4] text-white flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 01
               </div>
               
-              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-lg hover:shadow-[#00D2C4]/10 hover:border-[#00D2C4]/40 hover:-translate-y-1.5 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
                     {/* Broom / Cleaning SVG icon */}
@@ -132,11 +132,11 @@ export default function HowItWorks() {
 
             {/* CARD 2 — TELL RENZA */}
             <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
-              <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
+              <div className="w-9 h-9 rounded-full bg-[#00D2C4] text-white flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 02
               </div>
 
-              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-lg hover:shadow-[#00D2C4]/10 hover:border-[#00D2C4]/40 hover:-translate-y-1.5 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
                     <Smartphone size={20} className="text-deep-black" />
@@ -154,7 +154,7 @@ export default function HowItWorks() {
                       <span className="flex items-center gap-1">Floor Cleaning</span>
                       <span className="text-text-secondary text-[8px]">&gt;</span>
                     </div>
-                    <div className="w-full py-1 bg-brand-yellow text-deep-black font-extrabold text-[7.5px] text-center rounded-lg uppercase tracking-wider">
+                    <div className="w-full py-1 bg-[#00D2C4] text-white font-extrabold text-[7.5px] text-center rounded-lg uppercase tracking-wider">
                       Continue &rarr;
                     </div>
                   </div>
@@ -170,11 +170,11 @@ export default function HowItWorks() {
 
             {/* CARD 3 — RENZA MANAGES */}
             <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
-              <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
+              <div className="w-9 h-9 rounded-full bg-[#00D2C4] text-white flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 03
               </div>
 
-              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-lg hover:shadow-[#00D2C4]/10 hover:border-[#00D2C4]/40 hover:-translate-y-1.5 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <Logo className="px-2.5 py-1 text-[9px] text-white bg-neutral-900 border border-neutral-800" size="small" />
@@ -213,11 +213,11 @@ export default function HowItWorks() {
 
             {/* CARD 4 — OUTCOME */}
             <div className="flex flex-col items-center relative flex-shrink-0 w-[84%] md:w-auto snap-center">
-              <div className="w-9 h-9 rounded-full bg-brand-yellow text-deep-black flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
+              <div className="w-9 h-9 rounded-full bg-[#00D2C4] text-white flex items-center justify-center font-sans font-black text-xs border-[3px] border-[#F7F7F5] dark:border-bg-light shadow-sm z-20 mb-6">
                 04
               </div>
 
-              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
+              <div className="w-full max-w-[300px] md:max-w-[260px] min-h-[340px] max-h-[380px] bg-white border border-gray-250/70 rounded-[24px] p-5 shadow-sm hover:shadow-lg hover:shadow-[#00D2C4]/10 hover:border-[#00D2C4]/40 hover:-translate-y-1.5 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between text-left group">
                 <div>
                   <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center mb-5 border border-gray-200/50">
                     <Check size={18} className="text-amber-500" strokeWidth={3.5} />
