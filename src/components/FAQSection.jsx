@@ -77,7 +77,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-24 border-t border-gray-200" id="faq">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-12 lg:py-16 border-t border-gray-200" id="faq">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================
@@ -85,7 +85,7 @@ export default function FAQSection() {
            ========================================================================= */}
         <div 
           ref={headerRef}
-          className={`text-left mb-16 max-w-3xl transition-all duration-700 transform ${
+          className={`text-left mb-8 lg:mb-10 max-w-3xl transition-all duration-700 transform ${
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -106,7 +106,7 @@ export default function FAQSection() {
            ========================================================================= */}
         <div 
           ref={accordionRef}
-          className={`max-w-[900px] mx-auto flex flex-col gap-4 mb-24 transition-all duration-1000 transform ${
+          className={`max-w-[900px] mx-auto flex flex-col gap-4 mb-12 lg:mb-8 lg:mb-10 transition-all duration-1000 transform ${
             accordionRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >

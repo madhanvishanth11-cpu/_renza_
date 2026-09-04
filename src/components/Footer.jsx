@@ -64,7 +64,7 @@ export default function Footer() {
          ========================================================================= */}
       <div className="w-full bg-deep-black text-white py-16 px-6 md:px-12 lg:px-20 relative select-none">
         
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 items-start mb-16 text-left">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 items-start mb-8 lg:mb-10 text-left">
           
           {/* Logo Section */}
           <div className="lg:col-span-2 flex flex-col items-start gap-4">

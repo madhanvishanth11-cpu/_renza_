@@ -54,7 +54,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-24 border-t border-gray-200" id="services">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-12 lg:py-16 border-t border-gray-200" id="services">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================
@@ -62,7 +62,7 @@ export default function ServicesSection() {
            ========================================================================= */}
         <div 
           ref={headerRef}
-          className={`relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#0c1f1e] via-[#051313] to-[#040c0c] border border-[#00D2C4]/20 shadow-xl p-6 md:p-10 lg:p-12 mb-24 transition-all duration-1000 transform flex flex-col justify-between ${
+          className={`relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#0c1f1e] via-[#051313] to-[#040c0c] border border-[#00D2C4]/20 shadow-xl p-6 md:p-10 lg:p-12 mb-12 lg:mb-8 lg:mb-10 transition-all duration-1000 transform flex flex-col justify-between ${
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
@@ -210,7 +210,7 @@ export default function ServicesSection() {
            ========================================================================= */}
         <div 
           ref={bannerRef}
-          className={`bg-white border border-gray-200 rounded-[36px] p-8 md:p-12 mb-24 transition-all duration-1000 transform ${
+          className={`bg-white border border-gray-200 rounded-[36px] p-8 md:p-12 mb-12 lg:mb-8 lg:mb-10 transition-all duration-1000 transform ${
             bannerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >

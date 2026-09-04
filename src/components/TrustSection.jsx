@@ -64,7 +64,7 @@ export default function TrustSection() {
   ];
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-24 border-t border-gray-200" id="safety">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-bg-light transition-colors duration-300 py-12 lg:py-16 border-t border-gray-200" id="safety">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================
@@ -72,7 +72,7 @@ export default function TrustSection() {
            ========================================================================= */}
         <div 
           ref={headerRef}
-          className={`text-left mb-16 max-w-3xl transition-all duration-700 transform ${
+          className={`text-left mb-8 lg:mb-10 max-w-3xl transition-all duration-700 transform ${
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -98,7 +98,7 @@ export default function TrustSection() {
            ========================================================================= */}
         <div 
           ref={cardsRef}
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24 transition-all duration-1000 transform ${
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 lg:mb-8 lg:mb-10 transition-all duration-1000 transform ${
             cardsRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >

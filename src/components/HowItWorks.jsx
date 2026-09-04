@@ -37,7 +37,7 @@ export default function HowItWorks() {
   const [journeyRef, journeyRevealed] = useScrollReveal();
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#F7F7F5] transition-colors duration-300 py-24 border-t border-gray-250/60" id="how-it-works">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#F7F7F5] transition-colors duration-300 py-12 lg:py-16 border-t border-gray-250/60" id="how-it-works">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
         {/* =========================================================================
@@ -45,7 +45,7 @@ export default function HowItWorks() {
            ========================================================================= */}
         <div 
           ref={headerRef}
-          className={`text-center mx-auto mb-20 max-w-[650px] flex flex-col items-center transition-all duration-700 transform ${
+          className={`text-center mx-auto mb-10 lg:mb-12 max-w-[650px] flex flex-col items-center transition-all duration-700 transform ${
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -70,7 +70,7 @@ export default function HowItWorks() {
            ========================================================================= */}
         <div 
           ref={journeyRef}
-          className={`relative mb-16 transition-all duration-1000 transform ${
+          className={`relative mb-8 lg:mb-10 transition-all duration-1000 transform ${
             journeyRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
