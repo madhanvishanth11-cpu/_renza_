@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Search, Settings, CheckCircle2 } from 'lucide-react';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
-function useScrollReveal() {
+function useScrollReveal(threshold = 0.2) {
   const [revealed, setRevealed] = useState(false);
   const ref = useRef(null);
 
@@ -13,7 +14,7 @@ function useScrollReveal() {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.15 }
+      { threshold, rootMargin: "0px 0px -50px 0px" }
     );
 
     if (ref.current) {
@@ -25,112 +26,131 @@ function useScrollReveal() {
         observer.unobserve(ref.current);
       }
     };
-  }, []);
+  }, [threshold]);
 
   return [ref, revealed];
 }
 
 export default function HowItWorks() {
-  const [sectionRef, sectionRevealed] = useScrollReveal();
+  const [sectionRef, revealed] = useScrollReveal(0.15);
 
   const steps = [
     {
       num: "01",
       title: "Tell RENZA",
-      desc: "You have a need. Simply choose what you need help with in the RENZA app. For example: \"My floor needs cleaning.\""
+      desc: "You have a need. Simply choose what you need help with in the RENZA app. For example: \"My floor needs cleaning.\"",
+      icon: <Search size={22} className="text-white group-hover:text-[#00D2C4] transition-colors duration-500" />
     },
     {
       num: "02",
       title: "RENZA Handles It",
-      desc: "We manage the entire service experience, coordinating the workforce, ensuring quality standards, and providing clear pricing."
+      desc: "We manage the entire service experience, coordinating the workforce, ensuring quality standards, and providing clear pricing.",
+      icon: <Settings size={22} className="text-white group-hover:text-[#00D2C4] transition-colors duration-500" />
     },
     {
       num: "03",
       title: "Problem Handled",
-      desc: "The job is successfully completed. Your floor is cleaned, and you can get back to focusing on your day."
+      desc: "The job is successfully completed. Your floor is cleaned, and you can get back to focusing on your day.",
+      icon: <CheckCircle2 size={22} className="text-[#00D2C4]" />
     }
   ];
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#0A0A0A] py-24 lg:py-36 border-t border-[#1a1a1a]" id="how-it-works">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#0A0A0A] py-24 lg:py-36 border-t border-[#1a1a1a] overflow-hidden" id="how-it-works">
       <div 
         ref={sectionRef}
-        className={`w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 transition-all duration-1000 transform ${
-          sectionRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}
+        className="w-full max-w-5xl mx-auto px-6 md:px-12 lg:px-20 relative"
       >
         
-        {/* Editorial Two-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        {/* =========================================================================
+            HEADER (1. Fades in smoothly)
+           ========================================================================= */}
+        <div className={`transition-all duration-1000 transform ${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Small teal accent line */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-8 h-[2px] bg-[#00D2C4]" />
+            <span className="text-[#00D2C4] text-[11px] md:text-xs font-black tracking-[0.2em] uppercase">HOW RENZA WORKS</span>
+          </div>
+          <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[56px] text-white tracking-tight leading-[1.1] mb-16 lg:mb-24">
+            From a Problem to a Solved Outcome.
+          </h2>
+        </div>
+
+        {/* =========================================================================
+            LARGE VERTICAL TIMELINE
+           ========================================================================= */}
+        <div className="relative pt-4">
           
-          {/* =========================================================================
-              LEFT COLUMN: HEADER (Sticky)
-             ========================================================================= */}
-          <div className="lg:col-span-5 flex flex-col justify-start">
-            <div className="lg:sticky lg:top-32">
-              {/* Subtle Label & Accent Line */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-8 h-[1px] bg-[#00D2C4]" />
-                <span className="text-[#00D2C4] text-[10px] font-black tracking-[0.2em] uppercase">
-                  HOW RENZA WORKS
-                </span>
-              </div>
-              
-              <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[64px] text-white tracking-tight leading-[1.05] mb-8">
-                From a Problem to a Solved Outcome.
-              </h2>
-              
-              <p className="text-neutral-400 text-lg md:text-xl font-medium leading-relaxed max-w-[440px]">
-                Tell RENZA what you need. We manage the service experience so you can focus on your day.
-              </p>
-            </div>
+          {/* 2. Connecting timeline line animates from top to bottom */}
+          <div className="absolute left-[39px] md:left-[59px] top-6 bottom-12 w-[2px] bg-neutral-900 z-0">
+             <div 
+                className={`w-full bg-gradient-to-b from-[#00D2C4] via-[#00D2C4]/40 to-transparent transition-all duration-[1500ms] ease-out delay-300 ${revealed ? 'h-full opacity-100' : 'h-0 opacity-0'}`} 
+             />
           </div>
 
-          {/* =========================================================================
-              RIGHT COLUMN: VERTICAL JOURNEY
-             ========================================================================= */}
-          <div className="lg:col-span-7 relative pt-4 lg:pt-0">
-            
-            {/* The Thin Vertical Connecting Line */}
-            <div className="absolute left-[19px] top-[16px] bottom-[40px] w-[2px] bg-neutral-800 z-0">
-               {/* Progress Fill Indicator */}
-               <div className="w-full h-[60%] bg-gradient-to-b from-[#00D2C4]/40 via-transparent to-transparent" />
-            </div>
+          <div className="flex flex-col gap-20 md:gap-24 relative z-10">
+            {steps.map((step, idx) => {
+              const isLast = idx === steps.length - 1;
+              const stepRevealDelay = 400 + idx * 300; // 3. Each step reveals one by one
 
-            <div className="flex flex-col gap-16 lg:gap-20 relative z-10">
-              {steps.map((step, idx) => {
-                const isLast = idx === steps.length - 1;
-                return (
-                  <div key={idx} className="relative flex items-start group">
-                    {/* Node on the line */}
-                    <div className="flex-shrink-0 w-[40px] flex items-start justify-center relative mt-2.5">
-                      <div className={`w-[10px] h-[10px] rounded-full transition-all duration-500 z-10 ${
-                        isLast ? 'bg-[#00D2C4] shadow-[0_0_16px_rgba(0,210,196,0.6)]' : 'bg-neutral-600 group-hover:bg-[#00D2C4]'
-                      }`} />
-                    </div>
+              return (
+                <div 
+                  key={idx} 
+                  className={`relative flex items-start group transition-all duration-1000 ease-out transform ${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                  style={{ transitionDelay: `${stepRevealDelay}ms` }}
+                >
+                  
+                  {/* NUMBER AND NODE AREA */}
+                  <div className="flex-shrink-0 w-[80px] md:w-[120px] flex items-start justify-start relative mt-1">
                     
-                    {/* Step Content */}
-                    <div className="ml-4 md:ml-8 flex-1 group-hover:-translate-y-1 transition-transform duration-500">
-                      {/* Step Number */}
-                      <span className="block text-lg md:text-xl font-black text-neutral-600 mb-2 transition-colors duration-500 group-hover:text-white">
-                        {step.num}
-                      </span>
-                      
-                      <h3 className="font-sans font-black text-2xl md:text-4xl text-white tracking-tight mb-4 transition-colors duration-300">
-                        {step.title}
-                      </h3>
-                      
-                      <p className="text-neutral-400 text-base md:text-lg font-medium leading-relaxed max-w-[500px]">
-                        {step.desc}
-                      </p>
+                    {/* Active Node on the line */}
+                    <div className="absolute left-[35px] md:left-[55px] top-[14px]">
+                       <div 
+                        className={`w-[10px] h-[10px] rounded-full transition-all duration-700 z-10 ${
+                          isLast 
+                          ? 'bg-[#00D2C4] shadow-[0_0_20px_rgba(0,210,196,0.8)]' 
+                          : 'bg-neutral-800 group-hover:bg-[#00D2C4] group-hover:shadow-[0_0_16px_rgba(0,210,196,0.6)]'
+                        }`} 
+                        style={{ transitionDelay: revealed ? `${stepRevealDelay + 300}ms` : '0ms' }}
+                       />
+                    </div>
+
+                    {/* 4. Large step number scales up */}
+                    <div 
+                      className={`font-black text-4xl md:text-5xl lg:text-[64px] text-neutral-800 leading-none transition-all duration-1000 ease-out transform ${revealed ? 'scale-100 opacity-100' : 'scale-75 opacity-0'} group-hover:text-white`}
+                      style={{ transitionDelay: `${stepRevealDelay + 200}ms` }}
+                    >
+                      {step.num}
                     </div>
                   </div>
-                );
-              })}
-            </div>
-            
+                  
+                  {/* 6. Step title and description slide in gently */}
+                  <div 
+                    className={`ml-4 md:ml-8 flex-1 group-hover:translate-x-2 transition-transform duration-500`}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      {/* Icon with subtle teal border highlight */}
+                      <div className={`p-3 rounded-xl bg-[#111] border border-neutral-800 transition-colors duration-500 ${isLast ? 'border-[#00D2C4]/40 bg-[#00D2C4]/10' : 'group-hover:border-[#00D2C4]/50 group-hover:bg-[#00D2C4]/5'}`}>
+                        {step.icon}
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="font-sans font-black text-2xl md:text-3xl text-white tracking-tight transition-colors duration-300">
+                        {step.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-neutral-400 text-base md:text-lg font-medium leading-relaxed max-w-[500px] pl-[60px]">
+                      {step.desc}
+                    </p>
+                  </div>
+                  
+                </div>
+              );
+            })}
           </div>
-
+          
         </div>
 
       </div>
