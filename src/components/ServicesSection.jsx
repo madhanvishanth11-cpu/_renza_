@@ -202,59 +202,86 @@ export default function ServicesSection() {
         {/* =========================================================================
             SPECIAL VISUAL MESSAGE (HORIZONTAL BANNER)
            ========================================================================= */}
+      </div>
+
+      {/* FULL-WIDTH DARK HOW RENZA WORKS REPLACEMENT */}
+      <div className="w-full bg-[#0A0A0A] py-24 lg:py-36 border-t border-[#1a1a1a] mt-16">
         <div 
           ref={bannerRef}
-          className={`bg-white border border-gray-200 rounded-[36px] p-8 md:p-12 mb-12 lg:mb-16 transition-all duration-1000 transform ${
+          className={`w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 transition-all duration-1000 transform ${
             bannerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mb-8 pb-8 border-b border-gray-200/60">
-            <div className="text-left">
-              <span className="text-[10px] text-text-secondary font-black tracking-widest uppercase block mb-1">Step 01</span>
-              <h3 className="font-sans font-black text-2xl md:text-3xl text-text-dark">You Choose the Need.</h3>
-            </div>
+          {/* Editorial Two-Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
             
-            <div className="hidden lg:block w-12 h-[1px] bg-gray-200" />
-            
-            <div className="text-left lg:text-right lg:ml-auto">
-              <span className="text-[10px] text-text-secondary font-black tracking-widest uppercase block mb-1">Step 02</span>
-              <h3 className="font-sans font-black text-2xl md:text-3xl text-deep-black bg-brand-yellow px-4 py-1 rounded-md inline-block shadow-sm">
-                RENZA Handles the Experience.
-              </h3>
-            </div>
-          </div>
-
-          <p className="text-text-secondary text-sm md:text-base font-semibold text-center mb-8">
-            No calling multiple people. No negotiating with individual workers. No managing the service yourself.
-          </p>
-
-          {/* Connected Flowchart Row */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 max-w-2xl mx-auto select-none">
-            
-            {/* Box 1 */}
-            <div className="bg-bg-light border border-gray-200 px-6 py-3 rounded-xl font-black text-xs text-text-dark uppercase tracking-wider text-center w-full md:w-auto shadow-sm">
-              Choose the Task
-            </div>
-
-            {/* Vector Arrow 1 */}
-            <ArrowRight size={16} className="text-brand-yellow rotate-90 md:rotate-0 my-1 md:my-0 flex-shrink-0 animate-pulse" />
-
-            {/* Box 2 */}
-            <div className="bg-brand-yellow/15 border border-brand-yellow/30 px-6 py-3 rounded-xl font-black text-xs text-text-dark uppercase tracking-wider text-center w-full md:w-auto shadow-sm">
-              RENZA Manages the Service
+            {/* LEFT COLUMN: HEADER (Sticky) */}
+            <div className="lg:col-span-5 flex flex-col justify-start">
+              <div className="lg:sticky lg:top-32">
+                {/* Subtle Label & Accent Line */}
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-8 h-[1px] bg-[#00D2C4]" />
+                  <span className="text-[#00D2C4] text-[10px] font-black tracking-[0.2em] uppercase">
+                    HOW RENZA WORKS
+                  </span>
+                </div>
+                
+                <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[64px] text-white tracking-tight leading-[1.05] mb-8">
+                  From a Problem to a Solved Outcome.
+                </h2>
+                
+                <p className="text-neutral-400 text-lg md:text-xl font-medium leading-relaxed max-w-[440px]">
+                  Tell RENZA what you need. We manage the service experience so you can focus on your day.
+                </p>
+              </div>
             </div>
 
-            {/* Vector Arrow 2 */}
-            <ArrowRight size={16} className="text-brand-yellow rotate-90 md:rotate-0 my-1 md:my-0 flex-shrink-0 animate-pulse" />
+            {/* RIGHT COLUMN: VERTICAL JOURNEY */}
+            <div className="lg:col-span-7 relative pt-4 lg:pt-0">
+              
+              {/* The Thin Vertical Connecting Line */}
+              <div className="absolute left-[19px] top-[16px] bottom-[40px] w-[2px] bg-neutral-800 z-0">
+                 <div className="w-full h-[60%] bg-gradient-to-b from-[#00D2C4]/40 via-transparent to-transparent" />
+              </div>
 
-            {/* Box 3 */}
-            <div className="bg-brand-yellow px-6 py-3 rounded-xl font-black text-xs text-deep-black uppercase tracking-wider text-center w-full md:w-auto shadow-md">
-              Get It Done
+              <div className="flex flex-col gap-16 lg:gap-20 relative z-10">
+                {[
+                  { num: "01", title: "Choose the task", desc: "You have a need. Simply choose what you need help with in the RENZA app. For example: \"My floor needs cleaning.\"" },
+                  { num: "02", title: "RENZA manages the service", desc: "We manage the entire service experience, coordinating the workforce, ensuring quality standards, and providing clear pricing." },
+                  { num: "03", title: "Get it done", desc: "The job is successfully completed. Your floor is cleaned, and you can get back to focusing on your day." }
+                ].map((step, idx, arr) => {
+                  const isLast = idx === arr.length - 1;
+                  return (
+                    <div key={idx} className="relative flex items-start group">
+                      {/* Node on the line */}
+                      <div className="flex-shrink-0 w-[40px] flex items-start justify-center relative mt-2.5">
+                        <div className={`w-[10px] h-[10px] rounded-full transition-all duration-500 z-10 ${
+                          isLast ? 'bg-[#00D2C4] shadow-[0_0_16px_rgba(0,210,196,0.6)]' : 'bg-neutral-600 group-hover:bg-[#00D2C4]'
+                        }`} />
+                      </div>
+                      
+                      {/* Step Content */}
+                      <div className="ml-4 md:ml-8 flex-1 group-hover:-translate-y-1 transition-transform duration-500">
+                        <span className="block text-lg md:text-xl font-black text-neutral-600 mb-2 transition-colors duration-500 group-hover:text-white">
+                          {step.num}
+                        </span>
+                        
+                        <h3 className="font-sans font-black text-2xl md:text-4xl text-white tracking-tight mb-4 transition-colors duration-300">
+                          {step.title}
+                        </h3>
+                        
+                        <p className="text-neutral-400 text-base md:text-lg font-medium leading-relaxed max-w-[500px]">
+                          {step.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );
