@@ -174,13 +174,12 @@ export default function Navbar() {
 
         {/* Mobile Right Controls */}
         <div className="flex lg:hidden items-center gap-2 sm:gap-3">
-          <button
-            onClick={toggleTheme}
-            className="w-9 h-9 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer active:scale-95 transition-all duration-200"
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun size={16} className="text-[#00D2C4]" /> : <Moon size={16} className="text-[#111111]" />}
-          </button>
+          {/* Mobile Theme Toggle (Scaled) */}
+          <div className="relative w-[72px] h-[26px] flex items-center justify-center ml-1 overflow-visible">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-[0.6]">
+              <ThemeToggleAnim />
+            </div>
+          </div>
 
           {/* Mobile: show avatar or login icon */}
           {!loading && user && (
