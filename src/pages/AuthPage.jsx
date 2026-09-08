@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Lock, Eye, EyeOff, User, ArrowLeft, Loader2, Check } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, User, ArrowLeft, Loader2, Check, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import Logo from '../components/Logo';
 
 export default function AuthPage() {
   const { loginWithGoogle, loginWithEmail, signUpWithEmail, user, loading } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -129,14 +131,32 @@ export default function AuthPage() {
     }
   };
 
-  // Neumorphic style classes adapted for a perfect circle
-  const neumorphOuter = "bg-[#f0f2f5] shadow-[18px_18px_36px_#d1d9e6,-18px_-18px_36px_#ffffff]";
-  const neumorphInner = "bg-[#f0f2f5] shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff]";
-  
-  // Input fields stay rectangular but rounded
-  const neumorphInput = "bg-[#f0f2f5] shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff]";
-  const neumorphButton = "bg-[#f0f2f5] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-200";
-  const neumorphPrimary = "bg-[#00D2C4] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] hover:brightness-105 active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.15),inset_-4px_-4px_8px_rgba(255,255,255,0.3)] transition-all duration-200";
+  const isDark = theme === 'dark';
+
+  // Neumorphic style classes adapted for a perfect circle and dynamic themes
+  const neumorphOuter = isDark 
+    ? "bg-[#1a1a1a] shadow-[18px_18px_36px_#121212,-18px_-18px_36px_#262626]" 
+    : "bg-[#f0f2f5] shadow-[18px_18px_36px_#d1d9e6,-18px_-18px_36px_#ffffff]";
+    
+  const neumorphInner = isDark
+    ? "bg-[#1a1a1a] shadow-[inset_8px_8px_16px_#121212,inset_-8px_-8px_16px_#262626]"
+    : "bg-[#f0f2f5] shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff]";
+    
+  const neumorphInput = isDark
+    ? "bg-[#1a1a1a] shadow-[inset_6px_6px_12px_#121212,inset_-6px_-6px_12px_#262626]"
+    : "bg-[#f0f2f5] shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff]";
+    
+  const neumorphButton = isDark
+    ? "bg-[#1a1a1a] shadow-[6px_6px_12px_#121212,-6px_-6px_12px_#262626] active:shadow-[inset_4px_4px_8px_#121212,inset_-4px_-4px_8px_#262626] transition-all duration-200"
+    : "bg-[#f0f2f5] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-200";
+    
+  const neumorphPrimary = isDark
+    ? "bg-[#00D2C4] shadow-[6px_6px_12px_#121212,-6px_-6px_12px_#262626] hover:brightness-105 active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.3),inset_-4px_-4px_8px_rgba(255,255,255,0.1)] transition-all duration-200"
+    : "bg-[#00D2C4] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] hover:brightness-105 active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.15),inset_-4px_-4px_8px_rgba(255,255,255,0.3)] transition-all duration-200";
+
+  const textColor = isDark ? "text-gray-100" : "text-gray-800";
+  const textMuted = isDark ? "text-gray-400" : "text-gray-500";
+  const bgMain = isDark ? "bg-[#0e0e0e]" : "bg-[#f0f2f5]";
 
   // Reusable Shared UI blocks
   const renderLogo = () => (
@@ -146,7 +166,7 @@ export default function AuthPage() {
           <div className="w-5 h-5 rounded-full border-2 border-white bg-[#00D2C4] shadow-sm"></div>
           <div className="w-5 h-5 rounded-full border-2 border-white bg-gray-800 shadow-sm"></div>
         </div>
-        <span className="font-sans font-black text-xl tracking-tight text-gray-900">RENZA</span>
+        <span className={`font-sans font-black text-xl tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>RENZA</span>
       </div>
     </div>
   );
@@ -157,7 +177,9 @@ export default function AuthPage() {
         type="button"
         onClick={() => switchMode('signin')}
         className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
-          activeMode === 'signin' ? 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900' : 'text-gray-500 hover:text-gray-700'
+          activeMode === 'signin' 
+            ? (isDark ? 'bg-[#1a1a1a] shadow-[4px_4px_8px_#121212,-4px_-4px_8px_#262626] text-white' : 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900')
+            : (isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700')
         }`}
       >
         Sign In
@@ -166,7 +188,9 @@ export default function AuthPage() {
         type="button"
         onClick={() => switchMode('signup')}
         className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
-          activeMode === 'signup' ? 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900' : 'text-gray-500 hover:text-gray-700'
+          activeMode === 'signup' 
+            ? (isDark ? 'bg-[#1a1a1a] shadow-[4px_4px_8px_#121212,-4px_-4px_8px_#262626] text-white' : 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900')
+            : (isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700')
         }`}
       >
         Sign Up
@@ -180,7 +204,7 @@ export default function AuthPage() {
         type="button"
         onClick={handleGoogle}
         disabled={isProcessing}
-        className={`w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl mb-4 text-gray-700 font-bold text-sm ${neumorphButton} disabled:opacity-60 cursor-pointer`}
+        className={`w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl mb-4 ${textColor} font-bold text-sm ${neumorphButton} disabled:opacity-60 cursor-pointer`}
       >
         <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -192,25 +216,33 @@ export default function AuthPage() {
       </button>
 
       <div className="flex items-center gap-4 mb-4 px-4">
-        <div className="flex-1 h-[2px] bg-white rounded-full shadow-sm" />
-        <span className="text-[10px] font-black text-gray-400 tracking-widest uppercase">Or</span>
-        <div className="flex-1 h-[2px] bg-white rounded-full shadow-sm" />
+        <div className={`flex-1 h-[2px] ${isDark ? 'bg-neutral-800' : 'bg-white'} rounded-full shadow-sm`} />
+        <span className={`text-[10px] font-black ${isDark ? 'text-gray-500' : 'text-gray-400'} tracking-widest uppercase`}>Or</span>
+        <div className={`flex-1 h-[2px] ${isDark ? 'bg-neutral-800' : 'bg-white'} rounded-full shadow-sm`} />
       </div>
     </div>
   );
 
   return (
-    // Force a light-theme styling context and hide overflow for clean scaling
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[#f0f2f5] font-sans text-gray-800 overflow-hidden relative">
+    // Force styling context and hide overflow for clean scaling
+    <div className={`min-h-screen flex items-center justify-center p-4 ${bgMain} font-sans transition-colors duration-500 overflow-hidden relative`}>
       
       {/* Back Button (Neumorphic) */}
       <Link
         to="/"
-        className={`absolute top-6 left-6 flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-gray-600 hover:text-[#00D2C4] ${neumorphButton} z-50`}
+        className={`absolute top-6 left-6 flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold ${textMuted} hover:text-[#00D2C4] ${neumorphButton} z-50`}
       >
         <ArrowLeft size={14} strokeWidth={3} />
         Back
       </Link>
+
+      {/* Dark Mode Toggle */}
+      <button
+        onClick={toggleTheme}
+        className={`absolute top-6 right-6 flex items-center gap-2 px-3 py-2 rounded-full text-xs font-bold ${textMuted} hover:text-[#00D2C4] ${neumorphButton} z-50`}
+      >
+        {isDark ? <Sun size={16} strokeWidth={2.5} /> : <Moon size={16} strokeWidth={2.5} />}
+      </button>
 
       {/* DYNAMIC SCALING WRAPPER FOR MOBILE */}
       <div 
@@ -237,11 +269,11 @@ export default function AuthPage() {
             {/* FRONT FACE: SIGN IN */}
             {/* ========================================================= */}
             <div 
-              className={`col-start-1 row-start-1 w-full h-full rounded-full p-5 ${neumorphOuter} flex items-center justify-center`}
+              className={`col-start-1 row-start-1 w-full h-full rounded-full p-5 ${neumorphOuter} flex items-center justify-center transition-colors duration-500`}
               style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
             >
               {/* Inner raised ring */}
-              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6`}>
+              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6 transition-colors duration-500`}>
                 
                 {/* Safe Content Area */}
                 <div className="w-[360px] flex flex-col justify-center">
@@ -250,37 +282,37 @@ export default function AuthPage() {
                   {renderTabs('signin')}
                   
                   <div className="text-center mb-5">
-                    <h2 className="font-black text-2xl text-gray-800 tracking-tight">Welcome back</h2>
-                    <p className="text-gray-500 text-xs font-bold mt-1">Sign in to continue to RENZA</p>
+                    <h2 className={`font-black text-2xl ${textColor} tracking-tight`}>Welcome back</h2>
+                    <p className={`${textMuted} text-xs font-bold mt-1`}>Sign in to continue to RENZA</p>
                   </div>
 
                   {renderGoogleButton()}
 
                   <form onSubmit={handleSignInSubmit} className="flex flex-col gap-3">
                     <div className="flex flex-col gap-3">
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Mail size={16} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Mail size={16} className={`${textMuted} mr-3`} />
                         <input
                           type="email"
                           placeholder="Email Address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Lock size={16} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Lock size={16} className={`${textMuted} mr-3`} />
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
-                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className={`${textMuted} hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer`}>
                           {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -288,12 +320,12 @@ export default function AuthPage() {
                       <div className="flex items-center justify-between px-1 mt-1">
                         <label className="flex items-center gap-2 cursor-pointer group select-none">
                           <div className={`w-4 h-4 rounded flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInput}`}>
-                            {rememberMe && <Check size={12} strokeWidth={4} className="text-white" />}
+                            {rememberMe && <Check size={12} strokeWidth={4} className={isDark ? "text-black" : "text-white"} />}
                           </div>
-                          <span className="text-xs font-bold text-gray-500 group-hover:text-gray-800 transition-colors">Remember me</span>
+                          <span className={`text-xs font-bold ${textMuted} group-hover:${textColor} transition-colors`}>Remember me</span>
                           <input type="checkbox" className="hidden" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
                         </label>
-                        <Link to="/forgot-password" className="text-xs font-bold text-gray-500 hover:text-[#00D2C4] transition-colors">
+                        <Link to="/forgot-password" className={`text-xs font-bold ${textMuted} hover:text-[#00D2C4] transition-colors`}>
                           Forgot password?
                         </Link>
                       </div>
@@ -307,12 +339,12 @@ export default function AuthPage() {
                       <button
                         type="submit"
                         disabled={isProcessing}
-                        className={`w-full py-3.5 rounded-2xl font-black text-white text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
+                        className={`w-full py-3.5 rounded-2xl font-black ${isDark ? 'text-black' : 'text-white'} text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
                       >
-                        {isProcessing ? <Loader2 size={18} className="animate-spin text-white" /> : 'Sign In'}
+                        {isProcessing ? <Loader2 size={18} className="animate-spin" /> : 'Sign In'}
                       </button>
 
-                      <p className="text-center text-xs font-bold text-gray-500">
+                      <p className={`text-center text-xs font-bold ${textMuted}`}>
                         Don't have an account? 
                         <button type="button" onClick={() => switchMode('signup')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
                           Sign Up
@@ -328,7 +360,7 @@ export default function AuthPage() {
             {/* BACK FACE: SIGN UP */}
             {/* ========================================================= */}
             <div 
-              className={`col-start-1 row-start-1 w-full h-full rounded-full p-5 ${neumorphOuter} flex items-center justify-center`}
+              className={`col-start-1 row-start-1 w-full h-full rounded-full p-5 ${neumorphOuter} flex items-center justify-center transition-colors duration-500`}
               style={{ 
                 backfaceVisibility: 'hidden', 
                 WebkitBackfaceVisibility: 'hidden',
@@ -336,7 +368,7 @@ export default function AuthPage() {
               }}
             >
               {/* Inner raised ring */}
-              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6`}>
+              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6 transition-colors duration-500`}>
                 
                 {/* Safe Content Area */}
                 <div className="w-[360px] flex flex-col justify-center">
@@ -345,64 +377,64 @@ export default function AuthPage() {
                   {renderTabs('signup')}
 
                   <div className="text-center mb-5">
-                    <h2 className="font-black text-2xl text-gray-800 tracking-tight">Create account</h2>
-                    <p className="text-gray-500 text-xs font-bold mt-1">Join RENZA and get started</p>
+                    <h2 className={`font-black text-2xl ${textColor} tracking-tight`}>Create account</h2>
+                    <p className={`${textMuted} text-xs font-bold mt-1`}>Join RENZA and get started</p>
                   </div>
 
                   {renderGoogleButton()}
 
                   <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-3">
                     <div className="flex flex-col gap-2.5">
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <User size={16} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <User size={16} className={`${textMuted} mr-3`} />
                         <input
                           type="text"
                           placeholder="Full Name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           required
-                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Mail size={16} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Mail size={16} className={`${textMuted} mr-3`} />
                         <input
                           type="email"
                           placeholder="Email Address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Lock size={16} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Lock size={16} className={`${textMuted} mr-3`} />
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
-                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className={`${textMuted} hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer`}>
                           {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Lock size={16} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Lock size={16} className={`${textMuted} mr-3`} />
                         <input
                           type={showConfirmPassword ? 'text' : 'password'}
                           placeholder="Confirm Password"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           required
-                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
-                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
+                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className={`${textMuted} hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer`}>
                           {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -419,12 +451,12 @@ export default function AuthPage() {
                       <button
                         type="submit"
                         disabled={isProcessing}
-                        className={`w-full py-3.5 rounded-2xl font-black text-white text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
+                        className={`w-full py-3.5 rounded-2xl font-black ${isDark ? 'text-black' : 'text-white'} text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
                       >
-                        {isProcessing ? <Loader2 size={18} className="animate-spin text-white" /> : 'Sign Up'}
+                        {isProcessing ? <Loader2 size={18} className="animate-spin" /> : 'Sign Up'}
                       </button>
 
-                      <p className="text-center text-xs font-bold text-gray-500">
+                      <p className={`text-center text-xs font-bold ${textMuted}`}>
                         Already have an account? 
                         <button type="button" onClick={() => switchMode('signin')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
                           Sign In

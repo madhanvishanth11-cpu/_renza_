@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,6 +9,7 @@ import TrustSection from './components/TrustSection';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 // Import Auth Pages
 import AuthPage from './pages/AuthPage';
@@ -29,38 +30,43 @@ function Home() {
   );
 }
 
-function App() {
-  const [theme, setTheme] = useState('light');
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-  };
+// InnerApp component to consume useTheme from the provider above it
+function InnerApp() {
+  const { theme } = useTheme();
 
   return (
-    <AuthProvider>
-      <Router>
-        <div className={`min-h-screen flex flex-col transition-colors duration-300 ${theme === 'dark' ? 'dark-theme bg-[#0e0e0e] text-[#f3f4f6]' : 'bg-[#F7F7F5] text-[#181818]'}`}>
-          <Routes>
-            {/* Landing page layout */}
-            <Route path="/" element={
-              <>
-                <Navbar theme={theme} toggleTheme={toggleTheme} />
-                <Home />
-              </>
-            } />
-            
-            {/* Auth page layouts */}
-            <Route path="/signin" element={<AuthPage />} />
-            <Route path="/signup" element={<AuthPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-            
-            {/* Fallback redirect */}
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <div className={`min-h-screen flex flex-col transition-colors duration-300 ${theme === 'dark' ? 'dark-theme bg-[#0e0e0e] text-[#f3f4f6]' : 'bg-[#F7F7F5] text-[#181818]'}`}>
+      <Routes>
+        {/* Landing page layout */}
+        <Route path="/" element={
+          <>
+            <Navbar />
+            <Home />
+          </>
+        } />
+        
+        {/* Auth page layouts */}
+        <Route path="/signin" element={<AuthPage />} />
+        <Route path="/signup" element={<AuthPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        
+        {/* Fallback redirect */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <InnerApp />
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

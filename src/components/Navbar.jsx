@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Logo from './Logo';
-import { Moon, Sun, Download, Menu, X, LogOut, User, ChevronDown } from 'lucide-react';
+import { Menu, X, Download, LogOut, User, ChevronDown, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
 // ─── User Avatar Dropdown ───────────────────────────────────
@@ -95,10 +96,11 @@ function UserMenu({ user, profile, logout }) {
 }
 
 // ─── Navbar ─────────────────────────────────────────────────
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { user, profile, loading, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   React.useEffect(() => {
     const handleOpenLogin = () => navigate('/signin');
