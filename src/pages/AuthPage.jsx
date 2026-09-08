@@ -38,7 +38,8 @@ export default function AuthPage() {
     const handleResize = () => {
       // 680px is our circle width (640px) plus some padding (40px)
       const viewportWidth = window.innerWidth;
-      const targetWidth = 680;
+      // On mobile (<768px), use 640 as target to maximize screen usage with minimal margin
+      const targetWidth = viewportWidth < 768 ? 640 : 680;
       if (viewportWidth < targetWidth) {
         setScale(viewportWidth / targetWidth);
       } else {
@@ -160,23 +161,23 @@ export default function AuthPage() {
 
   // Reusable Shared UI blocks
   const renderLogo = () => (
-    <div className="flex justify-center mb-4">
-      <div className="flex items-center gap-1.5 select-none">
-        <div className="flex -space-x-2">
-          <div className="w-5 h-5 rounded-full border-2 border-white bg-[#00D2C4] shadow-sm"></div>
-          <div className="w-5 h-5 rounded-full border-2 border-white bg-gray-800 shadow-sm"></div>
+    <div className="flex justify-center mb-6 md:mb-4">
+      <div className="flex items-center gap-1.5 md:gap-1.5 select-none">
+        <div className="flex -space-x-2 md:-space-x-2">
+          <div className="w-8 h-8 md:w-5 md:h-5 rounded-full border-[3px] md:border-2 border-white bg-[#00D2C4] shadow-sm"></div>
+          <div className="w-8 h-8 md:w-5 md:h-5 rounded-full border-[3px] md:border-2 border-white bg-gray-800 shadow-sm"></div>
         </div>
-        <span className={`font-sans font-black text-xl tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>RENZA</span>
+        <span className={`font-sans font-black text-[32px] md:text-xl tracking-tight ml-2 md:ml-0 ${isDark ? 'text-white' : 'text-gray-900'}`}>RENZA</span>
       </div>
     </div>
   );
 
   const renderTabs = (activeMode) => (
-    <div className={`flex p-1 rounded-2xl mb-5 ${neumorphInput}`}>
+    <div className={`flex p-1.5 md:p-1 rounded-2xl mb-6 md:mb-5 ${neumorphInput}`}>
       <button
         type="button"
         onClick={() => switchMode('signin')}
-        className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
+        className={`flex-1 py-3 md:py-1.5 rounded-xl text-[18px] md:text-xs font-bold transition-all duration-300 ${
           activeMode === 'signin' 
             ? (isDark ? 'bg-[#1a1a1a] shadow-[4px_4px_8px_#121212,-4px_-4px_8px_#262626] text-white' : 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900')
             : (isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700')
@@ -187,7 +188,7 @@ export default function AuthPage() {
       <button
         type="button"
         onClick={() => switchMode('signup')}
-        className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
+        className={`flex-1 py-3 md:py-1.5 rounded-xl text-[18px] md:text-xs font-bold transition-all duration-300 ${
           activeMode === 'signup' 
             ? (isDark ? 'bg-[#1a1a1a] shadow-[4px_4px_8px_#121212,-4px_-4px_8px_#262626] text-white' : 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900')
             : (isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700')
@@ -204,9 +205,9 @@ export default function AuthPage() {
         type="button"
         onClick={handleGoogle}
         disabled={isProcessing}
-        className={`w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl mb-4 ${textColor} font-bold text-sm ${neumorphButton} disabled:opacity-60 cursor-pointer`}
+        className={`w-full flex items-center justify-center gap-4 md:gap-3 px-6 md:px-4 py-4 md:py-3 rounded-2xl mb-6 md:mb-4 ${textColor} font-bold text-[20px] md:text-sm ${neumorphButton} disabled:opacity-60 cursor-pointer`}
       >
-        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" className="w-[28px] h-[28px] md:w-[20px] md:h-[20px]" xmlns="http://www.w3.org/2000/svg">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
           <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -215,10 +216,10 @@ export default function AuthPage() {
         Continue with Google
       </button>
 
-      <div className="flex items-center gap-4 mb-4 px-4">
-        <div className={`flex-1 h-[2px] ${isDark ? 'bg-neutral-800' : 'bg-white'} rounded-full shadow-sm`} />
-        <span className={`text-[10px] font-black ${isDark ? 'text-gray-500' : 'text-gray-400'} tracking-widest uppercase`}>Or</span>
-        <div className={`flex-1 h-[2px] ${isDark ? 'bg-neutral-800' : 'bg-white'} rounded-full shadow-sm`} />
+      <div className="flex items-center gap-4 mb-6 md:mb-4 px-4">
+        <div className={`flex-1 h-[3px] md:h-[2px] ${isDark ? 'bg-neutral-800' : 'bg-white'} rounded-full shadow-sm`} />
+        <span className={`text-[14px] md:text-[10px] font-black ${isDark ? 'text-gray-500' : 'text-gray-400'} tracking-widest uppercase`}>Or</span>
+        <div className={`flex-1 h-[3px] md:h-[2px] ${isDark ? 'bg-neutral-800' : 'bg-white'} rounded-full shadow-sm`} />
       </div>
     </div>
   );
@@ -276,77 +277,77 @@ export default function AuthPage() {
               <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6 transition-colors duration-500`}>
                 
                 {/* Safe Content Area */}
-                <div className="w-[360px] flex flex-col justify-center">
+                <div className="w-[500px] md:w-[360px] flex flex-col justify-center">
                   
                   {renderLogo()}
                   {renderTabs('signin')}
                   
-                  <div className="text-center mb-5">
-                    <h2 className={`font-black text-2xl ${textColor} tracking-tight`}>Welcome back</h2>
-                    <p className={`${textMuted} text-xs font-bold mt-1`}>Sign in to continue to RENZA</p>
+                  <div className="text-center mb-6 md:mb-5">
+                    <h2 className={`font-black text-[42px] md:text-2xl ${textColor} tracking-tight`}>Welcome back</h2>
+                    <p className={`${textMuted} text-[20px] md:text-xs font-bold mt-2 md:mt-1`}>Sign in to continue to RENZA</p>
                   </div>
 
                   {renderGoogleButton()}
 
-                  <form onSubmit={handleSignInSubmit} className="flex flex-col gap-3">
-                    <div className="flex flex-col gap-3">
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
-                        <Mail size={16} className={`${textMuted} mr-3`} />
+                  <form onSubmit={handleSignInSubmit} className="flex flex-col gap-5 md:gap-3">
+                    <div className="flex flex-col gap-4 md:gap-3">
+                      <div className={`flex items-center px-6 py-4 md:px-4 md:py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Mail className={`${textMuted} mr-4 md:mr-3 w-[24px] h-[24px] md:w-[16px] md:h-[16px]`} />
                         <input
                           type="email"
                           placeholder="Email Address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-[22px] md:text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
-                        <Lock size={16} className={`${textMuted} mr-3`} />
+                      <div className={`flex items-center px-6 py-4 md:px-4 md:py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Lock className={`${textMuted} mr-4 md:mr-3 w-[24px] h-[24px] md:w-[16px] md:h-[16px]`} />
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-[22px] md:text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className={`${textMuted} hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer`}>
-                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          {showPassword ? <EyeOff className="w-[24px] h-[24px] md:w-[16px] md:h-[16px]" /> : <Eye className="w-[24px] h-[24px] md:w-[16px] md:h-[16px]" />}
                         </button>
                       </div>
 
-                      <div className="flex items-center justify-between px-1 mt-1">
-                        <label className="flex items-center gap-2 cursor-pointer group select-none">
-                          <div className={`w-4 h-4 rounded flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInput}`}>
-                            {rememberMe && <Check size={12} strokeWidth={4} className={isDark ? "text-black" : "text-white"} />}
+                      <div className="flex items-center justify-between px-2 md:px-1 mt-2 md:mt-1">
+                        <label className="flex items-center gap-3 md:gap-2 cursor-pointer group select-none">
+                          <div className={`w-6 h-6 md:w-4 md:h-4 rounded md:rounded flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInput}`}>
+                            {rememberMe && <Check strokeWidth={4} className={`w-[16px] h-[16px] md:w-[12px] md:h-[12px] ${isDark ? "text-black" : "text-white"}`} />}
                           </div>
-                          <span className={`text-xs font-bold ${textMuted} group-hover:${textColor} transition-colors`}>Remember me</span>
+                          <span className={`text-[18px] md:text-xs font-bold ${textMuted} group-hover:${textColor} transition-colors`}>Remember me</span>
                           <input type="checkbox" className="hidden" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
                         </label>
-                        <Link to="/forgot-password" className={`text-xs font-bold ${textMuted} hover:text-[#00D2C4] transition-colors`}>
+                        <Link to="/forgot-password" className={`text-[18px] md:text-xs font-bold ${textMuted} hover:text-[#00D2C4] transition-colors`}>
                           Forgot password?
                         </Link>
                       </div>
 
                       {errorMsg && mode === 'signin' && (
-                        <p className="text-xs text-red-500 font-bold text-center animate-pulse">{errorMsg}</p>
+                        <p className="text-[18px] md:text-xs text-red-500 font-bold text-center animate-pulse">{errorMsg}</p>
                       )}
                     </div>
 
-                    <div className="mt-2">
+                    <div className="mt-4 md:mt-2">
                       <button
                         type="submit"
                         disabled={isProcessing}
-                        className={`w-full py-3.5 rounded-2xl font-black ${isDark ? 'text-black' : 'text-white'} text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
+                        className={`w-full py-5 md:py-3.5 rounded-2xl font-black ${isDark ? 'text-black' : 'text-white'} text-[24px] md:text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-6 md:mb-5`}
                       >
-                        {isProcessing ? <Loader2 size={18} className="animate-spin" /> : 'Sign In'}
+                        {isProcessing ? <Loader2 className="animate-spin w-[24px] h-[24px] md:w-[18px] md:h-[18px]" /> : 'Sign In'}
                       </button>
 
-                      <p className={`text-center text-xs font-bold ${textMuted}`}>
+                      <p className={`text-center text-[18px] md:text-xs font-bold ${textMuted}`}>
                         Don't have an account? 
-                        <button type="button" onClick={() => switchMode('signup')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
+                        <button type="button" onClick={() => switchMode('signup')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-2 md:ml-1">
                           Sign Up
                         </button>
                       </p>
@@ -371,94 +372,94 @@ export default function AuthPage() {
               <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6 transition-colors duration-500`}>
                 
                 {/* Safe Content Area */}
-                <div className="w-[360px] flex flex-col justify-center">
+                <div className="w-[500px] md:w-[360px] flex flex-col justify-center">
                   
                   {renderLogo()}
                   {renderTabs('signup')}
 
-                  <div className="text-center mb-5">
-                    <h2 className={`font-black text-2xl ${textColor} tracking-tight`}>Create account</h2>
-                    <p className={`${textMuted} text-xs font-bold mt-1`}>Join RENZA and get started</p>
+                  <div className="text-center mb-6 md:mb-5">
+                    <h2 className={`font-black text-[42px] md:text-2xl ${textColor} tracking-tight`}>Create account</h2>
+                    <p className={`${textMuted} text-[20px] md:text-xs font-bold mt-2 md:mt-1`}>Join RENZA and get started</p>
                   </div>
 
                   {renderGoogleButton()}
 
-                  <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-3">
-                    <div className="flex flex-col gap-2.5">
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
-                        <User size={16} className={`${textMuted} mr-3`} />
+                  <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-4 md:gap-3">
+                    <div className="flex flex-col gap-3 md:gap-2.5">
+                      <div className={`flex items-center px-6 py-4 md:px-4 md:py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <User className={`${textMuted} mr-4 md:mr-3 w-[24px] h-[24px] md:w-[16px] md:h-[16px]`} />
                         <input
                           type="text"
                           placeholder="Full Name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           required
-                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-[22px] md:text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
-                        <Mail size={16} className={`${textMuted} mr-3`} />
+                      <div className={`flex items-center px-6 py-4 md:px-4 md:py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Mail className={`${textMuted} mr-4 md:mr-3 w-[24px] h-[24px] md:w-[16px] md:h-[16px]`} />
                         <input
                           type="email"
                           placeholder="Email Address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-[22px] md:text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
-                        <Lock size={16} className={`${textMuted} mr-3`} />
+                      <div className={`flex items-center px-6 py-4 md:px-4 md:py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Lock className={`${textMuted} mr-4 md:mr-3 w-[24px] h-[24px] md:w-[16px] md:h-[16px]`} />
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
-                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-[22px] md:text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className={`${textMuted} hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer`}>
-                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          {showPassword ? <EyeOff className="w-[24px] h-[24px] md:w-[16px] md:h-[16px]" /> : <Eye className="w-[24px] h-[24px] md:w-[16px] md:h-[16px]" />}
                         </button>
                       </div>
 
-                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
-                        <Lock size={16} className={`${textMuted} mr-3`} />
+                      <div className={`flex items-center px-6 py-4 md:px-4 md:py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#00D2C433,inset_-8px_-8px_16px_#00D2C422,0_0_0_1px_#00D2C4] transition-all`}>
+                        <Lock className={`${textMuted} mr-4 md:mr-3 w-[24px] h-[24px] md:w-[16px] md:h-[16px]`} />
                         <input
                           type={showConfirmPassword ? 'text' : 'password'}
                           placeholder="Confirm Password"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           required
-                          className={`w-full bg-transparent border-none outline-none ${textColor} text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
+                          className={`w-full bg-transparent border-none outline-none ${textColor} text-[22px] md:text-sm font-bold placeholder:${isDark ? 'text-gray-600' : 'text-gray-400'}`}
                         />
                         <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className={`${textMuted} hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer`}>
-                          {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                          {showConfirmPassword ? <EyeOff className="w-[24px] h-[24px] md:w-[16px] md:h-[16px]" /> : <Eye className="w-[24px] h-[24px] md:w-[16px] md:h-[16px]" />}
                         </button>
                       </div>
 
                       {errorMsg && mode === 'signup' && (
-                        <p className="text-xs text-red-500 font-bold text-center animate-pulse">{errorMsg}</p>
+                        <p className="text-[18px] md:text-xs text-red-500 font-bold text-center animate-pulse">{errorMsg}</p>
                       )}
                       {successMsg && mode === 'signup' && (
-                        <p className="text-xs text-[#00D2C4] font-bold text-center">{successMsg}</p>
+                        <p className="text-[18px] md:text-xs text-[#00D2C4] font-bold text-center">{successMsg}</p>
                       )}
                     </div>
 
-                    <div className="mt-1">
+                    <div className="mt-4 md:mt-1">
                       <button
                         type="submit"
                         disabled={isProcessing}
-                        className={`w-full py-3.5 rounded-2xl font-black ${isDark ? 'text-black' : 'text-white'} text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
+                        className={`w-full py-5 md:py-3.5 rounded-2xl font-black ${isDark ? 'text-black' : 'text-white'} text-[24px] md:text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-6 md:mb-5`}
                       >
-                        {isProcessing ? <Loader2 size={18} className="animate-spin" /> : 'Sign Up'}
+                        {isProcessing ? <Loader2 className="animate-spin w-[24px] h-[24px] md:w-[18px] md:h-[18px]" /> : 'Sign Up'}
                       </button>
 
-                      <p className={`text-center text-xs font-bold ${textMuted}`}>
+                      <p className={`text-center text-[18px] md:text-xs font-bold ${textMuted}`}>
                         Already have an account? 
-                        <button type="button" onClick={() => switchMode('signin')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
+                        <button type="button" onClick={() => switchMode('signin')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-2 md:ml-1">
                           Sign In
                         </button>
                       </p>
