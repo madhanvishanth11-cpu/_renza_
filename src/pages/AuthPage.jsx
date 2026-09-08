@@ -14,6 +14,7 @@ export default function AuthPage() {
   
   // Animation states
   const [mounted, setMounted] = useState(false);
+  const [scale, setScale] = useState(1);
   
   // Form states
   const [name, setName] = useState('');
@@ -28,9 +29,24 @@ export default function AuthPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
+  // Handle entry animation and responsive scaling
   useEffect(() => {
-    // Trigger entry animation
     setTimeout(() => setMounted(true), 50);
+
+    const handleResize = () => {
+      // 760px is our circle width (720px) plus some padding (40px)
+      const viewportWidth = window.innerWidth;
+      const targetWidth = 760;
+      if (viewportWidth < targetWidth) {
+        setScale(viewportWidth / targetWidth);
+      } else {
+        setScale(1);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -113,15 +129,18 @@ export default function AuthPage() {
     }
   };
 
-  // Neumorphic style classes
-  const neumorphOuter = "bg-[#f0f2f5] shadow-[12px_12px_24px_#d1d9e6,-12px_-12px_24px_#ffffff]";
-  const neumorphInner = "bg-[#f0f2f5] shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff]";
+  // Neumorphic style classes adapted for a perfect circle
+  const neumorphOuter = "bg-[#f0f2f5] shadow-[18px_18px_36px_#d1d9e6,-18px_-18px_36px_#ffffff]";
+  const neumorphInner = "bg-[#f0f2f5] shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff]";
+  
+  // Input fields stay rectangular but rounded
+  const neumorphInput = "bg-[#f0f2f5] shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff]";
   const neumorphButton = "bg-[#f0f2f5] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-200";
   const neumorphPrimary = "bg-[#00D2C4] shadow-[6px_6px_12px_#d1d9e6,-6px_-6px_12px_#ffffff] hover:brightness-105 active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.15),inset_-4px_-4px_8px_rgba(255,255,255,0.3)] transition-all duration-200";
 
   // Reusable Shared UI blocks
   const renderLogo = () => (
-    <div className="flex justify-center mb-6">
+    <div className="flex justify-center mb-5">
       <div className="flex items-center gap-1.5 select-none">
         <div className="flex -space-x-2">
           <div className="w-5 h-5 rounded-full border-2 border-white bg-[#00D2C4] shadow-sm"></div>
@@ -133,11 +152,11 @@ export default function AuthPage() {
   );
 
   const renderTabs = (activeMode) => (
-    <div className={`flex p-1.5 rounded-2xl mb-8 ${neumorphInner}`}>
+    <div className={`flex p-1.5 rounded-2xl mb-6 ${neumorphInput}`}>
       <button
         type="button"
         onClick={() => switchMode('signin')}
-        className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
+        className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
           activeMode === 'signin' ? 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900' : 'text-gray-500 hover:text-gray-700'
         }`}
       >
@@ -146,7 +165,7 @@ export default function AuthPage() {
       <button
         type="button"
         onClick={() => switchMode('signup')}
-        className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
+        className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
           activeMode === 'signup' ? 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900' : 'text-gray-500 hover:text-gray-700'
         }`}
       >
@@ -161,7 +180,7 @@ export default function AuthPage() {
         type="button"
         onClick={handleGoogle}
         disabled={isProcessing}
-        className={`w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl mb-6 text-gray-700 font-bold text-[15px] ${neumorphButton} disabled:opacity-60 cursor-pointer`}
+        className={`w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl mb-5 text-gray-700 font-bold text-[15px] ${neumorphButton} disabled:opacity-60 cursor-pointer`}
       >
         <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -172,7 +191,7 @@ export default function AuthPage() {
         Continue with Google
       </button>
 
-      <div className="flex items-center gap-4 mb-6 px-2">
+      <div className="flex items-center gap-4 mb-5 px-4">
         <div className="flex-1 h-[2px] bg-white rounded-full shadow-sm" />
         <span className="text-[10px] font-black text-gray-400 tracking-widest uppercase">Or</span>
         <div className="flex-1 h-[2px] bg-white rounded-full shadow-sm" />
@@ -181,7 +200,8 @@ export default function AuthPage() {
   );
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[#f0f2f5] font-sans text-gray-800">
+    // Force a light-theme styling context and hide overflow for clean scaling
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[#f0f2f5] font-sans text-gray-800 overflow-hidden relative">
       
       {/* Back Button (Neumorphic) */}
       <Link
@@ -192,209 +212,231 @@ export default function AuthPage() {
         Back
       </Link>
 
-      {/* 3D SCENE WRAPPER */}
+      {/* DYNAMIC SCALING WRAPPER FOR MOBILE */}
       <div 
-        className={`w-full max-w-[440px] perspective-[1500px] transition-all duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform ${
-          mounted ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-12'
-        }`}
+        className="relative flex items-center justify-center transition-transform duration-300 ease-out"
+        style={{ transform: `scale(${scale})` }}
       >
-        
-        {/* 3D ROTATING CONTAINER */}
+        {/* 3D SCENE WRAPPER */}
         <div 
-          className="relative w-full grid transition-transform duration-700 ease-in-out"
-          style={{ 
-            transformStyle: 'preserve-3d', 
-            transform: mode === 'signup' ? 'rotateY(180deg)' : 'rotateY(0deg)' 
-          }}
+          className={`w-[720px] h-[720px] perspective-[2000px] transition-all duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform ${
+            mounted ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-12'
+          }`}
         >
-
-          {/* ========================================================= */}
-          {/* FRONT FACE: SIGN IN */}
-          {/* ========================================================= */}
+          
+          {/* 3D ROTATING CIRCULAR CONTAINER */}
           <div 
-            className={`col-start-1 row-start-1 w-full rounded-[40px] p-8 sm:p-10 ${neumorphOuter} h-full flex flex-col`}
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-          >
-            {renderLogo()}
-            {renderTabs('signin')}
-            
-            <div className="text-center mb-8 flex-shrink-0">
-              <h2 className="font-black text-3xl text-gray-800 tracking-tight">Welcome back</h2>
-              <p className="text-gray-500 text-sm font-bold mt-1.5">Sign in to continue to RENZA</p>
-            </div>
-
-            {renderGoogleButton()}
-
-            <form onSubmit={handleSignInSubmit} className="flex flex-col gap-4 relative flex-grow justify-between">
-              <div className="flex flex-col gap-4">
-                <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInner} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                  <Mail size={18} className="text-gray-400 mr-3" />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
-                  />
-                </div>
-
-                <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInner} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                  <Lock size={18} className="text-gray-400 mr-3" />
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
-                  />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-
-                <div className="flex items-center justify-between mt-1">
-                  <label className="flex items-center gap-2.5 cursor-pointer group select-none">
-                    <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInner}`}>
-                      {rememberMe && <Check size={14} strokeWidth={4} className="text-white" />}
-                    </div>
-                    <span className="text-xs font-bold text-gray-500 group-hover:text-gray-800 transition-colors">Remember me</span>
-                    <input type="checkbox" className="hidden" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
-                  </label>
-                  <Link to="/forgot-password" className="text-xs font-bold text-gray-500 hover:text-[#00D2C4] transition-colors">
-                    Forgot password?
-                  </Link>
-                </div>
-
-                {errorMsg && mode === 'signin' && (
-                  <p className="text-xs text-red-500 font-bold text-center px-4 animate-pulse mt-2">{errorMsg}</p>
-                )}
-              </div>
-
-              <div className="mt-4">
-                <button
-                  type="submit"
-                  disabled={isProcessing}
-                  className={`w-full py-4 rounded-2xl font-black text-white text-[15px] tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-8`}
-                >
-                  {isProcessing ? <Loader2 size={20} className="animate-spin text-white" /> : 'Sign In'}
-                </button>
-
-                <p className="text-center text-sm font-bold text-gray-500">
-                  Don't have an account? 
-                  <button type="button" onClick={() => switchMode('signup')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
-                    Sign Up
-                  </button>
-                </p>
-              </div>
-            </form>
-          </div>
-
-          {/* ========================================================= */}
-          {/* BACK FACE: SIGN UP */}
-          {/* ========================================================= */}
-          <div 
-            className={`col-start-1 row-start-1 w-full rounded-[40px] p-8 sm:p-10 ${neumorphOuter} h-full flex flex-col`}
+            className="relative w-full h-full grid rounded-full transition-transform duration-700 ease-in-out"
             style={{ 
-              backfaceVisibility: 'hidden', 
-              WebkitBackfaceVisibility: 'hidden',
-              transform: 'rotateY(180deg)'
+              transformStyle: 'preserve-3d', 
+              transform: mode === 'signup' ? 'rotateY(180deg)' : 'rotateY(0deg)' 
             }}
           >
-            {renderLogo()}
-            {renderTabs('signup')}
 
-            <div className="text-center mb-8 flex-shrink-0">
-              <h2 className="font-black text-3xl text-gray-800 tracking-tight">Create account</h2>
-              <p className="text-gray-500 text-sm font-bold mt-1.5">Join RENZA and get started</p>
+            {/* ========================================================= */}
+            {/* FRONT FACE: SIGN IN */}
+            {/* ========================================================= */}
+            <div 
+              className={`col-start-1 row-start-1 w-full h-full rounded-full p-6 ${neumorphOuter} flex items-center justify-center`}
+              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+            >
+              {/* Inner raised ring */}
+              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-8`}>
+                
+                {/* Safe Content Area (Rectangle constrained within the circle) */}
+                <div className="w-[420px] flex flex-col justify-center">
+                  
+                  {renderLogo()}
+                  {renderTabs('signin')}
+                  
+                  <div className="text-center mb-6">
+                    <h2 className="font-black text-[28px] text-gray-800 tracking-tight">Welcome back</h2>
+                    <p className="text-gray-500 text-sm font-bold mt-1">Sign in to continue to RENZA</p>
+                  </div>
+
+                  {renderGoogleButton()}
+
+                  <form onSubmit={handleSignInSubmit} className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-3.5">
+                      <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Mail size={18} className="text-gray-400 mr-3" />
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                        />
+                      </div>
+
+                      <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Lock size={18} className="text-gray-400 mr-3" />
+                        <input
+                          type={showPassword ? 'text' : 'password'}
+                          placeholder="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                        />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
+                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
+
+                      <div className="flex items-center justify-between px-1 mt-1">
+                        <label className="flex items-center gap-2.5 cursor-pointer group select-none">
+                          <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInput}`}>
+                            {rememberMe && <Check size={14} strokeWidth={4} className="text-white" />}
+                          </div>
+                          <span className="text-[13px] font-bold text-gray-500 group-hover:text-gray-800 transition-colors">Remember me</span>
+                          <input type="checkbox" className="hidden" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
+                        </label>
+                        <Link to="/forgot-password" className="text-[13px] font-bold text-gray-500 hover:text-[#00D2C4] transition-colors">
+                          Forgot password?
+                        </Link>
+                      </div>
+
+                      {errorMsg && mode === 'signin' && (
+                        <p className="text-xs text-red-500 font-bold text-center animate-pulse">{errorMsg}</p>
+                      )}
+                    </div>
+
+                    <div className="mt-3">
+                      <button
+                        type="submit"
+                        disabled={isProcessing}
+                        className={`w-full py-4 rounded-2xl font-black text-white text-[15px] tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-6`}
+                      >
+                        {isProcessing ? <Loader2 size={20} className="animate-spin text-white" /> : 'Sign In'}
+                      </button>
+
+                      <p className="text-center text-[13px] font-bold text-gray-500">
+                        Don't have an account? 
+                        <button type="button" onClick={() => switchMode('signup')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
+                          Sign Up
+                        </button>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
 
-            {renderGoogleButton()}
+            {/* ========================================================= */}
+            {/* BACK FACE: SIGN UP */}
+            {/* ========================================================= */}
+            <div 
+              className={`col-start-1 row-start-1 w-full h-full rounded-full p-6 ${neumorphOuter} flex items-center justify-center`}
+              style={{ 
+                backfaceVisibility: 'hidden', 
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)'
+              }}
+            >
+              {/* Inner raised ring */}
+              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-8`}>
+                
+                {/* Safe Content Area */}
+                <div className="w-[420px] flex flex-col justify-center">
+                  
+                  {renderLogo()}
+                  {renderTabs('signup')}
 
-            <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-4 relative flex-grow justify-between">
-              <div className="flex flex-col gap-4">
-                <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInner} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                  <User size={18} className="text-gray-400 mr-3" />
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
-                  />
+                  <div className="text-center mb-6">
+                    <h2 className="font-black text-[28px] text-gray-800 tracking-tight">Create account</h2>
+                    <p className="text-gray-500 text-sm font-bold mt-1">Join RENZA and get started</p>
+                  </div>
+
+                  {renderGoogleButton()}
+
+                  <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-3">
+                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <User size={18} className="text-gray-400 mr-3" />
+                        <input
+                          type="text"
+                          placeholder="Full Name"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                        />
+                      </div>
+
+                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Mail size={18} className="text-gray-400 mr-3" />
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                        />
+                      </div>
+
+                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Lock size={18} className="text-gray-400 mr-3" />
+                        <input
+                          type={showPassword ? 'text' : 'password'}
+                          placeholder="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                        />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
+                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
+
+                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Lock size={18} className="text-gray-400 mr-3" />
+                        <input
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          placeholder="Confirm Password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                          className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
+                        />
+                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
+                          {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
+
+                      {errorMsg && mode === 'signup' && (
+                        <p className="text-xs text-red-500 font-bold text-center animate-pulse">{errorMsg}</p>
+                      )}
+                      {successMsg && mode === 'signup' && (
+                        <p className="text-xs text-[#00D2C4] font-bold text-center">{successMsg}</p>
+                      )}
+                    </div>
+
+                    <div className="mt-2">
+                      <button
+                        type="submit"
+                        disabled={isProcessing}
+                        className={`w-full py-3.5 rounded-2xl font-black text-white text-[15px] tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
+                      >
+                        {isProcessing ? <Loader2 size={20} className="animate-spin text-white" /> : 'Sign Up'}
+                      </button>
+
+                      <p className="text-center text-[13px] font-bold text-gray-500">
+                        Already have an account? 
+                        <button type="button" onClick={() => switchMode('signin')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
+                          Sign In
+                        </button>
+                      </p>
+                    </div>
+                  </form>
                 </div>
-
-                <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInner} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                  <Mail size={18} className="text-gray-400 mr-3" />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
-                  />
-                </div>
-
-                <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInner} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                  <Lock size={18} className="text-gray-400 mr-3" />
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
-                  />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-
-                <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInner} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                  <Lock size={18} className="text-gray-400 mr-3" />
-                  <input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
-                  />
-                  <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
-                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-
-                {errorMsg && mode === 'signup' && (
-                  <p className="text-xs text-red-500 font-bold text-center px-4 animate-pulse mt-2">{errorMsg}</p>
-                )}
-                {successMsg && mode === 'signup' && (
-                  <p className="text-xs text-[#00D2C4] font-bold text-center px-4 mt-2">{successMsg}</p>
-                )}
               </div>
+            </div>
 
-              <div className="mt-4">
-                <button
-                  type="submit"
-                  disabled={isProcessing}
-                  className={`w-full py-4 rounded-2xl font-black text-white text-[15px] tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-8`}
-                >
-                  {isProcessing ? <Loader2 size={20} className="animate-spin text-white" /> : 'Sign Up'}
-                </button>
-
-                <p className="text-center text-sm font-bold text-gray-500">
-                  Already have an account? 
-                  <button type="button" onClick={() => switchMode('signin')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
-                    Sign In
-                  </button>
-                </p>
-              </div>
-            </form>
           </div>
-
         </div>
       </div>
     </div>
