@@ -21,7 +21,7 @@ export default function FeaturesRow() {
   ];
 
   return (
-    <div className="w-full mt-auto pt-10 pb-8 border-t border-gray-200/80 transition-colors duration-300">
+    <div className="w-full mt-auto pt-6 pb-6 lg:pt-10 lg:pb-8 border-t border-gray-200/80 transition-colors duration-300">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           {features.map((feat, index) => (

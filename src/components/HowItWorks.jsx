@@ -52,7 +52,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#0A0A0A] py-24 lg:py-36 border-t border-[#1a1a1a]" id="how-it-works">
+    <section style={{ scrollMarginTop: '84px' }} className="w-full bg-[#0A0A0A] py-12 lg:py-36 border-t border-[#1a1a1a]" id="how-it-works">
       <div 
         ref={sectionRef}
         className={`w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 transition-all duration-1000 transform ${
@@ -61,7 +61,7 @@ export default function HowItWorks() {
       >
         
         {/* Editorial Two-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24">
           
           {/* =========================================================================
               LEFT COLUMN: HEADER (Sticky)

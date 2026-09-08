@@ -11,7 +11,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-84px)] lg:h-[calc(100vh-84px)] flex flex-col justify-between px-6 md:px-12 lg:px-20 py-12 lg:py-0 overflow-hidden">
+    <section className="relative w-full min-h-[calc(100vh-84px)] lg:h-[calc(100vh-84px)] flex flex-col justify-between px-6 md:px-12 lg:px-20 py-6 lg:py-0 overflow-hidden">
       {/* Background Subtle Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
       

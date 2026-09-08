@@ -32,7 +32,7 @@ export default function Footer() {
       {/* =========================================================================
           FOOTER TOP CTA (Yellow Panel)
          ========================================================================= */}
-      <div className="w-full bg-brand-yellow py-16 text-deep-black text-center relative overflow-hidden px-6 md:px-12 lg:px-20 select-none">
+      <div className="w-full bg-brand-yellow py-10 lg:py-16 text-deep-black text-center relative overflow-hidden px-6 md:px-12 lg:px-20 select-none">
         {/* Subtle accent blur circles */}
         <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/20 rounded-full blur-xl pointer-events-none" />
         
@@ -62,9 +62,9 @@ export default function Footer() {
       {/* =========================================================================
           MAIN DARK FOOTER (Deep Black)
          ========================================================================= */}
-      <div className="w-full bg-deep-black text-white py-16 px-6 md:px-12 lg:px-20 relative select-none">
+      <div className="w-full bg-deep-black text-white py-10 lg:py-16 px-6 md:px-12 lg:px-20 relative select-none">
         
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 items-start mb-8 lg:mb-10 text-left">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 items-start mb-8 lg:mb-10 text-left">
           
           {/* Logo Section */}
           <div className="lg:col-span-2 flex flex-col items-start gap-4">
