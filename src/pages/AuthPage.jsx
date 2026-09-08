@@ -34,9 +34,9 @@ export default function AuthPage() {
     setTimeout(() => setMounted(true), 50);
 
     const handleResize = () => {
-      // 760px is our circle width (720px) plus some padding (40px)
+      // 680px is our circle width (640px) plus some padding (40px)
       const viewportWidth = window.innerWidth;
-      const targetWidth = 760;
+      const targetWidth = 680;
       if (viewportWidth < targetWidth) {
         setScale(viewportWidth / targetWidth);
       } else {
@@ -140,7 +140,7 @@ export default function AuthPage() {
 
   // Reusable Shared UI blocks
   const renderLogo = () => (
-    <div className="flex justify-center mb-5">
+    <div className="flex justify-center mb-4">
       <div className="flex items-center gap-1.5 select-none">
         <div className="flex -space-x-2">
           <div className="w-5 h-5 rounded-full border-2 border-white bg-[#00D2C4] shadow-sm"></div>
@@ -152,11 +152,11 @@ export default function AuthPage() {
   );
 
   const renderTabs = (activeMode) => (
-    <div className={`flex p-1.5 rounded-2xl mb-6 ${neumorphInput}`}>
+    <div className={`flex p-1 rounded-2xl mb-5 ${neumorphInput}`}>
       <button
         type="button"
         onClick={() => switchMode('signin')}
-        className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
+        className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
           activeMode === 'signin' ? 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900' : 'text-gray-500 hover:text-gray-700'
         }`}
       >
@@ -165,7 +165,7 @@ export default function AuthPage() {
       <button
         type="button"
         onClick={() => switchMode('signup')}
-        className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
+        className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
           activeMode === 'signup' ? 'bg-[#f0f2f5] shadow-[4px_4px_8px_#d1d9e6,-4px_-4px_8px_#ffffff] text-gray-900' : 'text-gray-500 hover:text-gray-700'
         }`}
       >
@@ -180,9 +180,9 @@ export default function AuthPage() {
         type="button"
         onClick={handleGoogle}
         disabled={isProcessing}
-        className={`w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl mb-5 text-gray-700 font-bold text-[15px] ${neumorphButton} disabled:opacity-60 cursor-pointer`}
+        className={`w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl mb-4 text-gray-700 font-bold text-sm ${neumorphButton} disabled:opacity-60 cursor-pointer`}
       >
-        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
           <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
           <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
           <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -191,7 +191,7 @@ export default function AuthPage() {
         Continue with Google
       </button>
 
-      <div className="flex items-center gap-4 mb-5 px-4">
+      <div className="flex items-center gap-4 mb-4 px-4">
         <div className="flex-1 h-[2px] bg-white rounded-full shadow-sm" />
         <span className="text-[10px] font-black text-gray-400 tracking-widest uppercase">Or</span>
         <div className="flex-1 h-[2px] bg-white rounded-full shadow-sm" />
@@ -206,9 +206,9 @@ export default function AuthPage() {
       {/* Back Button (Neumorphic) */}
       <Link
         to="/"
-        className={`absolute top-6 left-6 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-gray-600 hover:text-[#00D2C4] ${neumorphButton} z-50`}
+        className={`absolute top-6 left-6 flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-gray-600 hover:text-[#00D2C4] ${neumorphButton} z-50`}
       >
-        <ArrowLeft size={16} strokeWidth={3} />
+        <ArrowLeft size={14} strokeWidth={3} />
         Back
       </Link>
 
@@ -219,7 +219,7 @@ export default function AuthPage() {
       >
         {/* 3D SCENE WRAPPER */}
         <div 
-          className={`w-[720px] h-[720px] perspective-[2000px] transition-all duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform ${
+          className={`w-[640px] h-[640px] perspective-[2000px] transition-all duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform ${
             mounted ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-12'
           }`}
         >
@@ -237,29 +237,29 @@ export default function AuthPage() {
             {/* FRONT FACE: SIGN IN */}
             {/* ========================================================= */}
             <div 
-              className={`col-start-1 row-start-1 w-full h-full rounded-full p-6 ${neumorphOuter} flex items-center justify-center`}
+              className={`col-start-1 row-start-1 w-full h-full rounded-full p-5 ${neumorphOuter} flex items-center justify-center`}
               style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
             >
               {/* Inner raised ring */}
-              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-8`}>
+              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6`}>
                 
-                {/* Safe Content Area (Rectangle constrained within the circle) */}
-                <div className="w-[420px] flex flex-col justify-center">
+                {/* Safe Content Area */}
+                <div className="w-[360px] flex flex-col justify-center">
                   
                   {renderLogo()}
                   {renderTabs('signin')}
                   
-                  <div className="text-center mb-6">
-                    <h2 className="font-black text-[28px] text-gray-800 tracking-tight">Welcome back</h2>
-                    <p className="text-gray-500 text-sm font-bold mt-1">Sign in to continue to RENZA</p>
+                  <div className="text-center mb-5">
+                    <h2 className="font-black text-2xl text-gray-800 tracking-tight">Welcome back</h2>
+                    <p className="text-gray-500 text-xs font-bold mt-1">Sign in to continue to RENZA</p>
                   </div>
 
                   {renderGoogleButton()}
 
-                  <form onSubmit={handleSignInSubmit} className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-3.5">
-                      <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Mail size={18} className="text-gray-400 mr-3" />
+                  <form onSubmit={handleSignInSubmit} className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3">
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Mail size={16} className="text-gray-400 mr-3" />
                         <input
                           type="email"
                           placeholder="Email Address"
@@ -270,8 +270,8 @@ export default function AuthPage() {
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-3.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Lock size={18} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Lock size={16} className="text-gray-400 mr-3" />
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Password"
@@ -281,19 +281,19 @@ export default function AuthPage() {
                           className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
-                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
 
                       <div className="flex items-center justify-between px-1 mt-1">
-                        <label className="flex items-center gap-2.5 cursor-pointer group select-none">
-                          <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInput}`}>
-                            {rememberMe && <Check size={14} strokeWidth={4} className="text-white" />}
+                        <label className="flex items-center gap-2 cursor-pointer group select-none">
+                          <div className={`w-4 h-4 rounded flex items-center justify-center transition-all ${rememberMe ? 'bg-[#00D2C4] shadow-sm' : neumorphInput}`}>
+                            {rememberMe && <Check size={12} strokeWidth={4} className="text-white" />}
                           </div>
-                          <span className="text-[13px] font-bold text-gray-500 group-hover:text-gray-800 transition-colors">Remember me</span>
+                          <span className="text-xs font-bold text-gray-500 group-hover:text-gray-800 transition-colors">Remember me</span>
                           <input type="checkbox" className="hidden" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
                         </label>
-                        <Link to="/forgot-password" className="text-[13px] font-bold text-gray-500 hover:text-[#00D2C4] transition-colors">
+                        <Link to="/forgot-password" className="text-xs font-bold text-gray-500 hover:text-[#00D2C4] transition-colors">
                           Forgot password?
                         </Link>
                       </div>
@@ -303,16 +303,16 @@ export default function AuthPage() {
                       )}
                     </div>
 
-                    <div className="mt-3">
+                    <div className="mt-2">
                       <button
                         type="submit"
                         disabled={isProcessing}
-                        className={`w-full py-4 rounded-2xl font-black text-white text-[15px] tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-6`}
+                        className={`w-full py-3.5 rounded-2xl font-black text-white text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
                       >
-                        {isProcessing ? <Loader2 size={20} className="animate-spin text-white" /> : 'Sign In'}
+                        {isProcessing ? <Loader2 size={18} className="animate-spin text-white" /> : 'Sign In'}
                       </button>
 
-                      <p className="text-center text-[13px] font-bold text-gray-500">
+                      <p className="text-center text-xs font-bold text-gray-500">
                         Don't have an account? 
                         <button type="button" onClick={() => switchMode('signup')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
                           Sign Up
@@ -328,7 +328,7 @@ export default function AuthPage() {
             {/* BACK FACE: SIGN UP */}
             {/* ========================================================= */}
             <div 
-              className={`col-start-1 row-start-1 w-full h-full rounded-full p-6 ${neumorphOuter} flex items-center justify-center`}
+              className={`col-start-1 row-start-1 w-full h-full rounded-full p-5 ${neumorphOuter} flex items-center justify-center`}
               style={{ 
                 backfaceVisibility: 'hidden', 
                 WebkitBackfaceVisibility: 'hidden',
@@ -336,25 +336,25 @@ export default function AuthPage() {
               }}
             >
               {/* Inner raised ring */}
-              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-8`}>
+              <div className={`w-full h-full rounded-full ${neumorphInner} flex items-center justify-center relative p-6`}>
                 
                 {/* Safe Content Area */}
-                <div className="w-[420px] flex flex-col justify-center">
+                <div className="w-[360px] flex flex-col justify-center">
                   
                   {renderLogo()}
                   {renderTabs('signup')}
 
-                  <div className="text-center mb-6">
-                    <h2 className="font-black text-[28px] text-gray-800 tracking-tight">Create account</h2>
-                    <p className="text-gray-500 text-sm font-bold mt-1">Join RENZA and get started</p>
+                  <div className="text-center mb-5">
+                    <h2 className="font-black text-2xl text-gray-800 tracking-tight">Create account</h2>
+                    <p className="text-gray-500 text-xs font-bold mt-1">Join RENZA and get started</p>
                   </div>
 
                   {renderGoogleButton()}
 
-                  <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-3">
-                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <User size={18} className="text-gray-400 mr-3" />
+                  <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-2.5">
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <User size={16} className="text-gray-400 mr-3" />
                         <input
                           type="text"
                           placeholder="Full Name"
@@ -365,8 +365,8 @@ export default function AuthPage() {
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Mail size={18} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Mail size={16} className="text-gray-400 mr-3" />
                         <input
                           type="email"
                           placeholder="Email Address"
@@ -377,8 +377,8 @@ export default function AuthPage() {
                         />
                       </div>
 
-                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Lock size={18} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Lock size={16} className="text-gray-400 mr-3" />
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="Password"
@@ -388,12 +388,12 @@ export default function AuthPage() {
                           className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
-                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
 
-                      <div className={`flex items-center px-4 py-3 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
-                        <Lock size={18} className="text-gray-400 mr-3" />
+                      <div className={`flex items-center px-4 py-2.5 rounded-2xl ${neumorphInput} focus-within:shadow-[inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff,0_0_0_2px_#00D2C4] transition-all`}>
+                        <Lock size={16} className="text-gray-400 mr-3" />
                         <input
                           type={showConfirmPassword ? 'text' : 'password'}
                           placeholder="Confirm Password"
@@ -403,7 +403,7 @@ export default function AuthPage() {
                           className="w-full bg-transparent border-none outline-none text-gray-700 text-sm font-bold placeholder:text-gray-400"
                         />
                         <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="text-gray-400 hover:text-[#00D2C4] transition-colors focus:outline-none cursor-pointer">
-                          {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                          {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
 
@@ -415,16 +415,16 @@ export default function AuthPage() {
                       )}
                     </div>
 
-                    <div className="mt-2">
+                    <div className="mt-1">
                       <button
                         type="submit"
                         disabled={isProcessing}
-                        className={`w-full py-3.5 rounded-2xl font-black text-white text-[15px] tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
+                        className={`w-full py-3.5 rounded-2xl font-black text-white text-sm tracking-wide flex items-center justify-center gap-2 ${neumorphPrimary} disabled:opacity-70 cursor-pointer mb-5`}
                       >
-                        {isProcessing ? <Loader2 size={20} className="animate-spin text-white" /> : 'Sign Up'}
+                        {isProcessing ? <Loader2 size={18} className="animate-spin text-white" /> : 'Sign Up'}
                       </button>
 
-                      <p className="text-center text-[13px] font-bold text-gray-500">
+                      <p className="text-center text-xs font-bold text-gray-500">
                         Already have an account? 
                         <button type="button" onClick={() => switchMode('signin')} className="text-[#00D2C4] hover:text-[#00B3A6] transition-colors cursor-pointer ml-1">
                           Sign In
