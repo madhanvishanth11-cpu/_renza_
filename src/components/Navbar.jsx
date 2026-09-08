@@ -4,6 +4,7 @@ import { Menu, X, Download, LogOut, User, ChevronDown, Sun, Moon } from 'lucide-
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+import ThemeToggleAnim from './ThemeToggleAnim';
 
 // ─── User Avatar Dropdown ───────────────────────────────────
 function UserMenu({ user, profile, logout }) {
@@ -144,15 +145,11 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT: Actions (Desktop) */}
-        <div className="hidden lg:flex items-center gap-4">
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-2.5 rounded-full border border-gray-200 hover:border-gray-400 bg-white text-text-dark transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? <Sun size={18} className="text-[#00D2C4]" /> : <Moon size={18} className="text-[#111111]" />}
-          </button>
+        <div className="hidden lg:flex items-center gap-6">
+          {/* Animated Day/Night Toggle */}
+          <div className="relative">
+             <ThemeToggleAnim />
+          </div>
 
           {/* Auth: Login button OR User Avatar */}
           {!loading && (

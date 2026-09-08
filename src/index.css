@@ -589,3 +589,21 @@ body {
   scrollbar-width: none !important;
 }
 
+
+@keyframes cloud-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-cloud-scroll { animation: cloud-scroll 30s linear infinite; }
+.animate-cloud-scroll-slow { animation: cloud-scroll 45s linear infinite; }
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.animate-star-twinkle { animation: star-twinkle 3s ease-in-out infinite; }
+.animate-star-twinkle-delay { animation: star-twinkle 4s ease-in-out infinite 1.5s; }
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(255,255,255,0.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(255,255,255,0.9); }
+}
+.animate-sun-pulse { animation: sun-pulse 4s ease-in-out infinite; }
