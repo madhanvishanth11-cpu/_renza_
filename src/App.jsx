@@ -11,8 +11,7 @@ import Footer from './components/Footer';
 import { AuthProvider } from './context/AuthContext';
 
 // Import Auth Pages
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
+import AuthPage from './pages/AuthPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 
@@ -51,8 +50,8 @@ function App() {
             } />
             
             {/* Auth page layouts */}
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signin" element={<AuthPage />} />
+            <Route path="/signup" element={<AuthPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             
