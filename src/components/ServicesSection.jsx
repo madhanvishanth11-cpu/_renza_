@@ -123,9 +123,9 @@ export default function ServicesSection() {
                   <div className="absolute top-[-20%] right-[-20%] w-16 h-16 bg-[#00D2C4]/20 rounded-full blur-md pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   {/* Card Content */}
-                  <div className="z-20 p-4 lg:p-5 flex items-end justify-between gap-2 w-full mt-auto">
-                    <div className="overflow-hidden">
-                      <h4 className="font-sans font-black text-lg lg:text-xl xl:text-2xl text-white leading-tight drop-shadow-md">
+                  <div className="z-20 p-3 lg:p-4 flex items-end justify-between gap-2 w-full mt-auto">
+                    <div className="min-w-0 flex-1 pr-1">
+                      <h4 className="font-sans font-black text-base lg:text-lg xl:text-xl text-white leading-tight drop-shadow-md break-words">
                         {card.title}
                       </h4>
                     </div>
@@ -165,8 +165,8 @@ export default function ServicesSection() {
 
                     {/* Card Content */}
                     <div className="z-20 flex items-end justify-between gap-2 w-full mt-auto">
-                      <div className="overflow-hidden">
-                        <h4 className="font-sans font-black text-lg lg:text-xl text-white leading-tight drop-shadow-md">
+                      <div className="min-w-0 flex-1 pr-1">
+                        <h4 className="font-sans font-black text-[15px] sm:text-base text-white leading-tight drop-shadow-md break-words">
                           {card.title}
                         </h4>
                       </div>
