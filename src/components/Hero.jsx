@@ -52,7 +52,13 @@ export default function Hero() {
             </div>
           </div>
 
-
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-6">
+            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#00D2C4] hover:bg-[#00B3A6] text-white font-extrabold text-base tracking-wide transition-all duration-300 shadow-[0_4px_14px_rgba(0,210,196,0.3)] hover:shadow-[0_6px_20px_rgba(0,210,196,0.4)] hover:-translate-y-1 active:translate-y-0 active:scale-95 cursor-pointer group">
+              <Download size={18} strokeWidth={2.5} className="group-hover:translate-y-0.5 transition-transform" />
+              Download
+            </button>
+          </div>
 
           {/* Availability Trust Check */}
           <div className="flex items-center gap-2 mb-4">
