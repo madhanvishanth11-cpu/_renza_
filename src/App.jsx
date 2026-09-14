@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
-import FeaturesRow from './components/FeaturesRow';
 import ServicesSection from './components/ServicesSection';
 import TrustSection from './components/TrustSection';
 import FAQSection from './components/FAQSection';
@@ -21,7 +20,6 @@ function Home() {
     <main className="flex-1 flex flex-col justify-between">
       <Hero />
       <HowItWorks />
-      <FeaturesRow />
       <ServicesSection />
       <TrustSection />
       <FAQSection />
@@ -71,3 +69,4 @@ function App() {
 }
 
 export default App;
+
