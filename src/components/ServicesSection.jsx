@@ -80,7 +80,7 @@ export default function ServicesSection() {
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-start justify-between gap-6 w-full p-8 md:p-10 lg:p-12">
             {/* Top Left: Heading */}
             <div className="text-left max-w-xl">
-              <span className="text-white/90 text-[10px] md:text-xs font-black tracking-widest block uppercase mb-3">
+              <span className="text-white/90 text-[17px] md:text-[20px] lg:text-[24px] font-black tracking-widest block uppercase mb-3">
                 SERVICES
               </span>
               <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-white leading-[1.1] drop-shadow-md">

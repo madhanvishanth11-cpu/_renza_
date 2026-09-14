@@ -97,7 +97,7 @@ export default function HowItWorks() {
               {/* Subtle Label & Accent Line */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-8 h-[1px] bg-[#00D2C4]" />
-                <span className="text-[#00D2C4] text-[10px] font-black tracking-[0.2em] uppercase">
+                <span className="text-[#00D2C4] text-[17px] md:text-[20px] lg:text-[24px] font-black tracking-[0.2em] uppercase">
                   HOW RENZA WORKS
                 </span>
               </div>

@@ -89,8 +89,8 @@ export default function FAQSection() {
             headerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-text-dark text-[11px] font-bold tracking-wider uppercase mb-4">
-            <HelpCircle size={11} className="text-amber-500 fill-amber-500" />
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 text-text-dark text-[17px] md:text-[20px] lg:text-[24px] font-bold tracking-wider uppercase mb-4">
+            <HelpCircle size={20} className="text-amber-500 fill-amber-500" />
             FREQUENTLY ASKED QUESTIONS
           </span>
           <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-text-dark tracking-tight leading-[1.1] mb-6">
