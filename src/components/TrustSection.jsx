@@ -80,7 +80,7 @@ export default function TrustSection() {
             <ShieldCheck size={11} className="text-amber-500 fill-amber-500" />
             WHY TRUST RENZA?
           </span>
-          <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[54px] text-text-dark tracking-tight leading-[1.1] mb-6">
+          <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-text-dark tracking-tight leading-[1.1] mb-6">
             Household Help You <br />
             <span className="relative inline-block my-1">
               <span className="relative z-10 text-deep-black px-4 bg-brand-yellow rounded-[4px] py-0.5 inline-block shadow-sm">
@@ -112,7 +112,7 @@ export default function TrustSection() {
                   {card.icon}
                 </div>
                 
-                <h3 className="font-sans font-black text-lg text-text-dark mb-2 leading-tight">
+                <h3 className="font-sans font-black text-2xl md:text-[28px] text-text-dark mb-3 leading-tight">
                   {card.title}
                 </h3>
                 

@@ -86,7 +86,7 @@ export default function ServicesSection() {
               <span className="text-[#00D2C4] text-[10px] md:text-xs font-black tracking-widest block uppercase mb-3">
                 SERVICES
               </span>
-              <h2 className="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-white leading-[1.1] drop-shadow-md">
+              <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-white leading-[1.1] drop-shadow-md">
                 What Can Your House Help Do?
               </h2>
             </div>
@@ -128,7 +128,7 @@ export default function ServicesSection() {
                   {/* Card Content */}
                   <div className="z-20 p-4 lg:p-5 flex items-end justify-between gap-2 w-full mt-auto">
                     <div className="overflow-hidden">
-                      <h4 className="font-sans font-black text-sm lg:text-sm xl:text-base text-white leading-tight drop-shadow-md">
+                      <h4 className="font-sans font-black text-lg lg:text-xl xl:text-2xl text-white leading-tight drop-shadow-md">
                         {card.title}
                       </h4>
                     </div>
@@ -169,7 +169,7 @@ export default function ServicesSection() {
                     {/* Card Content */}
                     <div className="z-20 flex items-end justify-between gap-2 w-full mt-auto">
                       <div className="overflow-hidden">
-                        <h4 className="font-sans font-black text-sm text-white leading-tight drop-shadow-md">
+                        <h4 className="font-sans font-black text-lg lg:text-xl text-white leading-tight drop-shadow-md">
                           {card.title}
                         </h4>
                       </div>

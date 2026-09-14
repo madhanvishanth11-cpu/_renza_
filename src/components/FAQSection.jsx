@@ -93,7 +93,7 @@ export default function FAQSection() {
             <HelpCircle size={11} className="text-amber-500 fill-amber-500" />
             FREQUENTLY ASKED QUESTIONS
           </span>
-          <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[54px] text-text-dark tracking-tight leading-[1.1] mb-6">
+          <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-text-dark tracking-tight leading-[1.1] mb-6">
             Questions? We've Got You.
           </h2>
           <p className="text-text-secondary text-lg font-normal leading-relaxed">
@@ -127,7 +127,7 @@ export default function FAQSection() {
                   className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none cursor-pointer group"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-sans font-black text-base md:text-lg transition-colors ${
+                  <span className={`font-sans font-black text-xl md:text-2xl transition-colors ${
                     isOpen ? 'text-text-dark' : 'text-text-dark/95 group-hover:text-text-dark'
                   }`}>
                     {item.q}

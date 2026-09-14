@@ -76,7 +76,7 @@ export default function HowItWorks() {
                 </span>
               </div>
               
-              <h2 className="font-sans font-black text-4xl md:text-5xl lg:text-[64px] text-white tracking-tight leading-[1.05] mb-8">
+              <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-white tracking-tight leading-[1.05] mb-8">
                 From a Problem to a Solved Outcome.
               </h2>
               
@@ -116,7 +116,7 @@ export default function HowItWorks() {
                         {step.num}
                       </span>
                       
-                      <h3 className="font-sans font-black text-2xl md:text-4xl text-white tracking-tight mb-4 transition-colors duration-300">
+                      <h3 className="font-sans font-black text-3xl md:text-[42px] text-white tracking-tight mb-4 transition-colors duration-300">
                         {step.title}
                       </h3>
                       

@@ -26,7 +26,7 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[44px] sm:text-5xl md:text-7xl lg:text-[72px] xl:text-[76px] leading-[1.05] mb-6 uppercase">
+          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[52px] sm:text-[64px] md:text-[80px] lg:text-[96px] xl:text-[104px] leading-[1.05] mb-6 uppercase">
             Household <br />
             <span className="relative inline-block my-2">
               <span className="relative z-10 text-white px-4 bg-[#00D2C4] rounded-[4px] inline-block py-1 shadow-sm">

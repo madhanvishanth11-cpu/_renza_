@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/20 rounded-full blur-xl pointer-events-none" />
         
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-          <h3 className="font-sans font-black text-3xl md:text-5xl tracking-tight leading-none mb-3 uppercase">
+          <h3 className="font-sans font-black text-[42px] md:text-[64px] tracking-tight leading-none mb-3 uppercase">
             Ready to Make Household Help Simpler?
           </h3>
           <p className="text-deep-black/90 text-sm md:text-base font-bold max-w-lg leading-relaxed mb-8">
