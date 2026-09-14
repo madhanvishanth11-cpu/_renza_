@@ -26,14 +26,14 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-sans font-black tracking-tight text-[#111111] text-5xl md:text-7xl lg:text-[76px] xl:text-[80px] leading-[1.05] mb-6">
-            Get Any <br />
+          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[44px] sm:text-5xl md:text-7xl lg:text-[72px] xl:text-[76px] leading-[1.05] mb-6 uppercase">
+            Household <br />
             <span className="relative inline-block my-2">
-              <span className="relative z-10 text-deep-black px-4 bg-brand-yellow rounded-[4px] inline-block py-1 shadow-sm">
-                Local Task
+              <span className="relative z-10 text-white px-4 bg-[#00D2C4] rounded-[4px] inline-block py-1 shadow-sm">
+                Jobs,
               </span>
             </span> <br />
-            Done. <span className="text-[#00D2C4] drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">Easily.</span>
+            Done <span className="text-[#00D2C4] drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">Right</span>
           </h1>
 
           {/* Subtitle */}
