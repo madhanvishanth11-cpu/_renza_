@@ -6,7 +6,6 @@ import fanImg from '../assets/fan_cleaning.jpg';
 import windowImg from '../assets/window_cleaning.jpg';
 import laundryImg from '../assets/laundry_help_new.jpg';
 import bathImg from '../assets/bathroom_cleaning.jpg';
-import servicesBg from '../assets/services_bg_new.png';
 
 // Lightweight Intersection Observer hook for scroll reveal animations
 function useScrollReveal() {
@@ -61,29 +60,27 @@ export default function ServicesSection() {
            ========================================================================= */}
         <div 
           ref={containerRef}
-          className={`relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#0c1f1e] via-[#051313] to-[#040c0c] border border-[#00D2C4]/20 shadow-2xl mb-12 lg:mb-16 transition-all duration-1000 transform flex flex-col justify-between min-h-[500px] md:min-h-[600px] lg:min-h-[700px] ${
+          className={`relative w-full rounded-[32px] overflow-hidden bg-[#00D2C4] shadow-2xl mb-12 lg:mb-16 transition-all duration-1000 transform flex flex-col justify-between min-h-[500px] md:min-h-[600px] lg:min-h-[700px] ${
             containerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          {/* MAIN FEATURED BACKGROUND IMAGE */}
+          {/* CLEAN PREMIUM GRADIENT BACKGROUND WITHOUT HUMANS */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
-            <img 
-              src={servicesBg} 
-              alt="House Help Service Experience" 
-              className="w-full h-full object-cover object-[70%_20%] lg:object-[80%_15%] opacity-90 transition-transform duration-1000 hover:scale-[1.02]"
-            />
-            {/* Subtle dark gradient overlay for text readability & card contrast */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/95" />
+            {/* Base subtle gradient for depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#00D2C4] via-[#00B3A6] to-[#008F85]" />
+            {/* Dark gradient at bottom to anchor the cards and improve contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#003834]/90 via-[#00524d]/40 to-transparent" />
+            
+            {/* Ambient glowing meshes for modern startup feel */}
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-white/20 rounded-full blur-[100px]" />
+            <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-black/10 rounded-full blur-[120px]" />
           </div>
-
-          {/* Background Ambient Mesh Lights */}
-          <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] bg-[#00D2C4]/20 rounded-full blur-[100px] pointer-events-none z-0" />
 
           {/* TOP AREA: Heading and View All */}
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-start justify-between gap-6 w-full p-8 md:p-10 lg:p-12">
             {/* Top Left: Heading */}
             <div className="text-left max-w-xl">
-              <span className="text-[#00D2C4] text-[10px] md:text-xs font-black tracking-widest block uppercase mb-3">
+              <span className="text-white/90 text-[10px] md:text-xs font-black tracking-widest block uppercase mb-3">
                 SERVICES
               </span>
               <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-white leading-[1.1] drop-shadow-md">
@@ -96,7 +93,7 @@ export default function ServicesSection() {
               <span className="text-white text-xs font-black tracking-wider uppercase drop-shadow-sm">
                 View All
               </span>
-              <button className="w-10 h-10 rounded-full bg-white hover:bg-[#00D2C4] text-[#00D2C4] hover:text-deep-black flex items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer shadow-lg hover:shadow-[#00D2C4]/50">
+              <button className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 text-[#00D2C4] hover:text-deep-black flex items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer shadow-lg">
                 <ArrowRight size={18} strokeWidth={3} />
               </button>
             </div>
