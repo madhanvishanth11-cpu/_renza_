@@ -173,11 +173,7 @@ export default function Navbar() {
             )
           )}
 
-          {/* Download App Button */}
-          <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-yellow hover:bg-[#00B3A6] text-deep-black font-bold text-sm tracking-wide transition-all duration-300 shadow-yellow-glow hover:shadow-yellow-glow-lg hover:scale-[1.03] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-            <Download size={16} strokeWidth={2.5} />
-            Download App
-          </button>
+
         </div>
 
         {/* Mobile Right Controls */}
@@ -249,10 +245,7 @@ export default function Navbar() {
                   Login
                 </button>
               )}
-              <button className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-brand-yellow text-deep-black font-bold text-sm shadow-yellow-glow cursor-pointer">
-                <Download size={16} strokeWidth={2.5} />
-                Download App
-              </button>
+
             </div>
           </div>
         )}

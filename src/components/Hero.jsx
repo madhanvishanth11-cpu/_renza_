@@ -26,14 +26,14 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[52px] sm:text-[64px] md:text-[80px] lg:text-[96px] xl:text-[104px] leading-[1.05] mb-6 uppercase">
-            Household <br />
+          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[52px] sm:text-[64px] md:text-[80px] lg:text-[96px] xl:text-[104px] leading-[1.05] mb-6">
+            Get Any <br />
             <span className="relative inline-block my-2">
-              <span className="relative z-10 text-white px-4 bg-[#00D2C4] rounded-[4px] inline-block py-1 shadow-sm">
-                Jobs,
+              <span className="relative z-10 text-deep-black px-4 bg-brand-yellow rounded-[4px] inline-block py-1 shadow-sm">
+                Local Task
               </span>
             </span> <br />
-            Done <span className="text-[#00D2C4] drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">Right</span>
+            Done. <span className="text-[#00D2C4] drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]">Easily.</span>
           </h1>
 
           {/* Subtitle */}
@@ -52,13 +52,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* CTA Buttons & Social Proof */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-6">
-            <button className="flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-yellow hover:bg-[#00B3A6] text-deep-black font-extrabold text-base tracking-wide transition-all duration-300 shadow-yellow-glow hover:shadow-yellow-glow-lg hover:-translate-y-1 active:translate-y-0 active:scale-98 cursor-pointer group">
-              <Download size={18} strokeWidth={2.5} className="group-hover:translate-y-0.5 transition-transform" />
-              Download RENZA App
-            </button>
-          </div>
+
 
           {/* Availability Trust Check */}
           <div className="flex items-center gap-2 mb-4">
