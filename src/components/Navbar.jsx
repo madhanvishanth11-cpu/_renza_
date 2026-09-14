@@ -4,7 +4,6 @@ import { Menu, X, Download, LogOut, User, ChevronDown, Sun, Moon } from 'lucide-
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
-import ThemeToggleAnim from './ThemeToggleAnim';
 
 // ─── User Avatar Dropdown ───────────────────────────────────
 function UserMenu({ user, profile, logout }) {
@@ -102,6 +101,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { user, profile, loading, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   React.useEffect(() => {
     const handleOpenLogin = () => navigate('/signin');
@@ -123,7 +123,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full h-[64px] md:h-[84px] bg-white/95 backdrop-blur-md border-b border-gray-200/80 transition-colors duration-300 flex items-center justify-between px-4 md:px-12 lg:px-20">
+      <header className={`sticky top-0 z-50 w-full h-[64px] md:h-[84px] backdrop-blur-md border-b transition-colors duration-300 flex items-center justify-between px-4 md:px-12 lg:px-20 ${isDark ? 'bg-[#0e0e0e]/95 border-neutral-800' : 'bg-white/95 border-gray-200/80'}`}>
         {/* LEFT: Logo */}
         <div className="flex-shrink-0">
           <a href="#" onClick={handleLogoClick} aria-label="RENZA Home" className="transition-transform hover:scale-[1.02]">
@@ -137,7 +137,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="relative py-2 text-sm font-semibold tracking-wide text-text-secondary hover:text-text-dark transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-brand-yellow after:transform after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center"
+              className={`relative py-2 text-sm font-semibold tracking-wide transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2.5px] after:bg-brand-yellow after:transform after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center ${isDark ? 'text-gray-300 hover:text-white' : 'text-text-secondary hover:text-text-dark'}`}
             >
               {link.label}
             </a>
@@ -146,10 +146,18 @@ export default function Navbar() {
 
         {/* RIGHT: Actions (Desktop) */}
         <div className="hidden lg:flex items-center gap-6">
-          {/* Animated Day/Night Toggle */}
-          <div className="relative">
-             <ThemeToggleAnim />
-          </div>
+          {/* Standard Day/Night Toggle */}
+          <button
+            onClick={toggleTheme}
+            className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${
+              isDark 
+                ? 'bg-neutral-800 text-neutral-300 hover:text-[#00D2C4] hover:bg-neutral-700' 
+                : 'bg-gray-100 text-gray-600 hover:text-[#00D2C4] hover:bg-gray-200'
+            }`}
+            aria-label="Toggle dark mode"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
 
           {/* Auth: Login button OR User Avatar */}
           {!loading && (
@@ -158,7 +166,7 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => navigate('/signin')}
-                className="px-6 py-2.5 rounded-full border border-gray-200 hover:border-gray-400 bg-white text-[#111111] hover:text-[#000000] font-semibold text-sm transition-all duration-300 hover:shadow-sm hover:scale-[1.02] active:scale-95 cursor-pointer"
+                className={`px-6 py-2.5 rounded-full border font-semibold text-sm transition-all duration-300 hover:shadow-sm hover:scale-[1.02] active:scale-95 cursor-pointer ${isDark ? 'border-neutral-700 bg-neutral-800 text-neutral-200 hover:text-white hover:border-neutral-600' : 'border-gray-200 bg-white text-[#111111] hover:text-[#000000] hover:border-gray-400'}`}
               >
                 Login
               </button>
@@ -174,12 +182,18 @@ export default function Navbar() {
 
         {/* Mobile Right Controls */}
         <div className="flex lg:hidden items-center gap-2 sm:gap-3">
-          {/* Mobile Theme Toggle (Scaled) */}
-          <div className="relative w-[72px] h-[26px] flex items-center justify-center ml-1 overflow-visible">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-[0.6]">
-              <ThemeToggleAnim />
-            </div>
-          </div>
+          {/* Mobile Theme Toggle (Standard) */}
+          <button
+            onClick={toggleTheme}
+            className={`flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 mr-1 ${
+              isDark 
+                ? 'bg-neutral-800 text-neutral-300 hover:text-[#00D2C4] hover:bg-neutral-700' 
+                : 'bg-gray-100 text-gray-600 hover:text-[#00D2C4] hover:bg-gray-200'
+            }`}
+            aria-label="Toggle dark mode"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
 
           {/* Mobile: show avatar or login icon */}
           {!loading && user && (
@@ -196,7 +210,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-9 h-9 rounded-full border border-gray-200 bg-white text-text-dark flex items-center justify-center cursor-pointer transition-colors active:scale-95 transition-all duration-200 hover:bg-gray-50"
+            className={`w-9 h-9 rounded-full border flex items-center justify-center cursor-pointer transition-all duration-200 active:scale-95 ${isDark ? 'bg-neutral-800 border-neutral-700 text-neutral-300 hover:bg-neutral-700' : 'bg-white border-gray-200 text-text-dark hover:bg-gray-50'}`}
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
@@ -205,14 +219,14 @@ export default function Navbar() {
 
         {/* Mobile Drawer Navigation */}
         {mobileMenuOpen && (
-          <div className="absolute top-[64px] md:top-[84px] left-0 w-full bg-white border-b border-gray-200 shadow-lg lg:hidden flex flex-col px-6 py-8 gap-6 z-40 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-5">
+          <div className={`absolute top-[64px] md:top-[84px] left-0 w-full border-b shadow-lg lg:hidden flex flex-col px-6 py-8 gap-6 z-40 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-5 ${isDark ? 'bg-[#0e0e0e] border-neutral-800' : 'bg-white border-gray-200'}`}>
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-semibold text-text-secondary hover:text-text-dark py-2 transition-colors border-b border-gray-50"
+                  className={`text-base font-semibold py-2 transition-colors border-b ${isDark ? 'text-gray-300 hover:text-white border-neutral-800' : 'text-text-secondary hover:text-text-dark border-gray-50'}`}
                 >
                   {link.label}
                 </a>
@@ -230,7 +244,7 @@ export default function Navbar() {
               ) : (
                 <button
                   onClick={() => { navigate('/signin'); setMobileMenuOpen(false); }}
-                  className="w-full text-center px-6 py-3 rounded-full border border-gray-200 bg-white text-[#111111] font-semibold text-sm hover:bg-gray-50 cursor-pointer"
+                  className={`w-full text-center px-6 py-3 rounded-full border font-semibold text-sm cursor-pointer ${isDark ? 'border-neutral-700 bg-neutral-800 text-neutral-200 hover:text-white hover:bg-neutral-700' : 'border-gray-200 bg-white text-[#111111] hover:bg-gray-50'}`}
                 >
                   Login
                 </button>
