@@ -60,40 +60,36 @@ export default function ServicesSection() {
            ========================================================================= */}
         <div 
           ref={containerRef}
-          className={`relative w-full rounded-[32px] overflow-hidden bg-[#00D2C4] shadow-2xl mb-12 lg:mb-16 transition-all duration-1000 transform flex flex-col justify-between min-h-[500px] md:min-h-[600px] lg:min-h-[700px] ${
+          className={`relative w-full rounded-[32px] overflow-hidden bg-white/40 backdrop-blur-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)] mb-12 lg:mb-16 transition-all duration-1000 transform flex flex-col justify-between min-h-[500px] md:min-h-[600px] lg:min-h-[700px] ${
             containerRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          {/* CLEAN PREMIUM GRADIENT BACKGROUND WITHOUT HUMANS */}
-          <div className="absolute inset-0 z-0 select-none pointer-events-none">
-            {/* Base subtle gradient for depth */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#00D2C4] via-[#00B3A6] to-[#008F85]" />
-            {/* Dark gradient at bottom to anchor the cards and improve contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#003834]/90 via-[#00524d]/40 to-transparent" />
-            
-            {/* Ambient glowing meshes for modern startup feel */}
-            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-white/20 rounded-full blur-[100px]" />
-            <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-black/10 rounded-full blur-[120px]" />
+          {/* PREMIUM GLASSMORPHISM BACKGROUND */}
+          <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+            {/* Ambient glowing meshes for modern startup feel behind glass */}
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#00D2C4]/20 rounded-full blur-[100px] animate-pulse" />
+            <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-[-10%] left-[30%] w-[400px] h-[400px] bg-emerald-400/10 rounded-full blur-[90px]" />
           </div>
 
           {/* TOP AREA: Heading and View All */}
           <div className="relative z-10 flex flex-col sm:flex-row sm:items-start justify-between gap-6 w-full p-8 md:p-10 lg:p-12">
             {/* Top Left: Heading */}
             <div className="text-left max-w-xl">
-              <span className="text-white/90 text-[17px] md:text-[20px] lg:text-[24px] font-black tracking-widest block uppercase mb-3">
+              <span className="text-[#00D2C4] text-[17px] md:text-[20px] lg:text-[24px] font-black tracking-widest block uppercase mb-3">
                 SERVICES
               </span>
-              <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-white leading-[1.1] drop-shadow-md">
+              <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-deep-black leading-[1.1]">
                 What Can Your House Help Do?
               </h2>
             </div>
 
             {/* Top Right: View All */}
             <div className="flex items-center gap-3 self-start sm:self-auto flex-shrink-0 mt-2 sm:mt-0">
-              <span className="text-white text-xs font-black tracking-wider uppercase drop-shadow-sm">
+              <span className="text-deep-black text-xs font-black tracking-wider uppercase drop-shadow-sm">
                 View All
               </span>
-              <button className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 text-[#00D2C4] hover:text-deep-black flex items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer shadow-lg">
+              <button className="w-10 h-10 rounded-full bg-[#00D2C4] hover:bg-[#00B3A6] text-white flex items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer shadow-lg border border-white/50">
                 <ArrowRight size={18} strokeWidth={3} />
               </button>
             </div>
@@ -125,7 +121,7 @@ export default function ServicesSection() {
                   {/* Card Content */}
                   <div className="z-20 p-3 lg:p-4 flex items-end justify-between gap-2 w-full mt-auto">
                     <div className="min-w-0 flex-1 pr-1">
-                      <h4 className="font-sans font-black text-base lg:text-lg xl:text-xl text-white leading-tight drop-shadow-md break-words">
+                      <h4 className="font-sans font-black text-[13px] lg:text-[14px] xl:text-[16px] text-white leading-tight drop-shadow-md whitespace-normal break-normal">
                         {card.title}
                       </h4>
                     </div>
@@ -166,7 +162,7 @@ export default function ServicesSection() {
                     {/* Card Content */}
                     <div className="z-20 flex items-end justify-between gap-2 w-full mt-auto">
                       <div className="min-w-0 flex-1 pr-1">
-                        <h4 className="font-sans font-black text-[15px] sm:text-base text-white leading-tight drop-shadow-md break-words">
+                        <h4 className="font-sans font-black text-[14px] sm:text-[15px] text-white leading-tight drop-shadow-md whitespace-normal break-normal">
                           {card.title}
                         </h4>
                       </div>
