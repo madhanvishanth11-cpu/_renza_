@@ -102,8 +102,13 @@ export default function HowItWorks() {
                 </span>
               </div>
               
-              <h2 className="font-sans font-black text-[42px] sm:text-[54px] md:text-[64px] lg:text-[76px] text-[#111111] tracking-tight leading-[1.05] mb-8">
-                From a Problem to a Solved Outcome.
+              <h2 className="font-sans font-black text-[52px] sm:text-[64px] md:text-[72px] lg:text-[80px] xl:text-[96px] text-[#111111] tracking-tight leading-[1.05] mb-8">
+                How <br />
+                <span className="relative inline-block my-2 md:my-3 max-w-full">
+                  <span className="relative z-10 text-deep-black px-5 md:px-6 bg-[#00D2C4] rounded-[16px] md:rounded-[20px] inline-block py-1 md:py-2 shadow-sm whitespace-normal">
+                    RENZA Works
+                  </span>
+                </span>
               </h2>
               
               <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-[440px]">
