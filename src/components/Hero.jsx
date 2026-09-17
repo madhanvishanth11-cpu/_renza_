@@ -26,14 +26,14 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[40px] sm:text-[52px] md:text-[60px] lg:text-[68px] xl:text-[76px] leading-[1.1] mb-6 animate-fade-in-up">
-            Household Help, <br />
-            <span className="relative inline-block my-2 sm:my-3 max-w-full">
-              <span className="relative z-10 text-deep-black px-4 sm:px-6 bg-[#00D2C4] rounded-[16px] sm:rounded-[20px] inline-block py-1 sm:py-2 shadow-sm whitespace-normal">
-                So You Don't Have to Worry
+          <h1 className="font-sans font-black tracking-tight text-[#111111] text-[52px] sm:text-[64px] md:text-[80px] lg:text-[96px] xl:text-[104px] leading-[1.05] mb-6 animate-fade-in-up">
+            Get Any <br />
+            <span className="relative inline-block my-2 md:my-3 max-w-full">
+              <span className="relative z-10 text-deep-black px-5 md:px-6 bg-[#00D2C4] rounded-[16px] md:rounded-[20px] inline-block py-1 md:py-2 shadow-lg whitespace-normal">
+                Household Works
               </span>
             </span> <br />
-            About It.
+            Done Easily
           </h1>
 
           {/* Subtitle */}
