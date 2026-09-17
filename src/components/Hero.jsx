@@ -96,11 +96,12 @@ export default function Hero() {
         <img 
           src={workforceImg} 
           alt="RENZA Workforce showing Male and Female workers in black and teal uniforms offering a traditional greeting" 
-          className="w-full md:max-w-[520px] lg:max-w-[650px] xl:max-w-[760px] h-auto object-contain select-none pointer-events-none hidden md:block align-bottom"
+          className="w-full md:max-w-[650px] lg:max-w-[850px] xl:max-w-[950px] h-auto object-contain select-none pointer-events-none hidden md:block align-bottom animate-float"
         />
       </div>
     </section>
   );
 }
+
 
 
