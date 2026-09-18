@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Check, Sparkles } from 'lucide-react';
-import heroVisual from '../assets/hero_workforce_v2.jpg';
+import heroVisual from '../assets/hero_indian_workforce.jpg';
 
 export default function Hero() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -59,34 +59,28 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: HERO VISUAL (50%) */}
+        {/* RIGHT COLUMN: HERO VISUAL (45%) */}
         <div className={`w-full flex justify-center lg:justify-end transition-all duration-[1200ms] ease-out transform ${
           imageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          {/* Visual Container */}
-          <div className="relative w-full max-w-[500px] lg:max-w-[560px] aspect-[4/5] rounded-[40px] md:rounded-[64px] bg-white dark:bg-gray-800 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-gray-700 p-3 md:p-4 animate-float overflow-hidden group">
+          {/* Integrated Visual Container with Mask to blend naturally into the page */}
+          <div className="relative w-full max-w-[480px] lg:max-w-[540px] animate-float flex justify-center">
             
-            {/* Subtle Inner Accent */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D2C4]/10 rounded-bl-full pointer-events-none transition-transform duration-700 group-hover:scale-110" />
-            
-            {/* Main Image */}
-            <div className="w-full h-full rounded-[32px] md:rounded-[52px] overflow-hidden relative bg-[#F7F9FA] dark:bg-gray-900">
+            {/* Soft backdrop glow to anchor the image */}
+            <div className="absolute inset-0 bg-white/20 dark:bg-black/20 rounded-full blur-[60px] -z-10" />
+
+            <div 
+              className="w-full overflow-hidden" 
+              style={{ 
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)', 
+                maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)' 
+              }}
+            >
               <img 
                 src={heroVisual} 
-                alt="Professional RENZA Service Team" 
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                alt="Professional Indian RENZA Service Team" 
+                className="w-full h-auto object-cover object-center scale-[1.05]"
               />
-            </div>
-            
-            {/* Floating Trust Badge (Optional detail for premium feel) */}
-            <div className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 hidden md:flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#00D2C4]/10 flex items-center justify-center">
-                <Check size={20} strokeWidth={3} className="text-[#00D2C4]" />
-              </div>
-              <div className="flex flex-col pr-2">
-                <span className="text-xs text-text-secondary font-bold">Verified</span>
-                <span className="text-sm font-black text-deep-black dark:text-white">Professionals</span>
-              </div>
             </div>
 
           </div>
