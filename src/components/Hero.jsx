@@ -11,7 +11,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full bg-bg-light dark:bg-bg-dark pt-24 md:pt-32 lg:pt-32 pb-4 lg:pb-8 flex items-center overflow-hidden">
+    <section className="relative w-full bg-bg-light dark:bg-bg-dark pt-16 md:pt-20 lg:pt-16 pb-4 lg:pb-8 flex items-center overflow-hidden">
       
       {/* Very Subtle Decorative Background Shapes */}
       <div className="absolute top-0 right-0 w-[50vw] h-[80vh] bg-[#00D2C4]/5 rounded-bl-[120px] pointer-events-none -z-10" />
