@@ -607,3 +607,23 @@ body {
   50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(255,255,255,0.9); }
 }
 .animate-sun-pulse { animation: sun-pulse 4s ease-in-out infinite; }
+@keyframes hero-highlight-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow: 0 0 0 rgba(0,210,196,0);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0,210,196,0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 0 rgba(0,210,196,0);
+  }
+}
+
+.animate-hero-highlight {
+  animation: hero-highlight-enter 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+}

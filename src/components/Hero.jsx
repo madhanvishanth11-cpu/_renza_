@@ -31,7 +31,8 @@ export default function Hero() {
           {/* Headline */}
           <h1 className="font-sans font-black tracking-tight text-[#111111] dark:text-white text-[44px] sm:text-[54px] md:text-[64px] lg:text-[72px] leading-[1.1] mb-6">
             Get Any <br />
-            <span className="text-[#00D2C4]">Household Work</span> <br />
+            <span className="inline-block animate-hero-highlight transition-all duration-300 hover:brightness-125 hover:drop-shadow-[0_0_12px_rgba(0,210,196,0.6)] text-[#00D2C4] cursor-default" style={{ animationDelay: '100ms' }}>Household</span>{' '}
+            <span className="inline-block animate-hero-highlight transition-all duration-300 hover:brightness-125 hover:drop-shadow-[0_0_12px_rgba(0,210,196,0.6)] text-[#00D2C4] cursor-default" style={{ animationDelay: '250ms' }}>Work</span> <br />
             Done Easily
           </h1>
 
